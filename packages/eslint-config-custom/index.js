@@ -11,5 +11,6 @@ module.exports = {
     "@next/next/no-img-element": "off",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
+    "import/no-anonymous-default-export": "off",
   },
 };
