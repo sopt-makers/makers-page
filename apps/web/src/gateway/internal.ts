@@ -9,13 +9,18 @@ import superjson from "superjson";
 const SSR_GATEWAY_URL = process.env.SSR_GATEWAY_URL;
 const SSR_GATEWAY_API_KEY = process.env.SSR_GATEWAY_API_KEY;
 
+// 가능하다면 SSR Gateway와의 통신에 Service Binding 사용
+// https://developers.cloudflare.com/pages/platform/functions/bindings/#service-bindings
+//
 const serviceBindingFetch = (() => {
-  const { SSR_GATEWAY } = process.env as unknown as { SSR_GATEWAY?: Fetcher };
+  const { SSR_GATEWAY_Binding } = process.env as unknown as {
+    SSR_GATEWAY_Binding?: Fetcher;
+  };
 
-  if (SSR_GATEWAY) {
+  if (SSR_GATEWAY_Binding) {
     console.log("Using Service Binding");
 
-    return SSR_GATEWAY.fetch as FetchEsque;
+    return SSR_GATEWAY_Binding.fetch as FetchEsque;
   }
 
   console.log("Using URL Fetcher:", SSR_GATEWAY_URL);
