@@ -10,8 +10,8 @@
 
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
-import { createContextFactory } from "./context";
 import { appRouter } from "./router";
+import { createContextFactory } from "./trpc/context";
 
 export interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
