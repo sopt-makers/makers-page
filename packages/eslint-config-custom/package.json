@@ -11,7 +11,6 @@
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-simple-import-sort": "^10.0.0"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }
