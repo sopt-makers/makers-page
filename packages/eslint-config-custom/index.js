@@ -1,6 +1,11 @@
 module.exports = {
-  extends: ["next", "turbo", "prettier"],
-  plugins: ["simple-import-sort"],
+  extends: [
+    "next",
+    "turbo",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  plugins: ["simple-import-sort", "@typescript-eslint"],
   parserOptions: {
     babelOptions: {
       presets: [require.resolve("next/babel")],
@@ -12,5 +17,15 @@ module.exports = {
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
     "import/no-anonymous-default-export": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        varsIgnorePattern: "^_",
+        args: "all",
+        argsIgnorePattern: "^_",
+        caughtErrors: "all",
+      },
+    ],
   },
 };

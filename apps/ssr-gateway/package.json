@@ -1,21 +1,24 @@
 {
-	"name": "ssr-gateway",
-	"version": "0.0.0",
-	"private": true,
-	"types": "src/exports.ts",
-	"main": "src/exports.ts",
-	"scripts": {
-		"deploy": "wrangler publish",
-		"dev": "wrangler dev --port 5011"
-	},
-	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20230419.0",
-		"typescript": "^5.1.6",
-		"wrangler": "^3.0.0"
-	},
-	"dependencies": {
-		"@trpc/server": "^10.33.1",
-		"superjson": "^1.12.4",
-		"zod": "^3.21.4"
-	}
+  "name": "ssr-gateway",
+  "version": "0.0.0",
+  "private": true,
+  "types": "src/exports.ts",
+  "main": "src/exports.ts",
+  "scripts": {
+    "deploy": "wrangler publish",
+    "dev": "wrangler dev --port 5011",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@trpc/server": "^10.33.1",
+    "superjson": "^1.12.4",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230419.0",
+    "eslint": "^8.44.0",
+    "eslint-config-custom": "*",
+    "typescript": "^5.1.6",
+    "wrangler": "^3.0.0"
+  }
 }
