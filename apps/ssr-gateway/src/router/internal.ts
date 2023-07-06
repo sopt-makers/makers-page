@@ -10,13 +10,16 @@ const isInternalRequest = middleware(async (opts) => {
   if (!apiKey || !ctx.checkApiKey(apiKey)) {
     throw new TRPCError({ code: 'UNAUTHORIZED' });
   }
+
   return opts.next();
 });
 
 const internalProcedure = publicProcedure.use(isInternalRequest);
 
 export const internalRouter = router({
-  ping: internalProcedure.input(z.string()).query(({ input }) => {
-    return `pong to ${input}!`;
+  ping: internalProcedure.input(z.string()).query(async ({ input }) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    return `pong to ${input}! (Timestamp: ${new Date().toISOString()})`;
   }),
 });

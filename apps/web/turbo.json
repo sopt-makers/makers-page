@@ -3,7 +3,7 @@
   "extends": ["//"],
   "pipeline": {
     "build": {
-      "env": ["SSR_GATEWAY_URL", "SSR_GATEWAY_API_KEY"]
+      "env": ["NEXT_PUBLIC_DEV_MODE", "SSR_GATEWAY_URL", "SSR_GATEWAY_API_KEY"]
     }
   }
 }
