@@ -8,10 +8,10 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 
-import { appRouter } from "./router";
-import { createContextFactory } from "./trpc/context";
+import { appRouter } from './router';
+import { createContextFactory } from './trpc/context';
 
 export interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
@@ -33,13 +33,9 @@ export interface Env {
 }
 
 export default {
-  async fetch(
-    request: Request,
-    env: Env,
-    ctx: ExecutionContext
-  ): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     return fetchRequestHandler({
-      endpoint: "/trpc",
+      endpoint: '/trpc',
       req: request,
       router: appRouter,
       createContext: createContextFactory({

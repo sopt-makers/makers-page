@@ -1,14 +1,14 @@
-import { TRPCError } from "@trpc/server";
-import { z } from "zod";
+import { TRPCError } from '@trpc/server';
+import { z } from 'zod';
 
-import { middleware, publicProcedure, router } from "../trpc/stub";
+import { middleware, publicProcedure, router } from '../trpc/stub';
 
 const isInternalRequest = middleware(async (opts) => {
   const { ctx } = opts;
-  const apiKey = ctx.req.headers.get("X-Api-Key");
+  const apiKey = ctx.req.headers.get('X-Api-Key');
 
   if (!apiKey || !ctx.checkApiKey(apiKey)) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({ code: 'UNAUTHORIZED' });
   }
   return opts.next();
 });

@@ -1,5 +1,5 @@
-import { inferAsyncReturnType } from "@trpc/server";
-import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
+import { inferAsyncReturnType } from '@trpc/server';
+import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
 interface ContextDeps {
   waitUntil: (promise: Promise<void>) => void;
@@ -7,14 +7,9 @@ interface ContextDeps {
 }
 
 export function createContextFactory(deps: ContextDeps) {
-  return function createContext({
-    req,
-    resHeaders,
-  }: FetchCreateContextFnOptions) {
+  return function createContext({ req, resHeaders }: FetchCreateContextFnOptions) {
     return { req, resHeaders, ...deps };
   };
 }
 
-export type Context = inferAsyncReturnType<
-  ReturnType<typeof createContextFactory>
->;
+export type Context = inferAsyncReturnType<ReturnType<typeof createContextFactory>>;

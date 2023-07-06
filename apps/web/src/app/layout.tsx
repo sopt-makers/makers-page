@@ -1,12 +1,12 @@
-import "./global.css";
+import './global.css';
 
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-export const runtime = "edge";
+export const runtime = 'edge';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ko">
+    <html lang='ko'>
       <body>{children}</body>
     </html>
   );
