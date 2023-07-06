@@ -34,7 +34,7 @@ yarn-error.log*
 .turbo
 
 # vercel
-.vercel
+.vercel/*
 
 # yarn
 .pnp.*
