@@ -1,12 +1,12 @@
-name = "ssr-gateway"
+name = "makers-page-ssr-gateway"
 main = "src/worker.ts"
 compatibility_date = "2023-07-05"
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.
 # Docs: https://developers.cloudflare.com/workers/platform/environment-variables
-[vars]
-INTERNAL_API_KEY = "TEST_API_KEY_ONLY_FOR_DEVELOPMENT"
+# [vars]
+# INTERNAL_API_KEY = "TEST_API_KEY_ONLY_FOR_DEVELOPMENT"
 
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
