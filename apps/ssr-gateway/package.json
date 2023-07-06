@@ -7,7 +7,8 @@
   "scripts": {
     "deploy": "wrangler publish",
     "dev": "wrangler dev --port 5011",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@trpc/server": "^10.33.1",
