@@ -25,7 +25,7 @@ jobs:
       - name: Download Built App
         uses: actions/download-artifact@v3
         with:
-          name: built-app
+          name: built-web
           path: out
 
       - name: Publish
