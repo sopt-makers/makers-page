@@ -31,6 +31,8 @@ jobs:
       - name: Set .env
         run: echo "${{ secrets.env }}" > apps/web/.env.local
 
+      - run: echo apps/web/.env.local
+
       - name: Build
         run: yarn build:pages
         working-directory: apps/web
