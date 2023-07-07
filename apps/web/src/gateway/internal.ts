@@ -6,10 +6,8 @@ import { FetchEsque } from '@trpc/client/dist/internals/types';
 import type { AppRouter } from 'ssr-gateway';
 import superjson from 'superjson';
 
-import { NEXT_PUBLIC_DEV_MODE } from '../env';
-
-const SSR_GATEWAY_URL = process.env.SSR_GATEWAY_URL;
-const SSR_GATEWAY_API_KEY = process.env.SSR_GATEWAY_API_KEY;
+import { NEXT_PUBLIC_DEV_MODE } from '../env/client';
+import { SSR_GATEWAY_API_KEY, SSR_GATEWAY_URL } from '../env/server';
 
 // 가능하다면 SSR Gateway와의 통신에 Service Binding 사용
 // https://developers.cloudflare.com/pages/platform/functions/bindings/#service-bindings
