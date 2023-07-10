@@ -1,9 +1,12 @@
 import { inferAsyncReturnType } from '@trpc/server';
 import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
+import { NotionClient } from '../notion';
+
 interface ContextDeps {
   waitUntil: (promise: Promise<void>) => void;
   checkApiKey: (apiKey: string) => boolean;
+  customPageNotionClient: NotionClient;
 }
 
 export function createContextFactory(deps: ContextDeps) {

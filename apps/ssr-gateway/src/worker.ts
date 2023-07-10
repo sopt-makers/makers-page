@@ -10,6 +10,7 @@
 
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 
+import { createNotionClient } from './notion';
 import { appRouter } from './router';
 import { createContextFactory } from './trpc/context';
 
@@ -29,11 +30,17 @@ export interface Env {
   // Example binding to a Queue. Learn more at https://developers.cloudflare.com/queues/javascript-apis/
   // MY_QUEUE: Queue;
 
-  INTERNAL_API_KEY: string;
+  INTERNAL_API_KEY?: string;
+  RECRUIT_NOTION_API_KEY?: string;
+  RECRUIT_NOTION_PAGE_ID?: string;
 }
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    if (!env.RECRUIT_NOTION_API_KEY) {
+      return new Response('Error: Invalid RECRUIT_NOTION_API_KEY', { status: 500 });
+    }
+
     return fetchRequestHandler({
       endpoint: '/trpc',
       req: request,
@@ -43,6 +50,7 @@ export default {
         checkApiKey(apiKey) {
           return apiKey.trim() === env.INTERNAL_API_KEY;
         },
+        customPageNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY),
       }),
     });
   },

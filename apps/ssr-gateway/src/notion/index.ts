@@ -1,10 +1,12 @@
 import type { BlockObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
-import { NotionRawAPI } from './api';
+import { createRawNotionAPIClient } from './api';
 
 export type { BlockObjectResponse as NotionBlock };
 
-export function createNotionAPI(notionRawAPI: NotionRawAPI) {
+export function createNotionClient(notionApiKey: string) {
+  const notionRawAPI = createRawNotionAPIClient(notionApiKey);
+
   async function getDatabaseContents(id: string) {
     const dbData = await notionRawAPI.databaseRetrieve(id);
 
@@ -36,3 +38,5 @@ export function createNotionAPI(notionRawAPI: NotionRawAPI) {
     getPage,
   };
 }
+
+export type NotionClient = ReturnType<typeof createNotionClient>;
