@@ -1,0 +1,45 @@
+name: Build Web
+
+on:
+  workflow_call:
+    secrets:
+      env:
+        required: true
+    inputs:
+      upload:
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: Install Packages
+        run: yarn install --immutable
+        env:
+          CI: true
+
+      - name: Set .env
+        run: echo "${{ secrets.env }}" > apps/web/.env.local
+
+      - run: echo apps/web/.env.local
+
+      - name: Build
+        run: yarn build:pages
+        working-directory: apps/web
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: built-web
+          path: apps/web/.vercel/output/static
+          if-no-files-found: error
+          retention-days: 7
