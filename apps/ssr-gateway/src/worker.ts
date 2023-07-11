@@ -40,17 +40,23 @@ export default {
     if (!env.RECRUIT_NOTION_API_KEY) {
       return new Response('Error: Invalid RECRUIT_NOTION_API_KEY', { status: 500 });
     }
+    if (!env.RECRUIT_NOTION_PAGE_ID) {
+      throw new Error('Env RECRUIT_NOTION_PAGE_ID is not set.');
+    }
 
     return fetchRequestHandler({
       endpoint: '/trpc',
       req: request,
       router: appRouter,
       createContext: createContextFactory({
+        env: {
+          RECRUIT_NOTION_PAGE_ID: env.RECRUIT_NOTION_PAGE_ID,
+        },
         waitUntil: ctx.waitUntil,
         checkApiKey(apiKey) {
           return apiKey.trim() === env.INTERNAL_API_KEY;
         },
-        customPageNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY),
+        recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY),
       }),
     });
   },

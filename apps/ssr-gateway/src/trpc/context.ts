@@ -4,9 +4,12 @@ import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { NotionClient } from '../notion';
 
 interface ContextDeps {
+  env: {
+    RECRUIT_NOTION_PAGE_ID: string;
+  };
   waitUntil: (promise: Promise<void>) => void;
   checkApiKey: (apiKey: string) => boolean;
-  customPageNotionClient: NotionClient;
+  recruitNotionClient: NotionClient;
 }
 
 export function createContextFactory(deps: ContextDeps) {

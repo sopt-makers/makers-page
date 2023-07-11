@@ -1,10 +1,10 @@
 import { router } from '../trpc/stub';
 import { internalRouter } from './internal';
-import { notionRouter } from './notion';
+import { recruitRouter } from './recruit';
 
 export const appRouter = router({
   internal: internalRouter,
-  notion: notionRouter,
+  recruit: recruitRouter,
 });
 
 // export type definition of API
