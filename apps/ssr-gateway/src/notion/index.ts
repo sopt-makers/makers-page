@@ -64,6 +64,6 @@ function _modifiedBlockFactory(block: NotionBlock) {
   }
   return { ...block } as const;
 }
-type ModifiedBlock = ReturnType<typeof _modifiedBlockFactory>;
+export type ModifiedBlock = ReturnType<typeof _modifiedBlockFactory>;
 
 export type NotionClient = ReturnType<typeof createNotionClient>;

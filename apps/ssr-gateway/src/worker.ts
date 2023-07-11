@@ -8,6 +8,7 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { ExecutionContext, KVNamespace, Request, Response } from '@cloudflare/workers-types';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 
 import { createNotionClient } from './notion';
@@ -16,7 +17,7 @@ import { createContextFactory } from './trpc/context';
 
 export interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
-  // MY_KV_NAMESPACE: KVNamespace;
+  MAKERS_PAGE_KV: KVNamespace;
   //
   // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
   // MY_DURABLE_OBJECT: DurableObjectNamespace;
@@ -57,6 +58,7 @@ export default {
           return apiKey.trim() === env.INTERNAL_API_KEY;
         },
         recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY),
+        kv: env.MAKERS_PAGE_KV,
       }),
     });
   },

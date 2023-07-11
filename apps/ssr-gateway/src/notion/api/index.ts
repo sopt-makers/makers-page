@@ -1,3 +1,4 @@
+import { console, fetch, RequestInit, Response } from '@cloudflare/workers-types';
 import type {
   GetPageResponse,
   ListBlockChildrenResponse,

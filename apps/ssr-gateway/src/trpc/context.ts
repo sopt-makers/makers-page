@@ -1,3 +1,4 @@
+import { KVNamespace } from '@cloudflare/workers-types';
 import { inferAsyncReturnType } from '@trpc/server';
 import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
@@ -10,6 +11,7 @@ interface ContextDeps {
   waitUntil: (promise: Promise<void>) => void;
   checkApiKey: (apiKey: string) => boolean;
   recruitNotionClient: NotionClient;
+  kv: KVNamespace;
 }
 
 export function createContextFactory(deps: ContextDeps) {

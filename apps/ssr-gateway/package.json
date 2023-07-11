@@ -6,7 +6,7 @@
   "main": "src/exports.ts",
   "scripts": {
     "deploy": "wrangler publish",
-    "dev": "wrangler dev --port 5011",
+    "dev": "wrangler dev --port 5011 -e preview",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
