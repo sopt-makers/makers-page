@@ -49,21 +49,16 @@ export function createNotionClient(notionApiKey: string) {
 }
 
 const childrenableBlockTypes = ['bulleted_list_item', 'numbered_list_item'] satisfies NotionBlock['type'][];
-
 function isChildrenableBlock(
   block: NotionBlock,
 ): block is typeof block & { type: (typeof childrenableBlockTypes)[number] } {
   return childrenableBlockTypes.includes(block.type as never);
 }
-function _modifiedBlockFactory(block: NotionBlock) {
-  if (isChildrenableBlock(block)) {
-    return {
-      ...block,
-      children: [] as NotionBlock[],
-    } as const;
-  }
-  return { ...block } as const;
-}
-export type ModifiedBlock = ReturnType<typeof _modifiedBlockFactory>;
+
+export type X<T extends NotionBlock> = T extends { type: (typeof childrenableBlockTypes)[number] }
+  ? T & { children: X<NotionBlock>[] }
+  : T;
+
+export type ModifiedBlock = X<NotionBlock>;
 
 export type NotionClient = ReturnType<typeof createNotionClient>;

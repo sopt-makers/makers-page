@@ -8,7 +8,7 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import { ExecutionContext, KVNamespace, Request, Response } from '@cloudflare/workers-types';
+import { ExecutionContext, KVNamespace } from '@cloudflare/workers-types';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 
 import { createNotionClient } from './notion';

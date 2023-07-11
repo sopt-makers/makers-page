@@ -9,7 +9,7 @@ export const recruitRouter = router({
     if (cachedBlocks) {
       return { cacheHit: true, blocks: cachedBlocks as ModifiedBlock[] };
     }
-    const blocks = await ctx.recruitNotionClient.getPage(pageId);
+    const blocks = await ctx.recruitNotionClient.getBlocks(pageId);
     await ctx.kv.put('cache:recruit:main', JSON.stringify(blocks));
 
     return { cacheHit: false, blocks };
