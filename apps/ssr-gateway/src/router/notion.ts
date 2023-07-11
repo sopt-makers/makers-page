@@ -7,6 +7,7 @@ export const notionRouter = router({
     const { getBlocks } = ctx.customPageNotionClient;
 
     const blocks = await getBlocks(input.id);
+
     return {
       blocks,
     };

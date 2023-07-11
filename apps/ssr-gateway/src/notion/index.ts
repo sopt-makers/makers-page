@@ -1,8 +1,5 @@
-import type { BlockObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-
 import { createRawNotionAPIClient } from './api';
-
-export type { BlockObjectResponse as NotionBlock };
+import { NotionBlock, PageObjectResponse } from './types';
 
 export function createNotionClient(notionApiKey: string) {
   const notionRawAPI = createRawNotionAPIClient(notionApiKey);
@@ -15,10 +12,22 @@ export function createNotionClient(notionApiKey: string) {
     return objects;
   }
 
-  async function getBlocks(id: string) {
+  async function getBlocks(id: string): Promise<ModifiedBlock[]> {
     const data = await notionRawAPI.retrieveBlockChildren(id);
+    const rawBlocks = data.results.filter((result): result is NotionBlock => 'type' in result);
 
-    const blocks = data.results.filter((result): result is BlockObjectResponse => 'type' in result);
+    const blocks = await Promise.all(
+      rawBlocks.map(async (block) => {
+        if (isChildrenableBlock(block)) {
+          return {
+            ...block,
+            children: block.has_children ? await getBlocks(block.id) : [],
+          };
+        }
+
+        return block;
+      }),
+    );
 
     return blocks;
   }
@@ -38,5 +47,23 @@ export function createNotionClient(notionApiKey: string) {
     getPage,
   };
 }
+
+const childrenableBlockTypes = ['bulleted_list_item', 'numbered_list_item'] satisfies NotionBlock['type'][];
+
+function isChildrenableBlock(
+  block: NotionBlock,
+): block is typeof block & { type: (typeof childrenableBlockTypes)[number] } {
+  return childrenableBlockTypes.includes(block.type as never);
+}
+function _modifiedBlockFactory(block: NotionBlock) {
+  if (isChildrenableBlock(block)) {
+    return {
+      ...block,
+      children: [] as NotionBlock[],
+    } as const;
+  }
+  return { ...block } as const;
+}
+type ModifiedBlock = ReturnType<typeof _modifiedBlockFactory>;
 
 export type NotionClient = ReturnType<typeof createNotionClient>;
