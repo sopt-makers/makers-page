@@ -4,8 +4,8 @@ import { ModifiedBlock } from 'ssr-gateway';
 import { BlockRenderer } from '.';
 import RichTextRenderer from './RichTextRenderer';
 
-interface BlockResolverProps {
-  block: ModifiedBlock;
+interface BlockResolverProps<T extends string = string> {
+  block: ModifiedBlock & { type: T };
   position: number;
 }
 
@@ -46,15 +46,15 @@ const blockComponents = {
     <div className='flex'>
       <div className='pr-[8px]'>•</div>
       <div className='flex flex-grow flex-col'>
-        <div className='text-[17px] font-light leading-[160%] text-gray10 md:text-[18px]'>
+        <div className=''>
           <RichTextRenderer richText={block.bulleted_list_item.rich_text} />
         </div>
-        {block.children && <BlockRenderer blocks={block.children} />}
+        {block.children.length > 0 && <BlockRenderer blocks={block.children} />}
       </div>
     </div>
   ),
 } satisfies BlockRendererObjectBase;
 
 type BlockRendererObjectBase = {
-  [key in ModifiedBlock['type']]?: (props: { block: ModifiedBlock & { type: key }; position: number }) => ReactElement;
+  [K in ModifiedBlock['type']]?: (props: BlockResolverProps<K>) => ReactElement;
 };
