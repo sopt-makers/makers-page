@@ -6,7 +6,7 @@
   "main": "src/exports.ts",
   "scripts": {
     "deploy": "wrangler publish",
-    "dev": "wrangler dev --port 5011",
+    "dev": "wrangler dev --port 5011 -e preview",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230628.0",
+    "@notionhq/client": "^2.2.6",
     "eslint": "^8.44.0",
     "eslint-config-custom": "*",
     "typescript": "^5.1.6",

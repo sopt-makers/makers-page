@@ -2383,6 +2383,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@notionhq/client@npm:^2.2.6":
+  version: 2.2.6
+  resolution: "@notionhq/client@npm:2.2.6"
+  dependencies:
+    "@types/node-fetch": ^2.5.10
+    node-fetch: ^2.6.1
+  checksum: 738bc7ac6d677eb0a869d6f892320eabd82d960ca771b70ca3cc113cdf086b41bcb7b71773b03f4c547290f0f514b18c6421e7a18a7b72f5e6c6ede3be85f4e0
+  languageName: node
+  linkType: hard
+
 "@npmcli/fs@npm:^1.0.0":
   version: 1.1.1
   resolution: "@npmcli/fs@npm:1.1.1"
@@ -2820,6 +2830,16 @@ __metadata:
     "@types/node": "*"
     form-data: ^3.0.0
   checksum: b68cda58e91535a42dd5337932443c37f8e198ca1e8deeb95bd92a64a9a84d92071867b91c5eb84ee8e13f33d45a70549fe2bc11dd070a894dd561909f4d39f5
+  languageName: node
+  linkType: hard
+
+"@types/node-fetch@npm:^2.5.10":
+  version: 2.6.4
+  resolution: "@types/node-fetch@npm:2.6.4"
+  dependencies:
+    "@types/node": "*"
+    form-data: ^3.0.0
+  checksum: f3e1d881bb42269e676ecaf49f0e096ab345e22823a2b2d071d60619414817fe02df48a31a8d05adb23054028a2a65521bdb3906ceb763ab6d3339c8d8775058
   languageName: node
   linkType: hard
 
@@ -3722,6 +3742,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "axios@npm:1.4.0"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: 7fb6a4313bae7f45e89d62c70a800913c303df653f19eafec88e56cea2e3821066b8409bc68be1930ecca80e861c52aa787659df0ffec6ad4d451c7816b9386b
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^3.1.1":
   version: 3.2.1
   resolution: "axobject-query@npm:3.2.1"
@@ -4303,6 +4334,13 @@ __metadata:
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
   checksum: d06418b7335897209e77bdd430d04f882189582e67bd1f75a04565f3f07f5b3f119a9d670c943b6697d0afb100f03b866b3b8a1f91d4d02d72c4ecf2bb64b5dd
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
   languageName: node
   linkType: hard
 
@@ -6586,6 +6624,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.15.0":
+  version: 1.15.2
+  resolution: "follow-redirects@npm:1.15.2"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: faa66059b66358ba65c234c2f2a37fcec029dc22775f35d9ad6abac56003268baf41e55f9ee645957b32c7d9f62baf1f0b906e68267276f54ec4b4c597c2b190
+  languageName: node
+  linkType: hard
+
 "for-each@npm:^0.3.3":
   version: 0.3.3
   resolution: "for-each@npm:0.3.3"
@@ -6613,6 +6661,17 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: b019e8d35c8afc14a2bd8a7a92fa4f525a4726b6d5a9740e8d2623c30e308fbb58dc8469f90415a856698933c8479b01646a9dff33c87cc4e76d72aedbbf860d
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
   languageName: node
   linkType: hard
 
@@ -9490,7 +9549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.7, node-fetch@npm:^2.6.9":
+"node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7, node-fetch@npm:^2.6.9":
   version: 2.6.12
   resolution: "node-fetch@npm:2.6.12"
   dependencies:
@@ -10534,7 +10593,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"proxy-from-env@npm:^1.0.0":
+"proxy-from-env@npm:^1.0.0, proxy-from-env@npm:^1.1.0":
   version: 1.1.0
   resolution: "proxy-from-env@npm:1.1.0"
   checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
@@ -11551,6 +11610,7 @@ __metadata:
   resolution: "ssr-gateway@workspace:apps/ssr-gateway"
   dependencies:
     "@cloudflare/workers-types": ^4.20230628.0
+    "@notionhq/client": ^2.2.6
     "@trpc/server": ^10.33.1
     eslint: ^8.44.0
     eslint-config-custom: "*"
@@ -12878,6 +12938,8 @@ turbo@latest:
     "@types/react": ^18.2.14
     "@types/react-dom": ^18.2.6
     autoprefixer: ^10.4.14
+    axios: ^1.4.0
+    clsx: ^1.2.1
     eslint-config-custom: "*"
     next: ^13.4.8
     postcss: ^8.4.24

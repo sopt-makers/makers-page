@@ -11,7 +11,7 @@ import { DEV_MODE, SSR_GATEWAY_API_KEY, SSR_GATEWAY_URL } from '../env/server';
 // 가능하다면 SSR Gateway와의 통신에 Service Binding 사용
 // https://developers.cloudflare.com/pages/platform/functions/bindings/#service-bindings
 //
-const serviceBindingFetch = (() => {
+const serviceBindingFetch = ((): FetchEsque => {
   const { SSR_GATEWAY_Binding } = process.env as unknown as {
     SSR_GATEWAY_Binding?: Fetcher;
   };
@@ -24,10 +24,10 @@ const serviceBindingFetch = (() => {
   }
 
   console.log('[web] Using URL Fetcher:', SSR_GATEWAY_URL);
-  return fetch;
+  return (req, init) => fetch(req, { ...init, next: { revalidate: 0 } });
 })();
 
-export const internalGateway = createTRPCProxyClient<AppRouter>({
+export const gateway = createTRPCProxyClient<AppRouter>({
   links: [
     loggerLink({
       enabled: () => DEV_MODE,
@@ -43,4 +43,4 @@ export const internalGateway = createTRPCProxyClient<AppRouter>({
     }),
   ],
   transformer: superjson,
-}).internal;
+});
