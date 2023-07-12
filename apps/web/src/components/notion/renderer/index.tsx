@@ -1,20 +1,21 @@
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 import { ModifiedBlock } from 'ssr-gateway';
 
 import { BlockResolver } from './BlockResolver';
 
 interface BlockRendererProps {
   blocks: ModifiedBlock[];
+  renderPageLink: (id: string, name: string) => ReactElement;
 }
 
-export const BlockRenderer: FC<BlockRendererProps> = ({ blocks }) => {
+export const BlockRenderer: FC<BlockRendererProps> = ({ blocks, renderPageLink }) => {
   const merged = mergeBlocks(blocks);
 
   function renderBlocks(blocks: ModifiedBlock[]) {
     if (blocks.length === 0) {
       return <></>;
     }
-    return <BlockRenderer blocks={blocks} />;
+    return <BlockRenderer blocks={blocks} renderPageLink={renderPageLink} />;
   }
 
   return (
@@ -24,7 +25,13 @@ export const BlockRenderer: FC<BlockRendererProps> = ({ blocks }) => {
           return (
             <div key={idx} className='flex flex-col gap-[1px]'>
               {entryOrArray.map(({ block, streak }) => (
-                <BlockResolver key={block.id} block={block} streak={streak} renderBlocks={renderBlocks} />
+                <BlockResolver
+                  key={block.id}
+                  block={block}
+                  streak={streak}
+                  renderBlocks={renderBlocks}
+                  renderPageLink={renderPageLink}
+                />
               ))}
             </div>
           );
@@ -35,6 +42,7 @@ export const BlockRenderer: FC<BlockRendererProps> = ({ blocks }) => {
             block={entryOrArray.block}
             streak={entryOrArray.streak}
             renderBlocks={renderBlocks}
+            renderPageLink={renderPageLink}
           />
         );
       })}

@@ -7,15 +7,16 @@ interface BlockResolverProps<T extends string = string> {
   block: ModifiedBlock & { type: T };
   streak: number;
   renderBlocks: (blocks: ModifiedBlock[]) => ReactElement;
+  renderPageLink: (id: string, name: string) => ReactElement;
 }
 
-export function BlockResolver({ block, streak, renderBlocks }: BlockResolverProps) {
+export function BlockResolver({ block, streak, renderBlocks, renderPageLink }: BlockResolverProps) {
   const Comp = blockComponents[block.type as keyof typeof blockComponents] as (
     props: BlockResolverProps,
   ) => ReactElement;
 
   if (Comp) {
-    return <Comp block={block} streak={streak} renderBlocks={renderBlocks} />;
+    return <Comp block={block} streak={streak} renderBlocks={renderBlocks} renderPageLink={renderPageLink} />;
   }
 
   return <div>Unresolved Block type: {block.type}</div>;
@@ -53,9 +54,9 @@ const blockComponents = {
       </div>
     </div>
   ),
-  numbered_list_item: ({ block, streak: position, renderBlocks }) => (
+  numbered_list_item: ({ block, streak, renderBlocks }) => (
     <div className='flex'>
-      <div className='pr-[8px]'>{position + 1}.</div>
+      <div className='pr-[8px]'>{streak + 1}.</div>
       <div className='flex flex-grow flex-col'>
         <div className=''>
           <RichTextRenderer richText={block.numbered_list_item.rich_text} />
@@ -64,6 +65,17 @@ const blockComponents = {
       </div>
     </div>
   ),
+  column_list: ({ block, renderBlocks }) => (
+    <div className='flex whitespace-pre'>
+      {block.children.map((column) => (
+        <div key={column.id} className='flex-grow flex-shrink-0'>
+          {renderBlocks([column])}
+        </div>
+      ))}
+    </div>
+  ),
+  column: ({ block, renderBlocks }) => <>{renderBlocks(block.children)}</>,
+  child_page: ({ block, renderPageLink }) => <div>{renderPageLink(block.id, block.child_page.title)}</div>,
 } satisfies BlockRendererObjectBase;
 
 type BlockRendererObjectBase = {

@@ -48,7 +48,12 @@ export function createNotionClient(notionApiKey: string) {
   };
 }
 
-const childrenableBlockTypes = ['bulleted_list_item', 'numbered_list_item'] satisfies NotionBlock['type'][];
+const childrenableBlockTypes = [
+  'bulleted_list_item',
+  'numbered_list_item',
+  'column_list',
+  'column',
+] satisfies NotionBlock['type'][];
 function isChildrenableBlock(
   block: NotionBlock,
 ): block is typeof block & { type: (typeof childrenableBlockTypes)[number] } {
