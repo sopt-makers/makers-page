@@ -53,6 +53,17 @@ const blockComponents = {
       </div>
     </div>
   ),
+  numbered_list_item: ({ block, position }) => (
+    <div className='flex'>
+      <div className='pr-[8px]'>{position + 1}.</div>
+      <div className='flex flex-grow flex-col'>
+        <div className=''>
+          <RichTextRenderer richText={block.numbered_list_item.rich_text} />
+        </div>
+        {block.children.length > 0 && <BlockRenderer blocks={block.children} />}
+      </div>
+    </div>
+  ),
 } satisfies BlockRendererObjectBase;
 
 type BlockRendererObjectBase = {

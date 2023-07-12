@@ -12,29 +12,39 @@ export const BlockRenderer: FC<BlockRendererProps> = ({ blocks }) => {
 
   return (
     <div className='flex flex-col gap-y-[4px] pb-[20px]'>
-      {merged.map((blockOrArray, idx) => {
-        if (Array.isArray(blockOrArray)) {
+      {merged.map((entryOrArray, idx) => {
+        if (Array.isArray(entryOrArray)) {
           return (
             <div key={idx} className='flex flex-col gap-[1px]'>
-              {blockOrArray.map((block, idx) => (
-                <BlockResolver key={block.id} block={block} position={idx + 1} />
+              {entryOrArray.map(({ block, streak }) => (
+                <BlockResolver key={block.id} block={block} position={streak} />
               ))}
             </div>
           );
         }
-        return <BlockResolver key={idx} block={blockOrArray} position={idx + 1} />;
+        return <BlockResolver key={idx} block={entryOrArray.block} position={entryOrArray.streak} />;
       })}
     </div>
   );
 };
 
 function mergeBlocks(blocks: ModifiedBlock[]) {
-  const result: (ModifiedBlock[] | ModifiedBlock)[] = [];
-  let buffer: ModifiedBlock[] = [];
+  type Entry = {
+    streak: number;
+    block: ModifiedBlock;
+  };
+
+  const result: (Entry[] | Entry)[] = [];
+  let buffer: Entry[] = [];
 
   for (const block of blocks) {
     if (block.type === 'bulleted_list_item' || block.type === 'numbered_list_item') {
-      buffer.push(block);
+      if (buffer.length > 0 && buffer[buffer.length - 1].block.type === block.type) {
+        buffer.push({ streak: buffer[buffer.length - 1].streak + 1, block });
+        continue;
+      }
+
+      buffer.push({ streak: 0, block });
       continue;
     }
 
@@ -43,7 +53,7 @@ function mergeBlocks(blocks: ModifiedBlock[]) {
       buffer = [];
     }
 
-    result.push(block);
+    result.push({ streak: 1, block });
   }
 
   if (buffer.length > 0) {
