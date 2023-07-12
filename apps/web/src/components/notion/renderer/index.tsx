@@ -10,6 +10,13 @@ interface BlockRendererProps {
 export const BlockRenderer: FC<BlockRendererProps> = ({ blocks }) => {
   const merged = mergeBlocks(blocks);
 
+  function renderBlocks(blocks: ModifiedBlock[]) {
+    if (blocks.length === 0) {
+      return <></>;
+    }
+    return <BlockRenderer blocks={blocks} />;
+  }
+
   return (
     <div className='flex flex-col gap-y-[4px] pb-[20px]'>
       {merged.map((entryOrArray, idx) => {
@@ -17,12 +24,19 @@ export const BlockRenderer: FC<BlockRendererProps> = ({ blocks }) => {
           return (
             <div key={idx} className='flex flex-col gap-[1px]'>
               {entryOrArray.map(({ block, streak }) => (
-                <BlockResolver key={block.id} block={block} position={streak} />
+                <BlockResolver key={block.id} block={block} streak={streak} renderBlocks={renderBlocks} />
               ))}
             </div>
           );
         }
-        return <BlockResolver key={idx} block={entryOrArray.block} position={entryOrArray.streak} />;
+        return (
+          <BlockResolver
+            key={idx}
+            block={entryOrArray.block}
+            streak={entryOrArray.streak}
+            renderBlocks={renderBlocks}
+          />
+        );
       })}
     </div>
   );
