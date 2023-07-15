@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     colors: {
       black100: '#0F1010',
+      white: '#FFFFFF',
     },
     fontFamily: {
       sans: ['var(--font-suit)', ...defaultTheme.fontFamily.sans],
