@@ -39,7 +39,7 @@ export interface Env {
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     if (!env.RECRUIT_NOTION_API_KEY) {
-      return new Response('Error: Invalid RECRUIT_NOTION_API_KEY', { status: 500 });
+      return new Response('Invalid RECRUIT_NOTION_API_KEY', { status: 500 });
     }
     if (!env.RECRUIT_NOTION_PAGE_ID) {
       throw new Error('Env RECRUIT_NOTION_PAGE_ID is not set.');
