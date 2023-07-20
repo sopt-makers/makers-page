@@ -75,13 +75,13 @@ export default {
   },
 };
 
-function check<T extends object, const K extends keyof T>(
+function check<T extends object, K extends keyof T>(
   obj: T,
   keys: readonly K[],
 ): obj is T & Required<{ [key in K]: T[K] }> {
-  for (const key in keys) {
+  for (const key of keys) {
     if (!(key in obj)) {
-      console.log(`Env value ${key} is not properly set.`);
+      console.log(`Env value ${String(key)} is not properly set.`);
       return false;
     }
   }

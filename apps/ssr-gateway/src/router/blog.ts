@@ -12,12 +12,21 @@ export const blogRouter = router({
       }),
     )
     .query(async ({ input, ctx }) => {
-      const cached = await ctx.kv.get('cache:blog:list', 'json');
-      if (cached) {
-        return cached as ArticleListType;
-      }
+      const pages = await (async () => {
+        const cacheKey = () => `cache:blog:list`;
 
-      const pages = await ctx.blog.notion.getDatabaseContents(ctx.blog.databaseId);
+        const cached = await ctx.kv.get(cacheKey(), 'json');
+        if (cached) {
+          return cached as PagesType;
+        }
+
+        const pages = await ctx.blog.notion.getDatabaseContents(ctx.blog.databaseId);
+        type PagesType = typeof pages;
+
+        await ctx.kv.put(cacheKey(), JSON.stringify(pages));
+
+        return pages;
+      })();
 
       const articles = pages.map((page) => {
         const properties = extractArticleProperties(page.properties);
@@ -27,15 +36,18 @@ export const blogRouter = router({
           id: page.id,
         };
       });
+      const categories = articles
+        .map((article) => article.category)
+        .filter((category): category is string => !!category);
 
-      const filtered = articles.filter(
-        (article) => input.category === undefined || article.category === input.category,
-      );
-      type ArticleListType = typeof filtered;
+      const filtered = articles.filter((article) => !input.category || article.category === input.category);
 
-      await ctx.kv.put('cache:blog:list', JSON.stringify(filtered));
+      const data = {
+        articles: filtered,
+        categories,
+      };
 
-      return filtered;
+      return data;
     }),
   invalidateList: internalProcedure.mutation(async ({ ctx }) => {
     await ctx.kv.delete('cache:blog:list');
