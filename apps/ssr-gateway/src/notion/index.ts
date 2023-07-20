@@ -1,5 +1,5 @@
 import { createRawNotionAPIClient } from './api';
-import { NotionBlock, PageObjectResponse } from './types';
+import { NotionBlock, NotionPage } from './types';
 
 export function createNotionClient(notionApiKey: string) {
   const notionRawAPI = createRawNotionAPIClient(notionApiKey);
@@ -7,7 +7,7 @@ export function createNotionClient(notionApiKey: string) {
   async function getDatabaseContents(id: string) {
     const dbData = await notionRawAPI.databaseRetrieve(id);
 
-    const objects = dbData.results.filter((result): result is PageObjectResponse => 'properties' in result);
+    const objects = dbData.results.filter((result): result is NotionPage => 'properties' in result);
 
     return objects;
   }

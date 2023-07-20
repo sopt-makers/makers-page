@@ -11,6 +11,10 @@ interface ContextDeps {
   waitUntil: (promise: Promise<void>) => void;
   checkApiKey: (apiKey: string) => boolean;
   recruitNotionClient: NotionClient;
+  blog: {
+    notion: NotionClient;
+    databaseId: string;
+  };
   kv: KVNamespace;
 }
 
