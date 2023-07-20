@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { ModifiedBlock } from 'ssr-gateway';
 
 import RichTextRenderer from './RichTextRenderer';
+import SyntaxHighlighter from './SyntaxHighlighter';
 
 interface BlockResolverProps<T extends string = string> {
   block: ModifiedBlock & { type: T };
@@ -76,6 +77,9 @@ const blockComponents = {
   ),
   column: ({ block, renderBlocks }) => <>{renderBlocks(block.children)}</>,
   child_page: ({ block, renderPageLink }) => <div>{renderPageLink(block.id, block.child_page.title)}</div>,
+  code: ({ block }) => (
+    <SyntaxHighlighter language={block.code.language} code={block.code.rich_text.map((t) => t.plain_text).join('')} />
+  ),
 } satisfies BlockRendererObjectBase;
 
 type BlockRendererObjectBase = {
