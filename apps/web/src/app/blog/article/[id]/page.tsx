@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import ArticlePage from '@/components/blog/ArticleDetail';
+
 interface BlogArticlePageProps {
   params: { id: string };
 }
@@ -7,7 +9,11 @@ interface BlogArticlePageProps {
 export const runtime = 'edge';
 
 const BlogArticlePage: FC<BlogArticlePageProps> = ({ params }) => {
-  return <>{params.id}</>;
+  return (
+    <>
+      <ArticlePage id={params.id} />
+    </>
+  );
 };
 
 export default BlogArticlePage;
