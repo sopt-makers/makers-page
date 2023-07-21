@@ -1,16 +1,25 @@
 import Header from '@/components/header/Header';
+import Archive from '@/components/mainpage/Archive';
+import CoreValue from '@/components/mainpage/CoreValue';
 import Greeting from '@/components/mainpage/Greeting';
+import MakersIntodution from '@/components/mainpage/MakersIntodution';
+import Product from '@/components/mainpage/Product';
+import RecruitBanner from '@/components/mainpage/RecruitBanner';
 
-import { gateway } from '../gateway';
+// import { gateway } from '../gateway';
 
 export default async function Page() {
-  const result = await gateway.internal.ping.query('hello');
+  // const result = await gateway.internal.ping.query('hello');
 
   return (
     <>
       <Header />
       <Greeting />
-      <div className='flex text-center'>Hello world! {result}</div>
+      <MakersIntodution />
+      <CoreValue />
+      <Product />
+      <Archive />
+      <RecruitBanner />
     </>
   );
 }
