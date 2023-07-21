@@ -1,17 +1,17 @@
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { NotionPage } from './types';
 
-export function propertyResolver(properties: PageObjectResponse['properties']) {
-  function getTypedProperty<T extends PageObjectResponse['properties'][string]['type']>(
+export function propertyResolver(properties: NotionPage['properties']) {
+  function getTypedProperty<T extends NotionPage['properties'][string]['type']>(
     name: string,
     type: T,
-  ): PageObjectResponse['properties'][string] & { type: T } {
+  ): NotionPage['properties'][string] & { type: T } {
     const property = properties[name];
 
     if (property.type !== type) {
       throw new Error(`${name} 필드는 ${type} 타입의 속성이 아닙니다.`);
     }
 
-    return property as PageObjectResponse['properties'][string] & { type: T };
+    return property as NotionPage['properties'][string] & { type: T };
   }
 
   return {
