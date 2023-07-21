@@ -13,6 +13,7 @@ module.exports = {
       sub_blue: '#1F299C',
       sub_pink: '#FDBBF9',
       sub_yellow: '#FFCA00',
+      dark1: '#252629',
     },
     fontFamily: {
       sans: ['var(--font-suit)', ...defaultTheme.fontFamily.sans],
