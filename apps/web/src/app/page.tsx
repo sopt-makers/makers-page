@@ -6,10 +6,7 @@ import MakersIntodution from '@/components/mainpage/MakersIntodution';
 import Product from '@/components/mainpage/Product';
 import RecruitBanner from '@/components/mainpage/RecruitBanner';
 
-// import { gateway } from '../gateway';
-
 export default async function Page() {
-  // const result = await gateway.internal.ping.query('hello');
   return (
     <>
       <Header />
