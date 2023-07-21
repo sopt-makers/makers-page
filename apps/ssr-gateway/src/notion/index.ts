@@ -1,7 +1,11 @@
 import { createRawNotionAPIClient } from './api';
 import { NotionBlock, NotionPage } from './types';
 
-export function createNotionClient(notionApiKey: string) {
+export interface ImageSaver {
+  save: (key: string, url: string) => Promise<{ url: string }>;
+}
+
+export function createNotionClient(notionApiKey: string, imageSaver: ImageSaver) {
   const notionRawAPI = createRawNotionAPIClient(notionApiKey);
 
   async function getDatabaseContents(id: string) {
@@ -23,6 +27,23 @@ export function createNotionClient(notionApiKey: string) {
             ...block,
             children: block.has_children ? await getBlocks(block.id) : [],
           };
+        }
+
+        if (block.type === 'image') {
+          if (block.image.type === 'file') {
+            const imageUrl = new URL(block.image.file.url);
+
+            const { url: savedImageUrl } = await imageSaver.save(`${imageUrl.pathname}`, block.image.file.url);
+
+            return {
+              ...block,
+              image: {
+                type: 'file' as const,
+                caption: block.image.caption,
+                file: { url: savedImageUrl, expiry_time: '' },
+              },
+            };
+          }
         }
 
         return block;
@@ -54,6 +75,7 @@ const childrenableBlockTypes = [
   'column_list',
   'column',
 ] satisfies NotionBlock['type'][];
+
 function isChildrenableBlock(
   block: NotionBlock,
 ): block is typeof block & { type: (typeof childrenableBlockTypes)[number] } {

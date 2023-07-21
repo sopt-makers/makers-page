@@ -11,13 +11,14 @@
 import { ExecutionContext, KVNamespace } from '@cloudflare/workers-types';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 
-import { createNotionClient } from './notion';
+import { createNotionClient, ImageSaver } from './notion';
 import { appRouter } from './router';
 import { createContextFactory } from './trpc/context';
 
 export interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
   MAKERS_PAGE_KV: KVNamespace;
+  MAKERS_PAGE_R2: R2Bucket;
   //
   // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
   // MY_DURABLE_OBJECT: DurableObjectNamespace;
@@ -52,6 +53,32 @@ export default {
       throw new Error('Some env values are not properly set.');
     }
 
+    const imageSaver: ImageSaver = {
+      async save(key, url) {
+        const imageURL = new URL(`/image/${key}`, request.url).href;
+
+        const meta = await env.MAKERS_PAGE_R2.head(`image/${key}`);
+        if (meta) {
+          return { url: imageURL };
+        }
+
+        const response = await fetch(url);
+        console.log(response.headers);
+        if (!response.body) {
+          console.log('Failed to save image.');
+          return { url };
+        }
+
+        const { readable, writable } = new TransformStream();
+
+        ctx.waitUntil(response.body.pipeTo(writable));
+
+        await env.MAKERS_PAGE_R2.put(`image/${key}`, readable);
+
+        return { url: imageURL };
+      },
+    };
+
     return fetchRequestHandler({
       endpoint: '/trpc',
       req: request,
@@ -65,10 +92,10 @@ export default {
           return apiKey.trim() === env.INTERNAL_API_KEY;
         },
         blog: {
-          notion: createNotionClient(env.BLOG_NOTION_API_KEY),
+          notion: createNotionClient(env.BLOG_NOTION_API_KEY, imageSaver),
           databaseId: env.BLOG_NOTION_DB_ID,
         },
-        recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY),
+        recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY, imageSaver),
         kv: env.MAKERS_PAGE_KV,
       }),
     });

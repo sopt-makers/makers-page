@@ -80,6 +80,7 @@ const blockComponents = {
   code: ({ block }) => (
     <SyntaxHighlighter language={block.code.language} code={block.code.rich_text.map((t) => t.plain_text).join('')} />
   ),
+  image: ({ block }) => <div>{JSON.stringify(block.image)}</div>,
 } satisfies BlockRendererObjectBase;
 
 type BlockRendererObjectBase = {
