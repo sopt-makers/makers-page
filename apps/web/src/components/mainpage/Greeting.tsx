@@ -1,6 +1,6 @@
 export default function greeting() {
   return (
-    <article className='flex flex-col justify-center items-center font-sans h0'>
+    <article className='flex flex-col justify-center items-center font-sans text-h0'>
       <p className='mt-[12.62rem]'>
         솝트를 위해,
         <br />

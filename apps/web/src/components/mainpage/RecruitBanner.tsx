@@ -3,8 +3,8 @@ export default function RecruitBanner() {
     <article className='flex flex-row justify-between items-center w-full h-[33.4rem] mt-[27.5rem] mb-[29.69rem] bg-dark1'>
       <BannerLeft />
       <section className='flex flex-col justify-center items-center'>
-        <h1 className='h1'>메이커스를 통해 성장해보세요</h1>
-        <button className='mt-[3.81rem] bg-white text-dark1 h2 px-[7.5rem] py-[2rem] rounded-[0.625rem]'>
+        <h1 className='text-h1'>메이커스를 통해 성장해보세요</h1>
+        <button className='mt-[3.81rem] bg-white text-dark1 text-h2 px-[7.5rem] py-[2rem] rounded-[0.625rem]'>
           모집 공고 보러가기
         </button>
       </section>

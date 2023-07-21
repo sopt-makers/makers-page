@@ -1,13 +1,13 @@
 export default function MakersIntodution() {
   return (
-    <article className='flex flex-col justify-center items-center'>
+    <article className='flex flex-col justify-center items-center text-h2'>
       <IntrodutionCaption />
       <TextLogo className='mt-[2.75rem]' />
-      <p className='text-center h2 mt-[6.19rem]'>
+      <p className='text-center mt-[6.19rem]'>
         우리는 솝트를 통해 이미 열정과 하나 되었던 회원들이 또 다시 모여, <br />
         새로운 열정을 기다리는 사람들에게 보다 든든하고 믿음직한 첫걸음을 선사합니다.
       </p>
-      <p className='text-center h2 mt-[5.06rem]'>
+      <p className='text-center mt-[5.06rem]'>
         우리는 다양한 솝트 회원들이 모일 수 있는 장을 마련하고,
         <br /> 그들이 더 잘 연결될 수 있도록 다양한 층으로 확장해나갑니다.
         <br /> 솝트 메이커스는 매 순간마다 솝트의 든든한 발판을 제공하는 팀입니다.

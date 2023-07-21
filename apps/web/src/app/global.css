@@ -5,36 +5,3 @@
 :root {
   color-scheme: dark;
 }
-
-.h0 {
-  font-size: 4.375rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 140%; /* 6.125rem */
-  letter-spacing: -0.04375rem;
-}
-
-.h1 {
-  font-size: 3.125rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 3.125rem */
-  letter-spacing: -0.03125rem;
-}
-
-.h2 {
-  font-size: 1.875rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 170%; /* 3.1875rem */
-  letter-spacing: -0.01875rem;
-}
-
-.caption {
-  font-family: Kallisto;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 1.25rem */
-  letter-spacing: -0.0125rem;
-}

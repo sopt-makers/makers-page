@@ -2,7 +2,7 @@ export default function Product() {
   return (
     <article className='flex flex-col justify-center items-center mt-[33.5rem]'>
       <ProductCaption />
-      <h1 className='h1 mt-[2.44rem]'>메이커스가 만든 제품</h1>
+      <h1 className='text-h1 mt-[2.44rem]'>메이커스가 만든 제품</h1>
       <div></div>
     </article>
   );
