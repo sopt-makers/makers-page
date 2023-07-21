@@ -1,4 +1,4 @@
-const MakersIntodution = () => {
+export default function MakersIntodution() {
   return (
     <article className='flex flex-col justify-center items-center'>
       <IntrodutionCaption />
@@ -14,9 +14,7 @@ const MakersIntodution = () => {
       </p>
     </article>
   );
-};
-
-export default MakersIntodution;
+}
 
 function IntrodutionCaption(props: React.SVGProps<SVGSVGElement>) {
   return (

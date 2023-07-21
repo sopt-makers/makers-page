@@ -1,4 +1,4 @@
-const Product = () => {
+export default function Product() {
   return (
     <article className='flex flex-col justify-center items-center mt-[33.5rem]'>
       <ProductCaption />
@@ -6,9 +6,7 @@ const Product = () => {
       <div></div>
     </article>
   );
-};
-
-export default Product;
+}
 
 function ProductCaption(props: React.SVGProps<SVGSVGElement>) {
   return (

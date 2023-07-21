@@ -10,7 +10,6 @@ import RecruitBanner from '@/components/mainpage/RecruitBanner';
 
 export default async function Page() {
   // const result = await gateway.internal.ping.query('hello');
-
   return (
     <>
       <Header />

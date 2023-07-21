@@ -1,8 +1,4 @@
-'use client';
-
-import React from 'react';
-
-const Greeting = () => {
+export default function greeting() {
   return (
     <article className='flex flex-col justify-center items-center font-sans h0'>
       <p className='mt-[12.62rem]'>
@@ -24,9 +20,7 @@ const Greeting = () => {
       </p>
     </article>
   );
-};
-
-export default Greeting;
+}
 
 function ArrowIcon(props: React.SVGProps<SVGSVGElement>) {
   return (

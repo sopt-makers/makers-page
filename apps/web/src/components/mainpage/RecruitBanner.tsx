@@ -1,6 +1,4 @@
-import React from 'react';
-
-const RecruitBanner = () => {
+export default function RecruitBanner() {
   return (
     <article className='flex flex-row justify-between items-center w-full h-[33.4rem] mt-[27.5rem] mb-[29.69rem] bg-dark1'>
       <BannerLeft />
@@ -13,9 +11,7 @@ const RecruitBanner = () => {
       <BannerRight />
     </article>
   );
-};
-
-export default RecruitBanner;
+}
 
 function BannerLeft(props: React.SVGProps<SVGSVGElement>) {
   return (

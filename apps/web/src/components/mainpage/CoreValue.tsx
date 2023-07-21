@@ -1,9 +1,8 @@
-const CoreValue = () => {
+export default function CoreValue() {
   return (
     <article className='flex flex-col justify-center items-center mt-[24.5rem]'>
       <CoreValueCaption />
       <h1 className='h1 mt-[2.44rem]'>메이커스의 핵심가치 5가지</h1>
-
       <section className='flex gap-[1.75rem] mt-[7rem]'>
         <OwnershipCard />
         <ConnectionCard />
@@ -13,9 +12,7 @@ const CoreValue = () => {
       </section>
     </article>
   );
-};
-
-export default CoreValue;
+}
 
 function CoreValueCaption(props: React.SVGProps<SVGSVGElement>) {
   return (

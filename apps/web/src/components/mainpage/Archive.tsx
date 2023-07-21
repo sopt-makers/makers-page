@@ -1,15 +1,13 @@
 import React from 'react';
 
-const Archive = () => {
+export default function Archive() {
   return (
     <article className='flex flex-col justify-center items-center mt-[27rem]'>
       <ArchiveCaption />
       <h1 className='h1 mt-[2.44rem]'>메이커스의 기록</h1>
     </article>
   );
-};
-
-export default Archive;
+}
 
 function ArchiveCaption(props: React.SVGProps<SVGSVGElement>) {
   return (
