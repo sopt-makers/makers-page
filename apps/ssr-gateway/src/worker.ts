@@ -34,22 +34,15 @@ export interface Env {
   INTERNAL_API_KEY?: string;
   RECRUIT_NOTION_API_KEY?: string;
   RECRUIT_NOTION_PAGE_ID?: string;
-  BLOG_NOTION_API_KEY?: string;
-  BLOG_NOTION_DB_ID?: string;
 }
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    if (
-      !check(env, [
-        'BLOG_NOTION_API_KEY',
-        'BLOG_NOTION_DB_ID',
-        'RECRUIT_NOTION_API_KEY',
-        'RECRUIT_NOTION_PAGE_ID',
-        'INTERNAL_API_KEY',
-      ])
-    ) {
-      throw new Error('Some env values are not properly set.');
+    if (!env.RECRUIT_NOTION_API_KEY) {
+      return new Response('Invalid RECRUIT_NOTION_API_KEY', { status: 500 });
+    }
+    if (!env.RECRUIT_NOTION_PAGE_ID) {
+      throw new Error('Env RECRUIT_NOTION_PAGE_ID is not set.');
     }
 
     return fetchRequestHandler({
@@ -64,26 +57,9 @@ export default {
         checkApiKey(apiKey) {
           return apiKey.trim() === env.INTERNAL_API_KEY;
         },
-        blog: {
-          notion: createNotionClient(env.BLOG_NOTION_API_KEY),
-          databaseId: env.BLOG_NOTION_DB_ID,
-        },
         recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY),
         kv: env.MAKERS_PAGE_KV,
       }),
     });
   },
 };
-
-function check<T extends object, K extends keyof T>(
-  obj: T,
-  keys: readonly K[],
-): obj is T & Required<{ [key in K]: T[K] }> {
-  for (const key of keys) {
-    if (!(key in obj)) {
-      console.log(`Env value ${String(key)} is not properly set.`);
-      return false;
-    }
-  }
-  return true;
-}
