@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className='sticky flex justify-center px-[2.25rem] py-[1.125rem]'>
+    <header className='fixed w-full flex justify-center bg-black100 px-[2.25rem] py-[1.125rem] z-10'>
       <MakersLogo />
     </header>
   );
@@ -10,7 +10,7 @@ const Header = () => {
 
 export default Header;
 
-function MakersLogo(props) {
+function MakersLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={118} height={33} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path
