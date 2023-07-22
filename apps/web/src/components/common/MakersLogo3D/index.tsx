@@ -1,8 +1,10 @@
 'use client';
 
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import clsx from 'clsx';
+import { MotionValue, useSpring } from 'framer-motion';
 import { FC, useEffect, useRef } from 'react';
+import { Group } from 'three';
 
 import { MakersLogoModel } from './MakersLogoModel';
 
@@ -12,6 +14,8 @@ interface MakersLogo3DProps {
 
 const MakersLogo3D: FC<MakersLogo3DProps> = ({ className }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const posY = useSpring(0, { duration: 3 });
+  const posX = useSpring(0, { duration: 3 });
 
   useEffect(() => {
     function handleMouseMove({ clientX, clientY }: MouseEvent) {
@@ -27,6 +31,9 @@ const MakersLogo3D: FC<MakersLogo3DProps> = ({ className }) => {
       const dy = clientY - elementY;
 
       console.log(dx, dy);
+
+      posX.set(dx);
+      posY.set(dy);
     }
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -34,7 +41,7 @@ const MakersLogo3D: FC<MakersLogo3DProps> = ({ className }) => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [posX, posY]);
 
   return (
     <div ref={containerRef} className={clsx('h-[200px]', className)}>
@@ -52,7 +59,7 @@ const MakersLogo3D: FC<MakersLogo3DProps> = ({ className }) => {
           shadow-bias={0.00005}
         />
         <directionalLight color='#b1c1da' intensity={0.5} position={[3, 2, 3]} />
-        <Inner />
+        <Inner posY={posY} posX={posX} />
       </Canvas>
     </div>
   );
@@ -60,12 +67,27 @@ const MakersLogo3D: FC<MakersLogo3DProps> = ({ className }) => {
 
 export default MakersLogo3D;
 
-interface InnerProps {}
+interface InnerProps {
+  posY: MotionValue<number>;
+  posX: MotionValue<number>;
+}
 
-const Inner: FC<InnerProps> = ({}) => {
+const Inner: FC<InnerProps> = ({ posY, posX }) => {
+  const groupRef = useRef<Group>(null);
+  // const y = useTransform(posY, )
+
+  useFrame(() => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y = posX.get() * 0.001;
+      groupRef.current.rotation.x = posY.get() * 0.001;
+    }
+  });
+
   return (
     <>
-      <MakersLogoModel />
+      <group ref={groupRef}>
+        <MakersLogoModel />
+      </group>
     </>
   );
 };
