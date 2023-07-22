@@ -1,5 +1,6 @@
 'use client';
 
+import FullPage from '@/components/common/FullPage';
 import Header from '@/components/header/Header';
 import Archive from '@/components/mainpage/Archive';
 import CoreValue from '@/components/mainpage/CoreValue';
@@ -12,12 +13,24 @@ export default function Page() {
   return (
     <div>
       <Header />
-      <Greeting />
-      <MakersIntodution />
-      <CoreValue />
-      <Product />
-      <Archive />
-      <RecruitBanner />
+      <FullPage>
+        <Greeting />
+      </FullPage>
+      <FullPage>
+        <MakersIntodution />
+      </FullPage>
+      <FullPage>
+        <CoreValue />
+      </FullPage>
+      <FullPage>
+        <Product />
+      </FullPage>
+      <FullPage>
+        <Archive />
+      </FullPage>
+      <FullPage>
+        <RecruitBanner />
+      </FullPage>
     </div>
   );
 }
