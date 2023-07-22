@@ -51,6 +51,9 @@ jobs:
         run: |
           yarn dlx wrangler@3 deploy -e preview
         working-directory: apps/ssr-gateway
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Get Preview URL
         uses: actions-ecosystem/action-regex-match@v2
