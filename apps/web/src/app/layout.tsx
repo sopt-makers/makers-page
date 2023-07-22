@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import localFont from 'next/font/local';
 import { ReactNode } from 'react';
 
+import AnimationProviders from '@/components/core/animation/AnimationProviders';
+
 export const runtime = 'edge';
 
 const suitFont = localFont({
@@ -36,7 +38,9 @@ const suitFont = localFont({
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='ko' className={(clsx(suitFont.variable), 'bg-black100 text-white')}>
-      <body className='min-h-screen'>{children}</body>
+      <body className='min-h-screen'>
+        <AnimationProviders>{children}</AnimationProviders>
+      </body>
     </html>
   );
 }
