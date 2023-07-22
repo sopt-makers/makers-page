@@ -1,3 +1,5 @@
+import { lazy } from 'react';
+
 import Header from '@/components/header/Header';
 import Archive from '@/components/mainpage/Archive';
 import CoreValue from '@/components/mainpage/CoreValue';
@@ -6,11 +8,14 @@ import MakersIntodution from '@/components/mainpage/MakersIntodution';
 import Product from '@/components/mainpage/Product';
 import RecruitBanner from '@/components/mainpage/RecruitBanner';
 
+const Logo3D = lazy(() => import('@/components/common/MakersLogo3D'));
+
 export default async function Page() {
   return (
     <>
       <Header />
       <Greeting />
+      <Logo3D />
       <MakersIntodution />
       <CoreValue />
       <Product />
