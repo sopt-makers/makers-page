@@ -33,7 +33,7 @@ jobs:
           name: built-web
           path: apps/web/out
 
-      - name: Publish
+      - name: Publish Web
         id: publish
         run: |
           set -o pipefail
@@ -42,6 +42,15 @@ jobs:
           echo "$(cat deploy.log)" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
         working-directory: apps/web
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Publish SSR Gateway
+        if: github.event_name == 'push'
+        run: |
+          yarn dlx wrangler@3 deploy -e preview
+        working-directory: apps/ssr-gateway
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
