@@ -1,3 +1,4 @@
+'use client';
 import { lazy } from 'react';
 
 import Header from '@/components/header/Header';
@@ -10,9 +11,9 @@ import RecruitBanner from '@/components/mainpage/RecruitBanner';
 
 const Logo3D = lazy(() => import('@/components/common/MakersLogo3D'));
 
-export default async function Page() {
+export default function Page() {
   return (
-    <>
+    <div>
       <Header />
       <Greeting />
       <Logo3D />
@@ -21,6 +22,6 @@ export default async function Page() {
       <Product />
       <Archive />
       <RecruitBanner />
-    </>
+    </div>
   );
 }
