@@ -1,60 +1,49 @@
 'use client';
 
-import { useInView } from 'framer-motion';
+import clsx from 'clsx';
+import { m, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
-export default function MakersIntodution() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false });
+interface GreetingProps {
+  className?: string;
+}
+
+export default function MakersIntodution({ className }: GreetingProps) {
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.12, 0.3, 0.52, 1], [0, 1, 1, 0, 0]);
 
   return (
-    <article ref={ref} className='h-[100rem] mt-[21.56rem] flex flex-col justify-center items-center text-center'>
-      <div className='sticky top-0 flex flex-col justify-center items-center text-center'>
-        <p
-          style={{
-            opacity: isInView ? 1 : 0,
-            transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s',
-          }}
-          className='flex justify-center items-center gap-[1rem] text-32-regular'
-        >
-          <TextLogo />는
-        </p>
-        <p
-          style={{
-            opacity: isInView ? 1 : 0,
-            transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 1s',
-          }}
-          className='mt-[3.75rem] text-40-semibold'
-        >
-          SOPT에 필요한 프로덕트를 만들어
-          <br /> <span className='text-main-makers'>3천여명의 구성원</span>들을{' '}
-          <span className='text-sub-skyblue'>연결</span>하고 <span className='text-sub-yellow'>새로운 가치</span>를
-          제공하기 위한
-          <br /> SOPT 특수 기구예요.
-        </p>
-        <p
-          style={{
-            opacity: isInView ? 1 : 0,
-            transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 2s',
-          }}
-          className='mt-[2.5rem] text-32-regular'
-        >
-          수년간 방치되어 SOPT를 잘 드러내지 못하는 공식 홈페이지를 보고
-          <br />
-          홈페이지에 오너십을 가진 조직의 부재라는 문제 의식으로부터
-          <br />
-          이를 지속 가능한 방법으로 해결하고자 22년 7월 30일 특수 기구로 시작했어요.
-        </p>
-        <button
-          style={{
-            opacity: isInView ? 1 : 0,
-            transition: 'all 2.5s cubic-bezier(0.17, 0.55, 0.55, 1) 4s',
-          }}
-          className='flex flex-row justify-center items-center gap-[0.5rem] mt-[3.75rem] px-[2rem]  py-[1.5rem] text-24-semibold'
-        >
-          makers 탄생 배경 보러가기 <ArrowIcon />
-        </button>
-      </div>
+    <article ref={containerRef} className={clsx('h-[200vh]', className)}>
+      <m.div
+        className='sticky top-0 pt-[12rem] flex flex-col justify-center items-center text-center'
+        style={{ opacity }}
+      >
+        <div className='flex flex-col justify-center items-center text-center'>
+          <p className='flex justify-center items-center gap-[1rem] text-32-regular'>
+            <TextLogo />는
+          </p>
+          <p className='mt-[3.75rem] text-40-semibold'>
+            SOPT에 필요한 프로덕트를 만들어
+            <br /> <span className='text-main-makers'>3천여명의 구성원</span>들을{' '}
+            <span className='text-sub-skyblue'>연결</span>하고 <span className='text-sub-yellow'>새로운 가치</span>를
+            제공하기 위한
+            <br /> SOPT 특수 기구예요.
+          </p>
+          <p className='mt-[2.5rem] text-32-regular'>
+            수년간 방치되어 SOPT를 잘 드러내지 못하는 공식 홈페이지를 보고
+            <br />
+            홈페이지에 오너십을 가진 조직의 부재라는 문제 의식으로부터
+            <br />
+            이를 지속 가능한 방법으로 해결하고자 22년 7월 30일 특수 기구로 시작했어요.
+          </p>
+          <button className='flex flex-row justify-center items-center gap-[0.5rem] mt-[3.75rem] px-[2rem]  py-[1.5rem] text-24-semibold'>
+            makers 탄생 배경 보러가기 <ArrowIcon />
+          </button>
+        </div>
+      </m.div>
     </article>
   );
 }

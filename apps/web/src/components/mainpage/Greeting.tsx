@@ -8,13 +8,20 @@ interface GreetingProps {
 
 export default function Greeting({ className }: GreetingProps) {
   const containerRef = useRef(null);
+
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.5, 1], [1, 1, 0, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.12, 0.3, 0.5, 1], [1, 1, 1, 0, 0]);
 
   return (
-    <article ref={containerRef} className={clsx('h-screen', className)}>
-      <m.div className='flex flex-col justify-start items-center pt-[20rem]' style={{ opacity }}>
+    <article ref={containerRef} className={clsx('h-[200vh]', className)}>
+      <m.div
+        className='sticky top-0 flex flex-col justify-start items-center pt-[20rem]'
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        style={{ opacity }}
+      >
         <h1 className='mt-[3.75rem] text-center text-64-semibold'>
           SOPT에 없던 새로운 가치를 <br />
           제품을 통해 만들어갑니다.
