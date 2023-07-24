@@ -1,11 +1,20 @@
-export default function greeting() {
+import clsx from 'clsx';
+import { m, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+
+interface GreetingProps {
+  className?: string;
+}
+
+export default function Greeting({ className }: GreetingProps) {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.5, 1], [1, 1, 0, 0]);
+
   return (
-    <article className='mb-[3.75rem] h-[100rem]'>
-      <div className='sticky top-0 flex flex-col justify-start items-center'>
-        <img
-          src='https://github.com/Brokyeom/modeling_final/assets/97586683/01d5d046-27fb-4812-9a3e-4f11cb9bbf08'
-          alt='dummy_logo'
-        />
+    <article ref={containerRef} className={clsx('h-screen', className)}>
+      <m.div className='flex flex-col justify-start items-center pt-[20rem]' style={{ opacity }}>
         <h1 className='mt-[3.75rem] text-center text-64-semibold'>
           SOPT에 없던 새로운 가치를 <br />
           제품을 통해 만들어갑니다.
@@ -15,7 +24,7 @@ export default function greeting() {
           <p className='text-16-regular mt-[0.75rem]'>72:21:03 뒤 지원 마감</p>
         </button>
         <ArrowIcon />
-      </div>
+      </m.div>
     </article>
   );
 }
