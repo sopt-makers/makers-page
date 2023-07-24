@@ -30,7 +30,7 @@ const MakersLogo3D: FC<MakersLogo3DProps> = ({ className }) => {
       const dx = clientX - elementX;
       const dy = clientY - elementY;
 
-      console.log(dx, dy);
+      // console.log(dx, dy);
 
       posX.set(dx);
       posY.set(dy);
