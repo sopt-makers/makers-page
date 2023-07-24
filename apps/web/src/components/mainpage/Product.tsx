@@ -1,19 +1,81 @@
+'use client';
+
 export default function Product() {
   return (
-    <article className='flex flex-col justify-center items-center mt-[33.5rem]'>
-      <ProductCaption />
-      <h1 className='text-h1 mt-[2.44rem]'>메이커스가 만든 제품</h1>
-      <div></div>
+    <article className='flex flex-row justify-start mt-[33.5rem]'>
+      <section className='min-w-[22.75rem] mt-[5.25rem] mr-[4.19rem]'>
+        <p className='ml-[3.75rem] text-40-semibold'>
+          메이커스는
+          <br />
+          3개의 제품으로
+          <br />
+          <span className='text-main-makers'>
+            SOPT에
+            <br />
+            없던 가치
+          </span>
+          를
+          <br />
+          더하고 있어요.
+        </p>
+      </section>
+      <nav className='w-full border-l border-solid border-white h-screen text-40-semibold'>
+        <div className='pl-[2.5rem] py-[1.5rem] flex flex-col gap-[0.5rem] border-b border-solid border-white'>
+          <div className='flex flex-row justify-start items-end cursor-pointer'>
+            <span>SOPT 공식 홈페이지</span>
+            <div className='flex flex-row justify-cetner items-center gap-[1rem]'>
+              <ArrowIcon className='fill-sub-yellow' />
+              <span className='text-16-regular'>OFFICIAL</span>
+            </div>
+          </div>
+          <div>
+            <img
+              className='my-[2.5rem]'
+              src='https://github.com/sopt-makers/makers-page/assets/97586683/a59a5edd-d39c-42c8-b362-4d5542e02ec8'
+              alt='official_image'
+            />
+            <div className='text-16-regular'>
+              SOPT 공식 홈페이지에서는 그동안 잘 드러나지 않던 SOPT의 다양한 활동들과 사람들을 소개하고, 멋진 결과물을
+              잘 보여주어
+              <br /> SOPT가 지닌 열정과 가치들을 잘 알리는 역할을 해요.
+              <br />
+              <br /> 그로 인해 대외적으로 후원 및 협력을 용이하게 하고, 더 많은 분들이 SOPT를 잘 이해하고 지원할 수
+              있도록 도와요.
+            </div>
+          </div>
+        </div>
+        <div className='pl-[2.5rem] py-[1.5rem] flex flex-row justify-start items-end border-b border-solid- border-white cursor-pointer'>
+          <span>SOPT 플레이그라운드</span>
+          <div className='flex flex-row justify-cetner items-center gap-[1rem]'>
+            <ArrowIcon className='fill-sub-skyblue' />
+            <span className='text-16-regular'>
+              PLAYGROUND
+              <br />& CREW
+            </span>
+          </div>
+        </div>
+        <div className='pl-[2.5rem] py-[1.5rem] flex flex-row justify-start items-end border-b border-solid- border-white cursor-pointer'>
+          <span>SOPT 공식 앱</span>
+          <div className='flex flex-row justify-cetner items-center gap-[1rem]'>
+            <ArrowIcon className='fill-sub-pink' />
+            <span className='text-16-regular'>
+              APP
+              <br />& OPERATION
+            </span>
+          </div>
+        </div>
+      </nav>
     </article>
   );
 }
 
-function ProductCaption(props: React.SVGProps<SVGSVGElement>) {
+function ArrowIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width={85} height={16} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width={50} height={50} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path
-        d='M.99 16c-.32 0-.5-.18-.5-.5V2.38c0-.32.18-.5.5-.5h7.26c4.08 0 5.5 1.72 5.5 5.06v.44c0 3.24-1.42 4.98-5.5 4.98H3.27v3.14c0 .32-.18.5-.5.5H.99zm2.28-6.28h4.76c2.06 0 2.94-.44 2.94-2.36v-.42c0-2.02-.84-2.4-2.94-2.4H3.27v5.18zm17.773-4.96h1.54c.32 0 .5.18.5.5v1.46c0 .32-.18.5-.5.5h-2.88c-1.08 0-1.56.28-1.56 1.7v6.58c0 .32-.18.5-.5.5h-1.64c-.32 0-.5-.18-.5-.5V5.26c0-.32.18-.5.5-.5h1.64c.32 0 .5.18.5.5v.8c.48-.84 1.36-1.3 2.9-1.3zM27.758 16c-3.22 0-4.14-1.58-4.14-4.44V9.14c0-2.78.92-4.38 4.14-4.38h3.32c3.22 0 4.14 1.6 4.14 4.38v2.42c0 2.86-.92 4.44-4.14 4.44h-3.32zm.06-2.46h3.2c1.2 0 1.56-.32 1.56-1.7V8.9c0-1.36-.34-1.68-1.56-1.68h-3.2c-1.22 0-1.56.32-1.56 1.68v2.94c0 1.38.36 1.7 1.56 1.7zM45.776 1.32c0-.32.18-.5.5-.5h1.64c.32 0 .5.18.5.5V15.5c0 .32-.18.5-.5.5h-1.64c-.32 0-.5-.18-.5-.5v-.78c-.48.84-1.36 1.28-2.9 1.28h-1.92c-3.22 0-4.14-1.6-4.14-4.38V9.2c0-2.86.92-4.44 4.14-4.44h1.92c1.54 0 2.42.44 2.9 1.28V1.32zm-1.56 12.22c1.08 0 1.56-.28 1.56-1.68V8.92c0-1.42-.5-1.7-1.56-1.7h-3.2c-1.2 0-1.56.32-1.56 1.7v2.94c0 1.36.34 1.68 1.56 1.68h3.2zm14.673-8.28c0-.32.18-.5.5-.5h1.64c.32 0 .5.18.5.5V15.5c0 .32-.18.5-.5.5h-1.64c-.32 0-.5-.18-.5-.5v-.8c-.48.84-1.36 1.3-2.9 1.3h-1.46c-3.2 0-4.14-1.58-4.14-4.44v-6.3c0-.32.18-.5.5-.5h1.64c.32 0 .5.18.5.5v6.58c0 1.4.36 1.7 1.56 1.7h2.74c1.08 0 1.56-.26 1.56-1.7V5.26zM67.509 16c-3.22 0-4.14-1.58-4.14-4.44V9.14c0-2.78.92-4.38 4.14-4.38h3.32c2.84 0 4 1.2 4.12 3.96.02.34-.16.52-.48.52h-1.64c-.32 0-.5-.18-.5-.52-.06-1.2-.38-1.5-1.56-1.5h-3.2c-1.22 0-1.56.32-1.56 1.68v2.94c0 1.38.36 1.7 1.56 1.7h3.2c1.22 0 1.5-.32 1.56-1.54 0-.34.18-.52.5-.52h1.64c.32 0 .5.18.48.52-.12 2.88-1.32 4-4.12 4h-3.32zm13.908 0c-3.62 0-4.44-1.44-4.44-4.24V7.14h-.84c-.32 0-.5-.18-.5-.5V5.26c0-.32.18-.5.5-.5 1.4-.02 1.62-.22 1.64-2.34 0-.36.18-.54.5-.54h.82c.32 0 .5.18.5.5v2.38h4.08c.32 0 .5.18.5.5v1.38c0 .32-.18.5-.5.5h-4.08v4.9c0 1.2.4 1.56 1.82 1.56h2.26c.32 0 .5.18.5.5v1.4c0 .32-.18.5-.5.5h-2.26z'
-        fill='#FF6E1D'
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M34.065 13.813H11.18v-3h28.007V38.82h-3V15.934L12.99 39.132l-2.122-2.121 23.198-23.199z'
       />
     </svg>
   );
