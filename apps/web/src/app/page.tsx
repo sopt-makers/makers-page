@@ -2,8 +2,6 @@
 
 import MakersLogo3D from '@/components/common/MakersLogo3D';
 import Greeting from '@/components/mainpage/Greeting';
-import MakersIntodution from '@/components/mainpage/MakersIntodution';
-import Missions from '@/components/mainpage/Missions';
 import Product from '@/components/mainpage/Product';
 import Recruit from '@/components/mainpage/Recruit';
 
@@ -19,8 +17,6 @@ export default function Page() {
         </div>
         <div className='absolute inset-0'>
           <Greeting />
-          <MakersIntodution />
-          <Missions />
         </div>
       </div>
       <div className='relative h-[500vh]'>
