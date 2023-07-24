@@ -40,9 +40,9 @@ export function createNotionClient(notionApiKey: string, imageSaver: NotionImage
             return {
               ...block,
               image: {
-                type: 'file' as const,
+                type: 'external' as const,
                 caption: block.image.caption,
-                file: { url: savedImageUrl, expiry_time: '' },
+                external: { url: savedImageUrl, expiry_time: '' },
               },
             };
           }
