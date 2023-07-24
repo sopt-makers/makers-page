@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Intro from './greetingsection/Intro';
-import MakersIntodution from './greetingsection/MakersIntodution';
-import Missions from './greetingsection/Missions';
+import Intro from './greeting/Intro';
+import MakersIntodution from './greeting/MakersIntodution';
+import Missions from './greeting/Missions';
 
 export default function Greeting() {
   return (

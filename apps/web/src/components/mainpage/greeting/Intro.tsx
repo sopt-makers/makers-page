@@ -20,6 +20,7 @@ export default function Intro({ className }: GreetingProps) {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
+        transition={{ delay: 1.5 }}
         style={{ opacity }}
       >
         <h1 className='mt-[3.75rem] text-center text-64-semibold'>
