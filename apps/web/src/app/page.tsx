@@ -1,5 +1,5 @@
 'use client';
-
+import MakersLogo3D from '@/components/common/MakersLogo3D';
 import Header from '@/components/header/Header';
 import Archive from '@/components/mainpage/Archive';
 import CoreValue from '@/components/mainpage/CoreValue';
@@ -13,6 +13,7 @@ export default function Page() {
     <div>
       <Header />
       <Greeting />
+      <MakersLogo3D />
       <MakersIntodution />
       <CoreValue />
       <Product />
