@@ -20,30 +20,24 @@ module.exports = {
       mono: [...defaultTheme.fontFamily.mono],
     },
     fontSize: {
-      h0: [
-        '70px',
+      '80-bold': ['5rem', { lineHeight: '130%', letterSpacing: '-0.1rem', fontWeight: 700 }],
+      '64-semibold': ['4rem', { lineHeight: '140%', letterSpacing: '-0.08rem', fontWeight: 600 }],
+      '60-semibold': ['3.75rem', { lineHeight: '160%', letterSpacing: '-0.075rem', fontWeight: '600' }],
+      '40-semibold': ['2.5rem', { lineHeight: '160%', letterSpacing: '-0.05rem', fontWeight: '600' }],
+      '32-regular': ['2rem', { lineHeight: '160%', letterSpacing: '0.04rem', fontWeight: '400' }],
+      '24-semibold': [
+        '1.5rem',
         {
-          lineHeight: '140%',
-          letterSpacing: '-0.7px',
-          fontWeight: '700',
+          lineHeight: '150%',
+          letterSpacing: '-0.03rem',
+          fontWeight: '600',
         },
       ],
-      h1: [
-        '50px',
-        {
-          lineHeight: '100%',
-          letterSpacing: '-0.5px',
-          fontWeight: 700,
-        },
-      ],
-      h2: [
-        '30px',
-        {
-          lineHeight: '170%',
-          letterSpacing: '-0.3px',
-          fontWeight: 600,
-        },
-      ],
+      '16-regular': ['1rem', { lineHeight: '1rem', letterSpacing: '-0.02rem', fontWeight: '400' }],
+    },
+    backgroundImage: {
+      'makers-logo':
+        'url(https://github.com/sopt-makers/makers-page/assets/97586683/44229318-2879-4e8a-80f5-4de7bd4115c1)',
     },
     extend: {},
   },
