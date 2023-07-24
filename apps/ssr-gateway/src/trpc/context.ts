@@ -11,6 +11,9 @@ interface ContextDeps {
   waitUntil: (promise: Promise<void>) => void;
   checkApiKey: (apiKey: string) => boolean;
   recruitNotionClient: NotionClient;
+  image: {
+    delete: (keys: string[]) => Promise<void>;
+  };
   blog: {
     notion: NotionClient;
     databaseId: string;

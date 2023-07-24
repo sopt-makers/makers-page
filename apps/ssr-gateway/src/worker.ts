@@ -88,6 +88,9 @@ export default {
 
         return new Response(object.body, { headers });
       },
+      async delete(keys) {
+        await env.MAKERS_PAGE_R2.delete(keys);
+      },
     };
     const app = new Hono();
 
@@ -113,6 +116,9 @@ export default {
           blog: {
             notion: createNotionClient(env.BLOG_NOTION_API_KEY, imageHandler),
             databaseId: env.BLOG_NOTION_DB_ID,
+          },
+          image: {
+            delete: imageHandler.delete,
           },
           recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY, imageHandler),
           kv: env.MAKERS_PAGE_KV,
