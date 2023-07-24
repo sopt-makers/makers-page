@@ -1,5 +1,7 @@
 'use client';
 
+import { ReactLenis } from '@studio-freight/react-lenis';
+
 import MakersLogo3D from '@/components/common/MakersLogo3D';
 import Greeting from '@/components/mainpage/Greeting';
 import Product from '@/components/mainpage/Product';
@@ -7,6 +9,7 @@ import Recruit from '@/components/mainpage/Recruit';
 
 export default function Page() {
   return (
+   <ReactLenis root>
     <div>
       {/* <Header /> */}
       <div className='relative h-[600vh]'>
@@ -27,5 +30,6 @@ export default function Page() {
       {/* <CoreValue /> */}
       <Recruit />
     </div>
+   </ReactLenis>
   );
 }
