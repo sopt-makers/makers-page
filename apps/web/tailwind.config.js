@@ -1,7 +1,24 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+
   theme: {
+    colors: {
+      'black100': '#0F1010',
+      'white': '#FFFFFF',
+      'main-makers': '#FF6E1D',
+      'sub-skyblue': '#5DDBFF',
+      'sub-blue': '#1F299C',
+      'sub-pink': '#FDBBF9',
+      'sub-yellow': '#FFCA00',
+      'dark1': '#252629',
+    },
+    fontFamily: {
+      sans: ['var(--font-suit)', ...defaultTheme.fontFamily.sans],
+      mono: [...defaultTheme.fontFamily.mono],
+    },
     fontSize: {
       h0: [
         '70px',
