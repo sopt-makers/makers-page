@@ -1,5 +1,4 @@
 'use client';
-
 import Header from '@/components/header/Header';
 import CoreValue from '@/components/mainpage/CoreValue';
 import Greeting from '@/components/mainpage/Greeting';
