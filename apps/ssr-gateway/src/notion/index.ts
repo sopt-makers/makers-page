@@ -1,11 +1,12 @@
 import { createRawNotionAPIClient } from './api';
 import { NotionBlock, NotionPage } from './types';
 
-export interface ImageSaver {
+export interface NotionImageHandler {
   save: (key: string, url: string) => Promise<{ url: string }>;
+  getResponse: (key: string) => Promise<Response>;
 }
 
-export function createNotionClient(notionApiKey: string, imageSaver: ImageSaver) {
+export function createNotionClient(notionApiKey: string, imageSaver: NotionImageHandler) {
   const notionRawAPI = createRawNotionAPIClient(notionApiKey);
 
   async function getDatabaseContents(id: string) {
@@ -31,9 +32,10 @@ export function createNotionClient(notionApiKey: string, imageSaver: ImageSaver)
 
         if (block.type === 'image') {
           if (block.image.type === 'file') {
-            const imageUrl = new URL(block.image.file.url);
+            const imagePath = new URL(block.image.file.url).pathname;
+            const imageKey = imagePath.replace(/^\/secure.notion-static.com\//, '').replaceAll('/', '-');
 
-            const { url: savedImageUrl } = await imageSaver.save(`${imageUrl.pathname}`, block.image.file.url);
+            const { url: savedImageUrl } = await imageSaver.save(`${imageKey}`, block.image.file.url);
 
             return {
               ...block,

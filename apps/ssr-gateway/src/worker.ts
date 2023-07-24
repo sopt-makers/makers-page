@@ -10,8 +10,9 @@
 
 import { ExecutionContext, KVNamespace } from '@cloudflare/workers-types';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
+import { Hono } from 'hono/quick';
 
-import { createNotionClient, ImageSaver } from './notion';
+import { createNotionClient, NotionImageHandler } from './notion';
 import { appRouter } from './router';
 import { createContextFactory } from './trpc/context';
 
@@ -53,52 +54,73 @@ export default {
       throw new Error('Some env values are not properly set.');
     }
 
-    const imageSaver: ImageSaver = {
+    const imageHandler: NotionImageHandler = {
       async save(key, url) {
         const imageURL = new URL(`/image/${key}`, request.url).href;
 
-        const meta = await env.MAKERS_PAGE_R2.head(`image/${key}`);
+        const meta = await env.MAKERS_PAGE_R2.head(`/image/${key}`);
+
         if (meta) {
           return { url: imageURL };
         }
 
         const response = await fetch(url);
-        console.log(response.headers);
         if (!response.body) {
           console.log('Failed to save image.');
           return { url };
         }
 
-        const { readable, writable } = new TransformStream();
-
-        ctx.waitUntil(response.body.pipeTo(writable));
-
-        await env.MAKERS_PAGE_R2.put(`image/${key}`, readable);
+        await env.MAKERS_PAGE_R2.put(`/image/${key}`, response.body);
 
         return { url: imageURL };
       },
-    };
+      async getResponse(key) {
+        const object = await env.MAKERS_PAGE_R2.get(`/image/${key}`);
+        if (!object) {
+          return new Response(`404 Not Found`, {
+            status: 400,
+          });
+        }
 
-    return fetchRequestHandler({
-      endpoint: '/trpc',
-      req: request,
-      router: appRouter,
-      createContext: createContextFactory({
-        env: {
-          RECRUIT_NOTION_PAGE_ID: env.RECRUIT_NOTION_PAGE_ID,
-        },
-        waitUntil: ctx.waitUntil,
-        checkApiKey(apiKey) {
-          return apiKey.trim() === env.INTERNAL_API_KEY;
-        },
-        blog: {
-          notion: createNotionClient(env.BLOG_NOTION_API_KEY, imageSaver),
-          databaseId: env.BLOG_NOTION_DB_ID,
-        },
-        recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY, imageSaver),
-        kv: env.MAKERS_PAGE_KV,
-      }),
+        const headers = new Headers();
+        object.writeHttpMetadata(headers);
+        headers.set('etag', object.httpEtag);
+
+        return new Response(object.body, { headers });
+      },
+    };
+    const app = new Hono();
+
+    app.get('/image/:key', async (c) => {
+      const { key } = c.req.param();
+
+      return imageHandler.getResponse(key);
     });
+
+    app.all('/trpc/*', async () => {
+      return fetchRequestHandler({
+        endpoint: '/trpc',
+        req: request,
+        router: appRouter,
+        createContext: createContextFactory({
+          env: {
+            RECRUIT_NOTION_PAGE_ID: env.RECRUIT_NOTION_PAGE_ID,
+          },
+          waitUntil: ctx.waitUntil,
+          checkApiKey(apiKey) {
+            return apiKey.trim() === env.INTERNAL_API_KEY;
+          },
+          blog: {
+            notion: createNotionClient(env.BLOG_NOTION_API_KEY, imageHandler),
+            databaseId: env.BLOG_NOTION_DB_ID,
+          },
+          recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY, imageHandler),
+          kv: env.MAKERS_PAGE_KV,
+        }),
+      });
+    });
+
+    return app.fetch(request, env, ctx);
   },
 };
 
