@@ -11,23 +11,23 @@ export default function Intro({ className }: GreetingProps) {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.12, 0.3, 0.5, 1], [1, 1, 1, 0, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.3, 1], [1, 1, 0, 0]);
 
   return (
-    <article ref={containerRef} className={clsx('h-[170vh]', className)}>
+    <article ref={containerRef} className={clsx('h-[120vh]', className)}>
       <m.div
-        className='sticky top-0 flex flex-col justify-start items-center pt-[32rem]'
+        className='sticky top-0 flex flex-col items-center justify-start pt-[32rem]'
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 1.5 }}
         style={{ opacity }}
       >
-        <h1 className='mt-[6rem] text-center text-64-semibold'>
+        <h1 className='text-64-semibold mt-[6rem] text-center'>
           SOPT에 없던 새로운 가치를 <br />
           제품을 통해 만들어갑니다.
         </h1>
-        <button className='mt-[4rem] mb-[5.104rem] px-[4rem] py-[1.6rem] bg-dark1 rounded-[1.2rem] border border-solid border-[#808388]'>
+        <button className='bg-dark1 mb-[5.104rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] px-[4rem] py-[1.6rem]'>
           <p className='text-24-semibold'>3기 합류하기 (~8/88)</p>
           <p className='text-16-regular mt-[1.2rem]'>72:21:03 뒤 지원 마감</p>
         </button>

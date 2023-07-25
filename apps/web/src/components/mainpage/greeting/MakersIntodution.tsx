@@ -17,15 +17,15 @@ export default function MakersIntodution({ className }: GreetingProps) {
   const opacity4 = useTransform(scrollYProgress, [0.45, 0.5, 0.7, 0.75, 1], [0, 1, 1, 0, 0]);
 
   return (
-    <article ref={containerRef} className={clsx('h-[390vh]', className)}>
-      <div className='sticky top-0 pt-[19.2rem] flex flex-col justify-center items-center text-center'>
-        <m.div className='flex flex-col justify-center items-center text-center' style={{ opacity: opacity1 }}>
-          <p className='flex justify-center items-center gap-[1.6rem] text-32-regular'>
+    <article ref={containerRef} className={clsx('h-[360vh]', className)}>
+      <div className='sticky top-0 flex flex-col items-center justify-center pt-[19.2rem] text-center'>
+        <m.div className='flex flex-col items-center justify-center text-center' style={{ opacity: opacity1 }}>
+          <p className='text-32-regular flex items-center justify-center gap-[1.6rem]'>
             <TextLogo />는
           </p>
         </m.div>
         <m.div
-          className='flex flex-col justify-center items-center text-center mt-[6rem]'
+          className='mt-[6rem] flex flex-col items-center justify-center text-center'
           style={{ opacity: opacity2 }}
         >
           <p className='text-40-semibold'>
@@ -37,7 +37,7 @@ export default function MakersIntodution({ className }: GreetingProps) {
           </p>
         </m.div>
         <m.div
-          className='flex flex-col justify-center items-center text-center mt-[4rem]'
+          className='mt-[4rem] flex flex-col items-center justify-center text-center'
           style={{ opacity: opacity3 }}
         >
           <p className='text-32-regular'>
@@ -49,7 +49,7 @@ export default function MakersIntodution({ className }: GreetingProps) {
           </p>
         </m.div>
         <m.div className='mt-[6rem]' style={{ opacity: opacity4 }}>
-          <button className='flex flex-row justify-center items-center gap-[0.8rem] px-[3.2rem] py-[2.4rem] text-24-semibold'>
+          <button className='text-24-semibold flex flex-row items-center justify-center gap-[0.8rem] px-[3.2rem] py-[2.4rem]'>
             makers 탄생 배경 보러가기 <ArrowIcon />
           </button>
         </m.div>

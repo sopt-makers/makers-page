@@ -13,14 +13,14 @@ export default function Missions({ className }: GreetingProps) {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.7, 0.75, 1], [0, 1, 1, 0, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.2, 0.3, 0.7, 0.75, 1], [0, 1, 1, 0, 0]);
-  const opacity3 = useTransform(scrollYProgress, [0.4, 0.5, 0.7, 0.75, 1], [0, 1, 1, 0, 0]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.7, 1], [0, 1, 1, 0, 0]);
+  const opacity2 = useTransform(scrollYProgress, [0.2, 0.35, 0.6, 0.7, 1], [0, 1, 1, 0, 0]);
+  const opacity3 = useTransform(scrollYProgress, [0.45, 0.55, 0.6, 0.7, 1], [0, 1, 1, 0, 0]);
 
   return (
-    <article ref={containerRef} className={clsx('h-[300vh]', className)}>
-      <div className='sticky top-0 pt-[27.2rem] flex flex-col justify-center items-center gap-[1.6rem] text-60-semibold'>
-        <m.p className='flex justify-center items-start gap-[1.792rem]' style={{ opacity: opacity1 }}>
+    <article ref={containerRef} className={clsx('h-[230vh]', className)}>
+      <div className='text-60-semibold sticky top-0 flex flex-col items-center justify-center gap-[1.6rem] pt-[27.2rem]'>
+        <m.p className='flex items-start justify-center gap-[1.792rem]' style={{ opacity: opacity1 }}>
           <span className='text-sub-skyblue text-16-regular'>MISSION 1.</span>
           <span>
             3천명이 넘는 SOPT 구성원들의
