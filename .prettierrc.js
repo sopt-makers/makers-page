@@ -8,6 +8,7 @@ const config = {
   singleQuote: true,
   tabWidth: 2,
   trailingComma: 'all',
+  plugins: ['prettier-plugin-tailwindcss'],
 };
 
 module.exports = config;

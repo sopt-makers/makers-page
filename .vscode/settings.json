@@ -4,5 +4,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll": true
-  }
+  },
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Styles", ".*Style"]
 }
