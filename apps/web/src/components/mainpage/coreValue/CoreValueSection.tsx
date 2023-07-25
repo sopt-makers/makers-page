@@ -1,36 +1,29 @@
 import clsx from 'clsx';
-import { useScroll, useTransform } from 'framer-motion';
-import { m } from 'framer-motion';
-import { FC, ReactNode, useRef } from 'react';
+import { FC, ReactNode } from 'react';
 
+import HorizontalScroll from './HorizontalScroll';
 import { BaseImage, ConnectionImage, OpportunityImage, OwnershipImage, PleasureImage } from './images';
 import ValueCard from './ValueCard';
 
 interface CoreValueSectionProps {}
 
 const CoreValueSection: FC<CoreValueSectionProps> = ({}) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
-  const x = useTransform(scrollYProgress, [0, 1], ['0', '-160rem']);
-  const innerBoxPosition = useTransform(scrollYProgress, (v) => (v <= 0 ? 'static' : v >= 1 ? 'absolute' : 'fixed'));
-
   return (
-    <div ref={ref} className='relative h-[300vh] w-full overflow-x-hidden'>
-      <m.div
-        className='inset-0 mt-auto flex h-[100vh] w-fit max-w-none items-center'
-        style={{ x, position: innerBoxPosition, bottom: 0 }}
-      >
-        <div className='flex gap-[3.2rem] pl-[8rem]'>
-          <div className='text-80-bold flex w-[45rem] flex-col'>
-            <span>CORE</span>
-            <span>VALUE</span>
+    <HorizontalScroll className='h-[300vh]'>
+      {() => (
+        <div className='flex h-full items-center'>
+          <div className='flex gap-[3.2rem]'>
+            <div className='text-80-bold flex w-[45rem] flex-col pl-[8rem]'>
+              <span>CORE</span>
+              <span>VALUE</span>
+            </div>
+            {cards.map((card, idx) => (
+              <ValueCard key={card.keyword} className='h-[52rem] w-[36.8rem]' {...card} seq={idx + 1} />
+            ))}
           </div>
-          {cards.map((card, idx) => (
-            <ValueCard key={card.keyword} className='h-[52rem] w-[36.8rem]' {...card} seq={idx + 1} />
-          ))}
         </div>
-      </m.div>
-    </div>
+      )}
+    </HorizontalScroll>
   );
 };
 
