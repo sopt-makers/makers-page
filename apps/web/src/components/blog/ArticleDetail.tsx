@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { gateway } from '@/gateway';
 
 import { BlockRenderer } from '../notion/renderer';
+import { blogBlockComponents } from './blogBlockComponents';
 
 interface ArticlePageProps {
   id: string;
@@ -16,10 +17,10 @@ async function ArticlePage({ id }: ArticlePageProps) {
       <div className='flex w-full max-w-[800px] flex-col px-[16px]'>
         <Link href='/blog' className='flex gap-x-[8px] self-start py-[24px] pr-[8px]'>
           <BackIcon />
-          <span className='text-[16px] font-light leading-[20px] text-gray80'>블로그 홈 가기</span>
+          <span className='text-gray80 text-[16px] font-light leading-[20px]'>블로그 홈 가기</span>
         </Link>
         {article.thumbnail && (
-          <div className='overflow-clip rounded-lg border border-real-white/10 md:rounded-3xl'>
+          <div className='border-real-white/10 overflow-clip rounded-lg border md:rounded-3xl'>
             <img src={article.thumbnail.url} alt='Thumbnail Image' />
           </div>
         )}
@@ -27,22 +28,26 @@ async function ArticlePage({ id }: ArticlePageProps) {
           {article.category && (
             <>
               <Link href={`/blog/category/${article.category}`}>
-                <span className='rounded-[13px] bg-black80 px-[12px] py-[6px] leading-[120%] text-white100'>
+                <span className='bg-black80 text-white100 rounded-[13px] px-[12px] py-[6px] leading-[120%]'>
                   {article.category}
                 </span>
               </Link>
             </>
           )}
         </div>
-        <h1 className='mt-[12px] break-keep text-[28px] font-bold leading-[130%] text-white100 md:text-[40px]'>
+        <h1 className='text-white100 mt-[12px] break-keep text-[28px] font-bold leading-[130%] md:text-[40px]'>
           {article.title}
         </h1>
-        <div className='mt-[8px] text-[14px] font-light text-gray60'>
+        <div className='text-gray60 mt-[8px] text-[14px] font-light'>
           {/* {article.publishedAt && format(article.publishedAt, 'yyyy.MM.dd')} */}
           {article.publishedAt.toString()}
         </div>
         <div className='mt-[40px] md:mt-[80px]'>
-          <BlockRenderer blocks={article.blocks} renderPageLink={() => <div>Subpage not allowed</div>} />
+          <BlockRenderer
+            blocks={article.blocks}
+            blockComponents={blogBlockComponents}
+            renderPageLink={() => <div>Subpage not allowed</div>}
+          />
         </div>
       </div>
     </div>
