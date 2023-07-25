@@ -16,11 +16,8 @@ interface ValueCardProps {
   description: ReactNode;
   seq: number;
   centerLineProgress: MotionValue<number>;
-  center: number;
+  flipRange: [number, number];
 }
-
-const OPEN_DELTA = 400;
-const KEEP_DELTA = 200;
 
 const ValueCard: FC<ValueCardProps> = ({
   className,
@@ -29,14 +26,10 @@ const ValueCard: FC<ValueCardProps> = ({
   name,
   description,
   seq,
-  center,
+  flipRange,
   centerLineProgress,
 }) => {
-  const flip = useTransform(
-    centerLineProgress,
-    [center - OPEN_DELTA, center - KEEP_DELTA, center + KEEP_DELTA, center + OPEN_DELTA],
-    [0, 1, 1, 0],
-  );
+  const flip = useTransform(centerLineProgress, flipRange, [0, 1]);
 
   const formattedSeq = `${seq}`.padStart(2, '0');
 
@@ -49,9 +42,7 @@ const ValueCard: FC<ValueCardProps> = ({
           <div className=''>{image}</div>
           <div className='flex flex-1 flex-col items-center justify-center'>
             <span className={clsx(orbitron.className, 'text-[3.6rem] font-bold leading-[100%]')}>{keyword}</span>
-            <span className='mt-[2rem] text-[2.8rem] font-semibold'>
-              {name} {center}
-            </span>
+            <span className='mt-[2rem] text-[2.8rem] font-semibold'>{name}</span>
           </div>
           <div
             className={clsx(
