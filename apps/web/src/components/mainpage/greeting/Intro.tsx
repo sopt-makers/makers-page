@@ -14,7 +14,7 @@ export default function Intro({ className }: GreetingProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.12, 0.3, 0.5, 1], [1, 1, 1, 0, 0]);
 
   return (
-    <article ref={containerRef} className={clsx('h-[200vh]', className)}>
+    <article ref={containerRef} className={clsx('h-[170vh]', className)}>
       <m.div
         className='sticky top-0 flex flex-col justify-start items-center pt-[32rem]'
         initial={{ opacity: 0 }}
