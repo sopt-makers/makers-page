@@ -20,20 +20,13 @@ module.exports = {
       mono: [...defaultTheme.fontFamily.mono],
     },
     fontSize: {
-      '80-bold': ['5rem', { lineHeight: '130%', letterSpacing: '-0.1rem', fontWeight: 700 }],
-      '64-semibold': ['4rem', { lineHeight: '140%', letterSpacing: '-0.08rem', fontWeight: 600 }],
-      '60-semibold': ['3.75rem', { lineHeight: '160%', letterSpacing: '-0.075rem', fontWeight: '600' }],
-      '40-semibold': ['2.5rem', { lineHeight: '160%', letterSpacing: '-0.05rem', fontWeight: '600' }],
-      '32-regular': ['2rem', { lineHeight: '160%', letterSpacing: '0.04rem', fontWeight: '400' }],
-      '24-semibold': [
-        '1.5rem',
-        {
-          lineHeight: '150%',
-          letterSpacing: '-0.03rem',
-          fontWeight: '600',
-        },
-      ],
-      '16-regular': ['1rem', { lineHeight: '1rem', letterSpacing: '-0.02rem', fontWeight: '400' }],
+      '80-bold': ['8rem', { lineHeight: '130%', letterSpacing: '-0.16rem', fontWeight: 700 }],
+      '64-semibold': ['6.4rem', { lineHeight: '140%', letterSpacing: '-0.128rem', fontWeight: 600 }],
+      '60-semibold': ['6rem', { lineHeight: '160%', letterSpacing: '-0.12rem', fontWeight: 600 }],
+      '40-semibold': ['4rem', { lineHeight: '160%', letterSpacing: '-0.08rem', fontWeight: 600 }],
+      '32-regular': ['3.2rem', { lineHeight: '160%', letterSpacing: '0.064rem', fontWeight: 400 }],
+      '24-semibold': ['2.4rem', { lineHeight: '150%', letterSpacing: '-0.048rem', fontWeight: 600 }],
+      '16-regular': ['1.6rem', { lineHeight: '130%', letterSpacing: '-0.128rem', fontWeight: 400 }],
     },
     backgroundImage: {
       'makers-logo':

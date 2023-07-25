@@ -37,7 +37,7 @@ const suitFont = localFont({
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang='ko' className={(clsx(suitFont.variable), 'bg-black100 text-white')}>
+    <html lang='ko' className={(clsx(suitFont.variable), 'bg-black100 text-white text-[62.5%]')}>
       <body className='min-h-screen'>
         <AnimationProviders>{children}</AnimationProviders>
       </body>

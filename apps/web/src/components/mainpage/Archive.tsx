@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function Archive() {
   return (
-    <article className='flex flex-col justify-center items-center mt-[27rem]'>
+    <article className='flex flex-col justify-center items-center mt-[43.2rem]'>
       <ArchiveCaption />
-      <h1 className='text-h1 mt-[2.44rem]'>메이커스의 기록</h1>
+      <h1 className='text-h1 mt-[3.904rem]'>메이커스의 기록</h1>
     </article>
   );
 }

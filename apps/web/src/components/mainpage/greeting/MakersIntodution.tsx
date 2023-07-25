@@ -18,28 +18,28 @@ export default function MakersIntodution({ className }: GreetingProps) {
   return (
     <article ref={containerRef} className={clsx('h-[200vh]', className)}>
       <m.div
-        className='sticky top-0 pt-[12rem] flex flex-col justify-center items-center text-center'
+        className='sticky top-0 pt-[19.2rem] flex flex-col justify-center items-center text-center'
         style={{ opacity }}
       >
         <div className='flex flex-col justify-center items-center text-center'>
-          <p className='flex justify-center items-center gap-[1rem] text-32-regular'>
+          <p className='flex justify-center items-center gap-[1.6rem] text-32-regular'>
             <TextLogo />는
           </p>
-          <p className='mt-[3.75rem] text-40-semibold'>
+          <p className='mt-[6rem] text-40-semibold'>
             SOPT에 필요한 프로덕트를 만들어
             <br /> <span className='text-main-makers'>3천여명의 구성원</span>들을{' '}
             <span className='text-sub-skyblue'>연결</span>하고 <span className='text-sub-yellow'>새로운 가치</span>를
             제공하기 위한
             <br /> SOPT 특수 기구예요.
           </p>
-          <p className='mt-[2.5rem] text-32-regular'>
+          <p className='mt-[4rem] text-32-regular'>
             수년간 방치되어 SOPT를 잘 드러내지 못하는 공식 홈페이지를 보고
             <br />
             홈페이지에 오너십을 가진 조직의 부재라는 문제 의식으로부터
             <br />
             이를 지속 가능한 방법으로 해결하고자 22년 7월 30일 특수 기구로 시작했어요.
           </p>
-          <button className='flex flex-row justify-center items-center gap-[0.5rem] mt-[3.75rem] px-[2rem]  py-[1.5rem] text-24-semibold'>
+          <button className='flex flex-row justify-center items-center gap-[0.8rem] mt-[6rem] px-[3.2rem]  py-[2.4rem] text-24-semibold'>
             makers 탄생 배경 보러가기 <ArrowIcon />
           </button>
         </div>
