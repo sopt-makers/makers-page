@@ -3,28 +3,34 @@
 import { m } from 'framer-motion';
 import { FC } from 'react';
 
+import { feedbacks } from './data';
+import FeedbackCard from './FeedbackCard';
+import { GoIcon } from './icons';
+
 interface FeedbackSectionProps {}
 
 const FeedbackSection: FC<FeedbackSectionProps> = ({}) => {
   return (
     <div className='flex'>
       <div>
-        <div className='flex flex-col sticky top-0 pt-[12.5rem] px-[5rem]'>
-          <div className='flex flex-col'>
+        <div className='sticky top-0 flex flex-col gap-[2.4rem] px-[8rem] pt-[20rem]'>
+          <div className='text-64-bold flex flex-col'>
             <span>메이커들이</span>
             <span>직접 얘기하는</span>
             <span>활동 후기</span>
           </div>
-          <div>makers 구성원 전체보기</div>
+          <div className='text-24-semibold flex items-center gap-[0.8rem] align-middle'>
+            makers 구성원 전체보기 <GoIcon />
+          </div>
         </div>
       </div>
       <div className='flex-1'>
-        <m.div className='flex flex-col gap-[1.81rem] pr-[5rem]'>
-          {feedbacks.map((feedback, idx) => (
-            <m.div key={idx} className='p-[2.5rem] bg-sub-skyblue rounded-[0.5rem]'>
-              <div>{feedback}</div>
-            </m.div>
-          ))}
+        <m.div className='flex flex-col gap-[2.9rem] pr-[8rem]'>
+          {feedbacks.map((feedback, idx) => {
+            const { style, dark } = cardColorStyles[idx % cardColorStyles.length];
+
+            return <FeedbackCard key={idx} className={style} isDark={dark} {...feedback} />;
+          })}
         </m.div>
       </div>
     </div>
@@ -33,17 +39,10 @@ const FeedbackSection: FC<FeedbackSectionProps> = ({}) => {
 
 export default FeedbackSection;
 
-const feedbacks = [
-  '후기1',
-  '후기2',
-  '후기3',
-  '후기4',
-  '후기5',
-  '후기6',
-  '후기1',
-  '후기2',
-  '후기3',
-  '후기4',
-  '후기5',
-  '후기6',
+const cardColorStyles = [
+  { style: 'bg-sub-skyblue', dark: false },
+  { style: 'bg-main-makers', dark: false },
+  { style: 'bg-sub-yellow', dark: false },
+  { style: 'bg-sub-blue', dark: true },
+  { style: 'bg-sub-pink', dark: false },
 ];
