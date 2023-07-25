@@ -8,13 +8,13 @@ export default function Recruit() {
   const isInView = useInView(ref, { once: false });
 
   return (
-    <article ref={ref} className='flex flex-row justify-between items-center mt-[14.88rem] mb-[9rem]'>
+    <article ref={ref} className='flex flex-row justify-between items-center mt-[23.808rem] mb-[14.4rem]'>
       <LeftFrame
         style={{
           opacity: isInView ? 1 : 0,
           transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s',
         }}
-        className='mt-[8.44rem]'
+        className='mt-[13.504rem]'
       />
       <section
         style={{
@@ -29,9 +29,9 @@ export default function Recruit() {
             <br />
             메이커스에 합류하세요
           </h1>
-          <button className='mt-[2.5rem] mb-[3.19rem] px-[2.5rem] py-[1rem] bg-dark1 rounded-[0.75rem] border border-solid border-[#808388]'>
+          <button className='mt-[4rem] mb-[5.104rem] px-[4rem] py-[1.6rem] bg-dark1 rounded-[1.2rem] border border-solid border-[#808388]'>
             <p className='text-24-semibold'>3기 합류하기 (~8/88)</p>
-            <p className='text-16-regular mt-[0.75rem]'>72:21:03 뒤 지원 마감</p>
+            <p className='text-16-regular mt-[1.2rem]'>72:21:03 뒤 지원 마감</p>
           </button>
         </div>
       </section>
@@ -40,7 +40,7 @@ export default function Recruit() {
           opacity: isInView ? 1 : 0,
           transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s',
         }}
-        className='mb-[6.06rem]'
+        className='mb-[9.696rem]'
       />
     </article>
   );

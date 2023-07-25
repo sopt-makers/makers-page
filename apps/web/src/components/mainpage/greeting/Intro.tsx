@@ -16,20 +16,20 @@ export default function Intro({ className }: GreetingProps) {
   return (
     <article ref={containerRef} className={clsx('h-[200vh]', className)}>
       <m.div
-        className='sticky top-0 flex flex-col justify-start items-center pt-[20rem]'
+        className='sticky top-0 flex flex-col justify-start items-center pt-[32rem]'
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 1.5 }}
         style={{ opacity }}
       >
-        <h1 className='mt-[3.75rem] text-center text-64-semibold'>
+        <h1 className='mt-[6rem] text-center text-64-semibold'>
           SOPT에 없던 새로운 가치를 <br />
           제품을 통해 만들어갑니다.
         </h1>
-        <button className='mt-[2.5rem] mb-[3.19rem] px-[2.5rem] py-[1rem] bg-dark1 rounded-[0.75rem] border border-solid border-[#808388]'>
+        <button className='mt-[4rem] mb-[5.104rem] px-[4rem] py-[1.6rem] bg-dark1 rounded-[1.2rem] border border-solid border-[#808388]'>
           <p className='text-24-semibold'>3기 합류하기 (~8/88)</p>
-          <p className='text-16-regular mt-[0.75rem]'>72:21:03 뒤 지원 마감</p>
+          <p className='text-16-regular mt-[1.2rem]'>72:21:03 뒤 지원 마감</p>
         </button>
         <ArrowIcon />
       </m.div>

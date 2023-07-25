@@ -1,8 +1,8 @@
 const Header = () => {
   return (
-    <header className='fixed w-full flex justify-between pl-[3.75rem] pr-[2.38rem] py-[2.5rem] z-10'>
+    <header className='fixed w-full flex justify-between pl-[6rem] pr-[3.808rem] py-[4rem] z-10'>
       <MakersLogo />
-      <nav className='flex flex-col items-end gap-[0.38rem] text-16-regular'>
+      <nav className='flex flex-col items-end gap-[0.608rem] text-16-regular'>
         <p>OUR MISSION</p>
         <p>SERVICE</p>
         <p>CORE VALUE</p>

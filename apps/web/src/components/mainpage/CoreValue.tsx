@@ -10,12 +10,12 @@ export default function CoreValue() {
   ];
 
   return (
-    <article className='flex flex-row justify-start items-start mt-[24.5rem] mb-[15.25rem] overflow-hidden'>
-      <h1 className='text-80-bold text-start  pl-[5rem] pr-[11.44rem]'>
+    <article className='flex flex-row justify-start items-start mt-[39.2rem] mb-[24.4rem] overflow-hidden'>
+      <h1 className='text-80-bold text-start  pl-[8rem] pr-[18.304rem]'>
         CORE
         <br /> VALUE
       </h1>
-      <section className='flex gap-[1.75rem]'>
+      <section className='flex gap-[2.8rem]'>
         {cardComponents.map((item) => (
           <div key={item.id}>{item.component}</div>
         ))}
