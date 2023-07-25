@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useMotionValue } from 'framer-motion';
+import { MotionValue, useTransform } from 'framer-motion';
 import { Orbitron } from 'next/font/google';
 import { FC, ReactNode } from 'react';
 
@@ -15,10 +15,28 @@ interface ValueCardProps {
   name: string;
   description: ReactNode;
   seq: number;
+  centerLineProgress: MotionValue<number>;
+  center: number;
 }
 
-const ValueCard: FC<ValueCardProps> = ({ className, image, keyword, name, description, seq }) => {
-  const flip = useMotionValue(0);
+const OPEN_DELTA = 400;
+const KEEP_DELTA = 200;
+
+const ValueCard: FC<ValueCardProps> = ({
+  className,
+  image,
+  keyword,
+  name,
+  description,
+  seq,
+  center,
+  centerLineProgress,
+}) => {
+  const flip = useTransform(
+    centerLineProgress,
+    [center - OPEN_DELTA, center - KEEP_DELTA, center + KEEP_DELTA, center + OPEN_DELTA],
+    [0, 1, 1, 0],
+  );
 
   const formattedSeq = `${seq}`.padStart(2, '0');
 
@@ -31,7 +49,9 @@ const ValueCard: FC<ValueCardProps> = ({ className, image, keyword, name, descri
           <div className=''>{image}</div>
           <div className='flex flex-1 flex-col items-center justify-center'>
             <span className={clsx(orbitron.className, 'text-[3.6rem] font-bold leading-[100%]')}>{keyword}</span>
-            <span className='mt-[2rem] text-[2.8rem] font-semibold'>{name}</span>
+            <span className='mt-[2rem] text-[2.8rem] font-semibold'>
+              {name} {center}
+            </span>
           </div>
           <div
             className={clsx(
@@ -45,7 +65,7 @@ const ValueCard: FC<ValueCardProps> = ({ className, image, keyword, name, descri
       }
       back={
         <div className='relative h-full overflow-clip rounded-[0.8rem]'>
-          <div className='text-24-semibold h-full w-full'>{description}</div>{' '}
+          <div className='text-24-semibold h-full w-full'>{description}</div>
           <div
             className={clsx(
               orbitron.className,

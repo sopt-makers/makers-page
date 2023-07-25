@@ -5,7 +5,7 @@ import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 
 interface HorizontalScrollProps {
   className?: string;
-  children: (ctx: { progress: MotionValue<number> }) => ReactNode;
+  children: (ctx: { progress: MotionValue<number>; centerLine: MotionValue<number> }) => ReactNode;
 }
 
 const HorizontalScroll: FC<HorizontalScrollProps> = ({ className, children }) => {
@@ -22,7 +22,13 @@ const HorizontalScroll: FC<HorizontalScrollProps> = ({ className, children }) =>
   const posY = useTransform(scrollYProgress, (v) => (v < 1 ? 0 : containerHeight - childrenHeight));
   const innerBoxPosition = useTransform(scrollYProgress, (v) => (v <= 0 || v >= 1 ? 'static' : 'fixed'));
 
+  const centerLine = useTransform(scrollYProgress, [0, 1], [containerWidth / 2, childrenWidth - containerWidth / 2]);
+
   useEffect(() => {
+    if (!childrenRef.current) {
+      return;
+    }
+
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         setChildrenWidth(entry.contentRect.width);
@@ -36,6 +42,10 @@ const HorizontalScroll: FC<HorizontalScrollProps> = ({ className, children }) =>
   }, []);
 
   useEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         setContainerWidth(entry.contentRect.width);
@@ -55,7 +65,7 @@ const HorizontalScroll: FC<HorizontalScrollProps> = ({ className, children }) =>
         className='bottom-0 h-screen w-fit'
         style={{ x: posX, y: posY, position: innerBoxPosition }}
       >
-        {children({ progress: scrollYProgress })}
+        {children({ progress: scrollYProgress, centerLine })}
       </m.div>
     </div>
   );

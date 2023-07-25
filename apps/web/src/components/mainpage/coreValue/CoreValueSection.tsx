@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 
 import HorizontalScroll from './HorizontalScroll';
 import { BaseImage, ConnectionImage, OpportunityImage, OwnershipImage, PleasureImage } from './images';
@@ -9,21 +9,81 @@ interface CoreValueSectionProps {}
 
 const CoreValueSection: FC<CoreValueSectionProps> = ({}) => {
   return (
-    <HorizontalScroll className='h-[300vh]'>
-      {() => (
+    <HorizontalScroll className='h-[500vh]'>
+      {({ centerLine }) => (
         <div className='flex h-full items-center'>
           <div className='flex gap-[3.2rem]'>
-            <div className='text-80-bold flex w-[45rem] flex-col pl-[8rem]'>
+            <div className='text-80-bold flex w-[70vw] flex-col pl-[8rem]'>
               <span>CORE</span>
               <span>VALUE</span>
             </div>
             {cards.map((card, idx) => (
-              <ValueCard key={card.keyword} className='h-[52rem] w-[36.8rem]' {...card} seq={idx + 1} />
+              <Trackable key={card.keyword}>
+                {({ x, width }) => (
+                  <ValueCard
+                    className='h-[52rem] w-[36.8rem]'
+                    {...card}
+                    seq={idx + 1}
+                    centerLineProgress={centerLine}
+                    center={x + width / 2}
+                  />
+                )}
+              </Trackable>
             ))}
+            <div className='w-[70vw]' />
           </div>
         </div>
       )}
     </HorizontalScroll>
+  );
+};
+
+interface TrackableProps {
+  className?: string;
+  children: (ctx: PositionContext) => ReactNode;
+}
+
+interface PositionContext {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+}
+
+const Trackable: FC<TrackableProps> = ({ className, children }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [positionContext, setPositionContext] = useState<PositionContext | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    const observer = new ResizeObserver((entires) => {
+      if (!ref.current) {
+        return;
+      }
+
+      for (const entry of entires) {
+        setPositionContext({
+          height: entry.contentRect.height,
+          width: entry.contentRect.width,
+          x: ref.current.offsetLeft,
+          y: ref.current.offsetTop,
+        });
+      }
+    });
+
+    observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={className}>
+      {positionContext && children(positionContext)}
+    </div>
   );
 };
 

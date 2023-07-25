@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { m, MotionValue, useTransform } from 'framer-motion';
-import { FC, ReactNode } from 'react';
+import { FC, forwardRef, ReactNode } from 'react';
 
 interface FlipableCardProps {
   className?: string;
@@ -9,21 +9,23 @@ interface FlipableCardProps {
   flipValue: MotionValue<number>;
 }
 
-const FlipableCard: FC<FlipableCardProps> = ({ className, front, back, flipValue }) => {
-  const frontRotation = useTransform(flipValue, [0, 1], ['0deg', '180deg']);
+const FlipableCard: FC<FlipableCardProps> = forwardRef<HTMLDivElement, FlipableCardProps>(
+  ({ className, front, back, flipValue }, ref) => {
+    const frontRotation = useTransform(flipValue, [0, 1], ['0deg', '180deg']);
 
-  return (
-    <div className={clsx(className)} style={{ perspective: '1000px' }}>
-      <m.div className='relative h-full w-full ' style={{ rotateY: frontRotation, transformStyle: 'preserve-3d' }}>
-        <div className={`absolute inset-0`} style={{ backfaceVisibility: 'hidden' }}>
-          {front}
-        </div>
-        <m.div className={`absolute inset-0`} style={{ backfaceVisibility: 'hidden', rotateY: '180deg' }}>
-          {back}
+    return (
+      <div ref={ref} className={clsx(className)} style={{ perspective: '1000px' }}>
+        <m.div className='relative h-full w-full ' style={{ rotateY: frontRotation, transformStyle: 'preserve-3d' }}>
+          <div className={`absolute inset-0`} style={{ backfaceVisibility: 'hidden' }}>
+            {front}
+          </div>
+          <m.div className={`absolute inset-0`} style={{ backfaceVisibility: 'hidden', rotateY: '180deg' }}>
+            {back}
+          </m.div>
         </m.div>
-      </m.div>
-    </div>
-  );
-};
+      </div>
+    );
+  },
+);
 
 export default FlipableCard;
