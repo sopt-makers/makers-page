@@ -58,7 +58,10 @@ export const blogRouter = router({
       return cached as ArticleData;
     }
 
-    const [page, blocks] = await Promise.all([ctx.blog.notion.getPage(input.id), ctx.blog.notion.getBlocks(input.id)]);
+    const [page, { blocks }] = await Promise.all([
+      ctx.blog.notion.getPage(input.id),
+      ctx.blog.notion.getBlocks(input.id),
+    ]);
     const properties = extractArticleProperties(page.properties);
 
     const articleData = { ...properties, blocks };

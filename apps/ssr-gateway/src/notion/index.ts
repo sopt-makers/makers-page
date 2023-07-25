@@ -1,7 +1,13 @@
 import { createRawNotionAPIClient } from './api';
 import { NotionBlock, NotionPage } from './types';
 
-export function createNotionClient(notionApiKey: string) {
+export interface NotionImageHandler {
+  save: (key: string, url: string) => Promise<{ url: string }>;
+  getResponse: (key: string) => Promise<Response>;
+  delete: (keys: string[]) => Promise<void>;
+}
+
+export function createNotionClient(notionApiKey: string, imageHandler: NotionImageHandler) {
   const notionRawAPI = createRawNotionAPIClient(notionApiKey);
 
   async function getDatabaseContents(id: string) {
@@ -12,24 +18,47 @@ export function createNotionClient(notionApiKey: string) {
     return objects;
   }
 
-  async function getBlocks(id: string): Promise<ModifiedBlock[]> {
-    const data = await notionRawAPI.retrieveBlockChildren(id);
-    const rawBlocks = data.results.filter((result): result is NotionBlock => 'type' in result);
+  async function getBlocks(id: string) {
+    const savedImageKeys: string[] = [];
 
-    const blocks = await Promise.all(
-      rawBlocks.map(async (block) => {
-        if (isChildrenableBlock(block)) {
-          return {
-            ...block,
-            children: block.has_children ? await getBlocks(block.id) : [],
-          };
-        }
+    async function getBlockRecursive(id: string): Promise<ModifiedBlock[]> {
+      const data = await notionRawAPI.retrieveBlockChildren(id);
+      const rawBlocks = data.results.filter((result): result is NotionBlock => 'type' in result);
+      return await Promise.all(
+        rawBlocks.map(async (block) => {
+          if (isChildrenableBlock(block)) {
+            return {
+              ...block,
+              children: block.has_children ? await getBlockRecursive(block.id) : [],
+            };
+          }
 
-        return block;
-      }),
-    );
+          if (block.type === 'image') {
+            if (block.image.type === 'file') {
+              const imagePath = new URL(block.image.file.url).pathname;
+              const imageKey = imagePath.replace(/^\/secure.notion-static.com\//, '').replaceAll('/', '-');
+              savedImageKeys.push(imageKey);
+              const { url: savedImageUrl } = await imageHandler.save(`${imageKey}`, block.image.file.url);
 
-    return blocks;
+              return {
+                ...block,
+                image: {
+                  type: 'external' as const,
+                  caption: block.image.caption,
+                  external: { url: savedImageUrl, expiry_time: '' },
+                },
+              };
+            }
+          }
+
+          return block;
+        }),
+      );
+    }
+
+    const blocks = await getBlockRecursive(id);
+
+    return { blocks, savedImageKeys };
   }
 
   async function getPage(id: string) {
@@ -54,6 +83,7 @@ const childrenableBlockTypes = [
   'column_list',
   'column',
 ] satisfies NotionBlock['type'][];
+
 function isChildrenableBlock(
   block: NotionBlock,
 ): block is typeof block & { type: (typeof childrenableBlockTypes)[number] } {

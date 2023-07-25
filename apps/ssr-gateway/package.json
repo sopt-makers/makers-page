@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@trpc/server": "^10.35.0",
+    "hono": "^3.3.3",
     "superjson": "^1.13.1",
     "zod": "^3.21.4"
   },

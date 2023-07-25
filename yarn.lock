@@ -7845,6 +7845,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hono@npm:^3.3.3":
+  version: 3.3.3
+  resolution: "hono@npm:3.3.3"
+  checksum: e4243b60a4a07df54ddd2012dba4a2aa511b1b0bcdb2e55d98c16457ca3c6446aa65ab750fbbc15c3ee61b4af1ba0b55c3465deb6544bb545f99d12cd3c54907
+  languageName: node
+  linkType: hard
+
 "http-cache-semantics@npm:^4.0.0, http-cache-semantics@npm:^4.1.0, http-cache-semantics@npm:^4.1.1":
   version: 4.1.1
   resolution: "http-cache-semantics@npm:4.1.1"
@@ -12433,6 +12440,7 @@ __metadata:
     "@trpc/server": ^10.35.0
     eslint: ^8.44.0
     eslint-config-custom: "*"
+    hono: ^3.3.3
     superjson: ^1.13.1
     typescript: ^5.1.6
     wrangler: ^3.3.0
