@@ -31,7 +31,7 @@ export default function Product({ className }: ProductProps) {
                 더하고 있어요.
               </p>
             </section>
-            <nav className='w-full h-max border-l border-solid border-white h-screen text-40-semibold'>
+            <nav className='w-full h-max border-l border-solid border-white text-40-semibold'>
               <div className='pl-[4rem] py-[2.4rem] flex flex-col border-b border-solid border-white'>
                 <Title type='official' />
                 <Description type='official' />
