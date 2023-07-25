@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 import { m } from 'framer-motion';
 import { FC, ReactNode, useRef } from 'react';
 
@@ -11,14 +11,15 @@ interface CoreValueSectionProps {}
 const CoreValueSection: FC<CoreValueSectionProps> = ({}) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
-  const x = useTransform(scrollYProgress, [0, 1], ['0', '-300vw']);
-  const position = useTransform(scrollYProgress, (v) => (v > 0 && v < 1 ? 'fixed' : 'static'));
-
-  useMotionValueEvent(scrollYProgress, 'change', console.log);
+  const x = useTransform(scrollYProgress, [0, 1], ['0', '-160rem']);
+  const innerBoxPosition = useTransform(scrollYProgress, (v) => (v <= 0 ? 'static' : v >= 1 ? 'absolute' : 'fixed'));
 
   return (
     <div ref={ref} className='relative h-[300vh] w-full overflow-x-hidden'>
-      <m.div className='inset-0 flex h-[100vh] w-fit max-w-none items-center' style={{ x, position }}>
+      <m.div
+        className='inset-0 mt-auto flex h-[100vh] w-fit max-w-none items-center'
+        style={{ x, position: innerBoxPosition, bottom: 0 }}
+      >
         <div className='flex gap-[3.2rem] pl-[8rem]'>
           <div className='text-80-bold flex w-[45rem] flex-col'>
             <span>CORE</span>
