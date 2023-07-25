@@ -1,30 +1,4 @@
-import React from 'react';
-
-export default function CoreValue() {
-  const cardComponents = [
-    { id: 'ownership', component: <OwnershipCard /> },
-    { id: 'connection', component: <ConnectionCard /> },
-    { id: 'base', component: <BaseCard /> },
-    { id: 'opportunity', component: <OpportunityCard /> },
-    { id: 'pleasure', component: <PleasureCard /> },
-  ];
-
-  return (
-    <article className='flex flex-row justify-start items-start mt-[39.2rem] mb-[24.4rem] overflow-hidden'>
-      <h1 className='text-80-bold text-start  pl-[8rem] pr-[18.304rem]'>
-        CORE
-        <br /> VALUE
-      </h1>
-      <section className='flex gap-[2.8rem]'>
-        {cardComponents.map((item) => (
-          <div key={item.id}>{item.component}</div>
-        ))}
-      </section>
-    </article>
-  );
-}
-
-function OwnershipCard(props: React.SVGProps<SVGSVGElement>) {
+export function OwnershipImage(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={368} height={520} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <rect width={368} height={520} rx={8} fill='#1C1D1E' />
@@ -55,7 +29,7 @@ function OwnershipCard(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function ConnectionCard(props: React.SVGProps<SVGSVGElement>) {
+export function ConnectionImage(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={368} height={520} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <rect width={368} height={520} rx={8} fill='#1C1D1E' />
@@ -86,7 +60,7 @@ function ConnectionCard(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function BaseCard(props: React.SVGProps<SVGSVGElement>) {
+export function BaseImage(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={368} height={520} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <rect width={368} height={520} rx={8} fill='#1C1D1E' />
@@ -114,7 +88,7 @@ function BaseCard(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function OpportunityCard(props: React.SVGProps<SVGSVGElement>) {
+export function OpportunityImage(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={368} height={520} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_220_2284)'>
@@ -154,7 +128,7 @@ function OpportunityCard(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function PleasureCard(props: React.SVGProps<SVGSVGElement>) {
+export function PleasureImage(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={368} height={520} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_220_2285)'>
