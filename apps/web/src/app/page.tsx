@@ -12,7 +12,7 @@ export default function Page() {
       <div>
         {/* <Header /> */}
         <GreetingSection />
-        <ProductSection className='sticky top-0' />
+        <ProductSection />
         {/* <CoreValue /> */}
         <Recruit />
       </div>
