@@ -9,11 +9,11 @@ interface ProductProps {
 export default function Product({ className }: ProductProps) {
   return (
     <div className='relative h-[500vh]'>
-      <div className='absolute inset-0 mt-[30rem]'>
+      <div className='absolute inset-0 mt-[48rem]'>
         <article className={clsx('h-[200vh]', className)}>
           <div className='flex flex-row justify-start'>
-            <section className='min-w-[22.75rem] mt-[5.25rem] mr-[4.19rem]'>
-              <p className='ml-[3.75rem] text-40-semibold'>
+            <section className='min-w-[36.4rem] mt-[8.4rem] mr-[6.704rem]'>
+              <p className='ml-[6rem] text-40-semibold'>
                 메이커스는
                 <br />
                 3개의 제품으로
@@ -29,18 +29,18 @@ export default function Product({ className }: ProductProps) {
               </p>
             </section>
             <nav className='w-full border-l border-solid border-white h-screen text-40-semibold'>
-              <div className='pl-[2.5rem] py-[1.5rem] flex flex-col gap-[0.5rem] border-b border-solid border-white'>
+              <div className='pl-[4rem] py-[2.4rem] flex flex-col gap-[0.8rem] border-b border-solid border-white'>
                 <div className='flex flex-row justify-start items-end cursor-pointer'>
                   <span>SOPT 공식 홈페이지</span>
-                  <div className='flex flex-row justify-cetner items-center gap-[1rem]'>
+                  <div className='flex flex-row justify-cetner items-center gap-[1.6rem]'>
                     <ArrowIcon className='fill-sub-yellow' />
                     <span className='text-16-regular'>OFFICIAL</span>
                   </div>
                 </div>
               </div>
-              <div className='pl-[2.5rem] py-[1.5rem] flex flex-row justify-start items-end border-b border-solid- border-white cursor-pointer'>
+              <div className='pl-[4rem] py-[2.4rem] flex flex-row justify-start items-end border-b border-solid- border-white cursor-pointer'>
                 <span>SOPT 플레이그라운드</span>
-                <div className='flex flex-row justify-cetner items-center gap-[1rem]'>
+                <div className='flex flex-row justify-cetner items-center gap-[1.6rem]'>
                   <ArrowIcon className='fill-sub-skyblue' />
                   <span className='text-16-regular'>
                     PLAYGROUND
@@ -48,9 +48,9 @@ export default function Product({ className }: ProductProps) {
                   </span>
                 </div>
               </div>
-              <div className='pl-[2.5rem] py-[1.5rem] flex flex-row justify-start items-end cursor-pointer'>
+              <div className='pl-[4rem] py-[2.4rem] flex flex-row justify-start items-end cursor-pointer'>
                 <span>SOPT 공식 앱</span>
-                <div className='flex flex-row justify-cetner items-center gap-[1rem]'>
+                <div className='flex flex-row justify-cetner items-center gap-[1.6rem]'>
                   <ArrowIcon className='fill-sub-pink' />
                   <span className='text-16-regular'>
                     APP

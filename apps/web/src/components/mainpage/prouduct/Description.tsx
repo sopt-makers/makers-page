@@ -2,7 +2,7 @@ export default function Description() {
   return (
     <div>
       <img
-        className='my-[2.5rem]'
+        className='my-[4rem]'
         src='https://github.com/sopt-makers/makers-page/assets/97586683/a59a5edd-d39c-42c8-b362-4d5542e02ec8'
         alt='official_image'
       />
