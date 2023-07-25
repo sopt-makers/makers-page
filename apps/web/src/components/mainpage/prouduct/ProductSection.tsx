@@ -2,6 +2,8 @@
 
 import clsx from 'clsx';
 
+import Description from './Description';
+
 interface ProductProps {
   className?: string;
 }
@@ -10,7 +12,7 @@ export default function Product({ className }: ProductProps) {
   return (
     <div className='relative h-[500vh]'>
       <div className='absolute inset-0 mt-[48rem]'>
-        <article className={clsx('h-[200vh]', className)}>
+        <article className={clsx('h-[250vh]', className)}>
           <div className='flex flex-row justify-start'>
             <section className='min-w-[36.4rem] mt-[8.4rem] mr-[6.704rem]'>
               <p className='ml-[6rem] text-40-semibold'>
@@ -37,26 +39,33 @@ export default function Product({ className }: ProductProps) {
                     <span className='text-16-regular'>OFFICIAL</span>
                   </div>
                 </div>
+                <Description type='official' />
               </div>
-              <div className='pl-[4rem] py-[2.4rem] flex flex-row justify-start items-end border-b border-solid- border-white cursor-pointer'>
-                <span>SOPT 플레이그라운드</span>
-                <div className='flex flex-row justify-cetner items-center gap-[1.6rem]'>
-                  <ArrowIcon className='fill-sub-skyblue' />
-                  <span className='text-16-regular'>
-                    PLAYGROUND
-                    <br />& CREW
-                  </span>
+              <div className='pl-[4rem] py-[2.4rem] flex flex-col gap-[0.8rem] border-b border-solid border-white'>
+                <div className='flex flex-row justify-start items-end cursor-pointer'>
+                  <span>SOPT 플레이그라운드</span>
+                  <div className='flex flex-row justify-cetner items-center gap-[1.6rem]'>
+                    <ArrowIcon className='fill-sub-skyblue' />
+                    <span className='text-16-regular'>
+                      PLAYGROUND
+                      <br />& CREW
+                    </span>
+                  </div>
                 </div>
+                <Description type='playground' />
               </div>
-              <div className='pl-[4rem] py-[2.4rem] flex flex-row justify-start items-end cursor-pointer'>
-                <span>SOPT 공식 앱</span>
-                <div className='flex flex-row justify-cetner items-center gap-[1.6rem]'>
-                  <ArrowIcon className='fill-sub-pink' />
-                  <span className='text-16-regular'>
-                    APP
-                    <br />& OPERATION
-                  </span>
+              <div className='pl-[4rem] py-[2.4rem] flex flex-col gap-[0.8rem] border-b border-solid border-white'>
+                <div className='flex flex-row justify-start items-end cursor-pointer'>
+                  <span>SOPT 공식 앱</span>
+                  <div className='flex flex-row justify-cetner items-center gap-[1.6rem]'>
+                    <ArrowIcon className='fill-sub-pink' />
+                    <span className='text-16-regular'>
+                      APP
+                      <br />& OPERATION
+                    </span>
+                  </div>
                 </div>
+                <Description type='app' />
               </div>
             </nav>
           </div>
