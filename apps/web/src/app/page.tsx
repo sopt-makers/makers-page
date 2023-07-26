@@ -4,7 +4,7 @@ import { ReactLenis } from '@studio-freight/react-lenis';
 
 import FeedbackSection from '@/components/mainpage/feedback/FeedbackSection';
 import GreetingSection from '@/components/mainpage/greeting/GreetingSection';
-import ProductSection from '@/components/mainpage/ProductSection';
+import ProductSection from '@/components/mainpage/prouduct/ProductSection';
 import Recruit from '@/components/mainpage/Recruit';
 
 export default function Page() {
@@ -13,7 +13,7 @@ export default function Page() {
       <div>
         {/* <Header /> */}
         <GreetingSection />
-        <ProductSection className='sticky top-0' />
+        <ProductSection />
         {/* <CoreValue /> */}
         <FeedbackSection />
         <Recruit />

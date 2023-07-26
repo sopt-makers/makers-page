@@ -1,5 +1,3 @@
-'use client';
-
 import clsx from 'clsx';
 import { m, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
@@ -13,37 +11,49 @@ export default function MakersIntodution({ className }: GreetingProps) {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.12, 0.3, 0.52, 1], [0, 1, 1, 0, 0]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.7, 0.75], [0, 1, 1, 0]);
+  const opacity2 = useTransform(scrollYProgress, [0.15, 0.25, 0.7, 0.75], [0, 1, 1, 0]);
+  const opacity3 = useTransform(scrollYProgress, [0.3, 0.4, 0.7, 0.75], [0, 1, 1, 0]);
+  const opacity4 = useTransform(scrollYProgress, [0.45, 0.5, 0.7, 0.75], [0, 1, 1, 0]);
 
   return (
-    <article ref={containerRef} className={clsx('h-[200vh]', className)}>
-      <m.div
-        className='sticky top-0 pt-[19.2rem] flex flex-col justify-center items-center text-center'
-        style={{ opacity }}
-      >
-        <div className='flex flex-col justify-center items-center text-center'>
-          <p className='flex justify-center items-center gap-[1.6rem] text-32-regular'>
+    <article ref={containerRef} className={clsx('h-[390vh]', className)}>
+      <div className='sticky top-0 flex h-screen w-full flex-col items-center justify-center text-center'>
+        <m.div className='flex flex-col items-center justify-center text-center' style={{ opacity: opacity1 }}>
+          <p className='text-32-regular flex items-center justify-center gap-[1.6rem]'>
             <TextLogo />는
           </p>
-          <p className='mt-[6rem] text-40-semibold'>
+        </m.div>
+        <m.div
+          className='mt-[6rem] flex flex-col items-center justify-center text-center'
+          style={{ opacity: opacity2 }}
+        >
+          <p className='text-40-semibold'>
             SOPT에 필요한 프로덕트를 만들어
             <br /> <span className='text-main-makers'>3천여명의 구성원</span>들을{' '}
             <span className='text-sub-skyblue'>연결</span>하고 <span className='text-sub-yellow'>새로운 가치</span>를
             제공하기 위한
             <br /> SOPT 특수 기구예요.
           </p>
-          <p className='mt-[4rem] text-32-regular'>
+        </m.div>
+        <m.div
+          className='mt-[4rem] flex flex-col items-center justify-center text-center'
+          style={{ opacity: opacity3 }}
+        >
+          <p className='text-32-regular'>
             수년간 방치되어 SOPT를 잘 드러내지 못하는 공식 홈페이지를 보고
             <br />
             홈페이지에 오너십을 가진 조직의 부재라는 문제 의식으로부터
             <br />
             이를 지속 가능한 방법으로 해결하고자 22년 7월 30일 특수 기구로 시작했어요.
           </p>
-          <button className='flex flex-row justify-center items-center gap-[0.8rem] mt-[6rem] px-[3.2rem]  py-[2.4rem] text-24-semibold'>
+        </m.div>
+        <m.div className='mt-[6rem]' style={{ opacity: opacity4 }}>
+          <button className='text-24-semibold flex flex-row items-center justify-center gap-[0.8rem] px-[3.2rem] py-[2.4rem]'>
             makers 탄생 배경 보러가기 <ArrowIcon />
           </button>
-        </div>
-      </m.div>
+        </m.div>
+      </div>
     </article>
   );
 }
