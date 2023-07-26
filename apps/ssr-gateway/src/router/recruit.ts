@@ -18,7 +18,7 @@ export const recruitRouter = router({
         return { cacheHit: true, blocks: cachedBlocks as ModifiedBlock[] };
       }
       const { blocks, savedImageKeys } = await ctx.recruitNotionClient.getBlocks(pageId);
-      console.log('saved:', savedImageKeys);
+
       await Promise.all([
         ctx.kv.put(`recruit:cache:page:${pageId}`, JSON.stringify(blocks)),
         ctx.kv.put(`recruit:image:${pageId}`, JSON.stringify(savedImageKeys)),

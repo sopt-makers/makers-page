@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 
 import { BlockRenderer } from '@/components/notion/renderer';
+import { recruitBlockComponents } from '@/components/recruit/recruitBlockComponents';
 
 import { gateway } from '../../gateway';
 
@@ -12,7 +13,15 @@ const RecruitPage: FC<RecruitPageProps> = async ({}) => {
 
   return (
     <div>
-      <BlockRenderer blocks={blocks} renderPageLink={(id, name) => <Link href={`/recruit/${id}`}>{name}</Link>} />
+      <BlockRenderer
+        blocks={blocks}
+        blockComponents={recruitBlockComponents}
+        renderPageLink={({ id, name, className }) => (
+          <Link href={`/recruit/${id}`} className={className}>
+            {name}
+          </Link>
+        )}
+      />
     </div>
   );
 };

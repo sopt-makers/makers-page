@@ -1,4 +1,5 @@
 import { createRawNotionAPIClient } from './api';
+import { callWithPagination } from './pagination';
 import { NotionBlock, NotionPage } from './types';
 
 export interface NotionImageHandler {
@@ -22,8 +23,9 @@ export function createNotionClient(notionApiKey: string, imageHandler: NotionIma
     const savedImageKeys: string[] = [];
 
     async function getBlockRecursive(id: string): Promise<ModifiedBlock[]> {
-      const data = await notionRawAPI.retrieveBlockChildren(id);
-      const rawBlocks = data.results.filter((result): result is NotionBlock => 'type' in result);
+      const res = await callWithPagination(({ cursor }) => notionRawAPI.retrieveBlockChildren(id, cursor));
+      const rawBlocks = res.flatMap((data) => data.results.filter((result): result is NotionBlock => 'type' in result));
+
       return await Promise.all(
         rawBlocks.map(async (block) => {
           if (isChildrenableBlock(block)) {
@@ -82,6 +84,8 @@ const childrenableBlockTypes = [
   'numbered_list_item',
   'column_list',
   'column',
+  'toggle',
+  'callout',
 ] satisfies NotionBlock['type'][];
 
 function isChildrenableBlock(

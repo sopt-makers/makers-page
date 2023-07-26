@@ -30,8 +30,14 @@ export function createRawNotionAPIClient(notionApiKey: string) {
     return data;
   }
 
-  async function retrieveBlockChildren(id: string) {
-    const response = await fetchWithErrorHandling(`https://api.notion.com/v1/blocks/${id}/children?page_size=100`, {
+  async function retrieveBlockChildren(id: string, cursor?: string) {
+    const url = new URL(`https://api.notion.com/v1/blocks/${id}/children`);
+    url.searchParams.set('page_size', '100');
+    if (cursor) {
+      url.searchParams.set('start_cursor', cursor);
+    }
+
+    const response = await fetchWithErrorHandling(url.href, {
       headers: defaultHeaders,
     });
 

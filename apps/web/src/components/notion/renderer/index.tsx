@@ -1,25 +1,28 @@
+import clsx from 'clsx';
 import { FC, ReactElement } from 'react';
 import { ModifiedBlock } from 'ssr-gateway';
 
-import { BlockResolver } from './BlockResolver';
+import { BlockComponentsBase, BlockResolver } from './BlockResolver';
 
 interface BlockRendererProps {
+  className?: string;
   blocks: ModifiedBlock[];
-  renderPageLink: (id: string, name: string) => ReactElement;
+  renderPageLink: (options: { id: string; name: string; className?: string }) => ReactElement;
+  blockComponents: BlockComponentsBase;
 }
 
-export const BlockRenderer: FC<BlockRendererProps> = ({ blocks, renderPageLink }) => {
+export const BlockRenderer: FC<BlockRendererProps> = ({ className, blocks, renderPageLink, blockComponents }) => {
   const merged = mergeBlocks(blocks);
 
   function renderBlocks(blocks: ModifiedBlock[]) {
-    if (blocks.length === 0) {
+    if (!blocks || blocks.length === 0) {
       return <></>;
     }
-    return <BlockRenderer blocks={blocks} renderPageLink={renderPageLink} />;
+    return <BlockRenderer blocks={blocks} renderPageLink={renderPageLink} blockComponents={blockComponents} />;
   }
 
   return (
-    <div className='flex flex-col gap-y-[4px] pb-[20px]'>
+    <div className={clsx('flex flex-col', className)}>
       {merged.map((entryOrArray, idx) => {
         if (Array.isArray(entryOrArray)) {
           return (
@@ -31,6 +34,7 @@ export const BlockRenderer: FC<BlockRendererProps> = ({ blocks, renderPageLink }
                   streak={streak}
                   renderBlocks={renderBlocks}
                   renderPageLink={renderPageLink}
+                  blockComponents={blockComponents}
                 />
               ))}
             </div>
@@ -43,6 +47,7 @@ export const BlockRenderer: FC<BlockRendererProps> = ({ blocks, renderPageLink }
             streak={entryOrArray.streak}
             renderBlocks={renderBlocks}
             renderPageLink={renderPageLink}
+            blockComponents={blockComponents}
           />
         );
       })}
