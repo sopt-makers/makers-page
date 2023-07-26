@@ -17,8 +17,8 @@ export default function MakersIntodution({ className }: GreetingProps) {
   const opacity4 = useTransform(scrollYProgress, [0.45, 0.5, 0.7, 0.75], [0, 1, 1, 0]);
 
   return (
-    <article ref={containerRef} className={clsx('h-[360vh]', className)}>
-      <div className='sticky top-0 flex flex-col items-center justify-center pt-[19.2rem] text-center'>
+    <article ref={containerRef} className={clsx('h-[390vh]', className)}>
+      <div className='sticky top-0 flex h-screen w-full flex-col items-center justify-center text-center'>
         <m.div className='flex flex-col items-center justify-center text-center' style={{ opacity: opacity1 }}>
           <p className='text-32-regular flex items-center justify-center gap-[1.6rem]'>
             <TextLogo />는
