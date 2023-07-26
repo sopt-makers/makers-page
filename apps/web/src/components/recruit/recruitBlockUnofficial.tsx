@@ -91,6 +91,8 @@ export const recruitBlockComponents = {
       />
     </ContentBlock>
   ),
+  page: ({ block, ctx: { renderPageLink } }) =>
+    renderPageLink({ id: block.id, name: plainText(block.properties?.title) }),
 } satisfies BlockComponentsBase;
 
 function plainText(text?: Decoration[]) {

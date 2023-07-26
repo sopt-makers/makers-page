@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import { ReactNode } from 'react';
 
 import AnimationProviders from '@/components/core/animation/AnimationProviders';
+import GatewayProvider from '@/gateway/GatewayProvider';
 
 export const runtime = 'edge';
 
@@ -39,7 +40,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='ko' className={clsx(suitFont.variable, 'bg-black100 text-[62.5%] text-white')}>
       <body className='min-h-screen'>
-        <AnimationProviders>{children}</AnimationProviders>
+        <GatewayProvider>
+          <AnimationProviders>{children}</AnimationProviders>
+        </GatewayProvider>
       </body>
     </html>
   );
