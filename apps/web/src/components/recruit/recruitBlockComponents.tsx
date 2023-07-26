@@ -2,6 +2,7 @@ import type { BlockComponentsBase } from '@/components/notion/renderer/BlockReso
 import RichTextRenderer from '@/components/notion/renderer/RichTextRenderer';
 import SyntaxHighlighter from '@/components/notion/renderer/SyntaxHighlighter';
 
+import ImageBlock from './ImageBlock';
 import ToggleBlock from './ToggleBlock';
 
 export const recruitBlockComponents = {
@@ -67,11 +68,7 @@ export const recruitBlockComponents = {
   ),
   image: ({ block }) =>
     block.image.type === 'external' ? (
-      <img
-        src={block.image.external.url}
-        alt={block.image.caption.map((v) => v.plain_text).join('')}
-        className='w-full'
-      />
+      <ImageBlock url={block.image.external.url} command={block.image.caption.map((v) => v.plain_text).join('')} />
     ) : (
       <div>Invalid Image: {JSON.stringify(block.image, null, 2)}</div>
     ),

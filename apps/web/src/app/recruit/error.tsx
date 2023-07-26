@@ -2,23 +2,21 @@
 
 import { FC, useEffect } from 'react';
 
-interface ErrorPageProps {}
+interface ErrorPageProps {
+  error: Error;
+  reset: () => void;
+}
 
-const ErrorPage: FC<ErrorPageProps> = ({ error, reset }: { error: Error; reset: () => void }) => {
+const ErrorPage: FC<ErrorPageProps> = ({ error, reset }) => {
   useEffect(() => {
     console.error(error);
   }, [error]);
 
   return (
-    <div>
-      <h2>Notion 데이터를 불러오는데 실패했습니다.</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
+    <div className='flex min-h-[50vh] flex-col items-center justify-center'>
+      <div className='text-18-regular'>페이지 로드에 실패했어요. 나중에 다시 시도해주세요.</div>
+      <button onClick={reset} className='text-16-regular bg-gray1 mt-[1rem] rounded-[0.8rem] p-[1rem]'>
+        다시 시도
       </button>
     </div>
   );
