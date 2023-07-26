@@ -8,13 +8,29 @@ module.exports = {
     colors: {
       'black100': '#0F1010',
       'white': '#FFFFFF',
+
+      /* TODO: Figma의 색상 이름 변경으로 밑의 brand-[color] 형식으로 변경 필요 */
       'main-makers': '#FF6E1D',
       'sub-skyblue': '#5DDBFF',
       'sub-blue': '#1F299C',
       'sub-pink': '#FDBBF9',
       'sub-yellow': '#FFCA00',
+      /*   */
+
+      'brand-orange': '#FF6E1D',
+      'brand-skyblue': '#5DDBFF',
+      'brand-blue': '#1F299C',
+      'brand-pink': '#FDBBF9',
+      'brand-yellow': '#FFCA00',
+
+      'orange-sub': '#5A2507',
+      'skyblue-sub': '#005A74',
+      'blue-sub': '#A5ACFF',
+      'pink-sub': '#8F388A',
+      'yellow-sub': '#816600',
       'dark1': '#252629',
       'gray1': '#3C3D40',
+      'gray2': '#1C1D1E',
     },
     fontFamily: {
       sans: ['var(--font-suit)', ...defaultTheme.fontFamily.sans],
