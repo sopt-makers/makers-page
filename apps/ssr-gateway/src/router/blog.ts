@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { propertyResolver } from '../notion/property';
-import { NotionPage } from '../notion/types';
+import { propertyResolver } from '../notion/officialApi/property';
+import { NotionPage } from '../notion/officialApi/types';
 import { internalProcedure, router } from '../trpc/stub';
 
 export const blogRouter = router({

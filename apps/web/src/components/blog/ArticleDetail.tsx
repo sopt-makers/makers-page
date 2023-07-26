@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { gateway } from '@/gateway';
 
-import { BlockRenderer } from '../notion/renderer';
+import { BlockRenderer } from '../notion/official/BlockRenderer';
 import { blogBlockComponents } from './blogBlockComponents';
 
 interface ArticlePageProps {

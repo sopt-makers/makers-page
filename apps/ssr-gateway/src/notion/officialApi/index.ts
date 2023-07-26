@@ -3,6 +3,8 @@ import type {
   ListBlockChildrenResponse,
   QueryDatabaseResponse,
 } from '@notionhq/client/build/src/api-endpoints';
+import type { PageChunk } from 'notion-types';
+import { parsePageId } from 'notion-utils';
 
 export function createRawNotionAPIClient(notionApiKey: string) {
   const defaultHeaders = {
@@ -13,7 +15,7 @@ export function createRawNotionAPIClient(notionApiKey: string) {
   async function fetchWithErrorHandling(url: string, options: RequestInit): Promise<Response> {
     const response = await fetch(url, options);
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData = await response.text();
       console.error(errorData);
       throw new Error(`Request failed: ${response.status}`);
     }
@@ -54,10 +56,48 @@ export function createRawNotionAPIClient(notionApiKey: string) {
     return data;
   }
 
+  async function getPageUnofficial(
+    id: string,
+    {
+      chunkLimit = 100,
+      chunkNumber = 0,
+    }: {
+      chunkLimit?: number;
+      chunkNumber?: number;
+    } = {},
+  ) {
+    const parsedPageId = parsePageId(id);
+    console.log(parsedPageId);
+
+    if (!parsedPageId) {
+      throw new Error(`invalid notion pageId "${id}"`);
+    }
+
+    const body = {
+      pageId: parsedPageId,
+      limit: chunkLimit,
+      chunkNumber: chunkNumber,
+      cursor: { stack: [] },
+      verticalColumns: false,
+    };
+
+    const response = await fetchWithErrorHandling('https://www.notion.so/api/v3/loadPageChunk', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    const data: PageChunk = await response.json();
+    return data;
+  }
+
   return {
     databaseRetrieve,
     retrieveBlockChildren,
     retrievePage,
+    getPageUnofficial,
   };
 }
 
