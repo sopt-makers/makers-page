@@ -16,10 +16,10 @@ const isInternalRequest = middleware(async (opts) => {
   const apiKey = ctx.req.headers.get('X-Api-Key');
 
   if (!apiKey) {
-    throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Notion API Key is not properly set.' });
+    throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Internal API Key is not properly set.' });
   }
   if (!ctx.checkApiKey(apiKey)) {
-    throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Invalid Notion API key.' });
+    throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Invalid Internal API key.' });
   }
 
   return opts.next();

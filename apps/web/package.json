@@ -15,6 +15,7 @@
     "@react-three/drei": "^9.79.3",
     "@react-three/fiber": "^8.13.5",
     "@studio-freight/react-lenis": "^0.0.23",
+    "@tanstack/react-query": "beta",
     "@trpc/client": "^10.35.0",
     "@trpc/server": "^10.35.0",
     "axios": "^1.4.0",
