@@ -29,6 +29,7 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
     if (!pageBlock || pageBlock.type !== 'page') {
       throw new Error('Invalid page');
     }
+    const title = pageBlock.properties?.title?.map((v) => v[0]).join('') ?? '제목 없음';
 
     const fetchMissing = async (blocks: Block[], blockMap: Record<string, Block>): Promise<Record<string, Block>> => {
       const unknownBlocks = blocks
@@ -58,7 +59,34 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
 
     const newBlockMap = await fetchMissing(getBlocks(chunk), blockMap);
 
-    const title = pageBlock.properties?.title?.map((v) => v[0]).join('') ?? '제목 없음';
+    const imageBlocks = Object.values(newBlockMap).filter(
+      (block): block is typeof block & { type: 'image' } => block.type === 'image',
+    );
+
+    const queries = imageBlocks.flatMap((block) => {
+      const source = block.properties?.source[0][0];
+      if (source.includes('/secure.notion-static.com/')) {
+        return {
+          permissionRecord: {
+            table: 'block' as const,
+            id: block.id,
+          },
+          url: source,
+        };
+      }
+      return [];
+    });
+
+    const { signedUrls } = await notionRawAPI.getSignedFileUrls(queries);
+
+    const imageSignedUrlMap = Object.fromEntries(signedUrls.map((url, idx) => [imageBlocks[idx].id, url]));
+
+    for (const block of Object.values(newBlockMap)) {
+      if (block.type === 'image') {
+        console.log();
+        block.properties.source = [[imageSignedUrlMap[block.id]]];
+      }
+    }
 
     return {
       title,

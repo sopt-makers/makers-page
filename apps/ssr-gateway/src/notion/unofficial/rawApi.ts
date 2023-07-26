@@ -61,9 +61,33 @@ export function createUnofficialNotionRawClient() {
     return data;
   }
 
+  interface getSignedFileUrlsRequest {
+    permissionRecord: {
+      table: 'block';
+      id: string;
+    };
+    url: string;
+  }
+
+  interface getSignedFileUrlsResponse {
+    signedUrls: string[];
+  }
+
+  async function getSignedFileUrls(urls: getSignedFileUrlsRequest[]) {
+    const response = await fetchWithErrorHandling('https://www.notion.so/api/v3/getSignedFileUrls', {
+      method: 'POST',
+      headers: defaultHeaders,
+      body: JSON.stringify({ urls }),
+    });
+
+    const data: getSignedFileUrlsResponse = await response.json();
+    return data;
+  }
+
   return {
     loadPageChunk,
     syncRecordValues,
+    getSignedFileUrls,
   };
 }
 

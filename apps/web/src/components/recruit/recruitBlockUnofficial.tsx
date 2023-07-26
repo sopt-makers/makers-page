@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Decoration } from 'notion-types';
 
 import type { BlockComponentsBase } from '@/components/notion/unofficial/BlockResolver';
@@ -81,11 +82,13 @@ export const recruitBlockComponents = {
     }),
   image: ({ block }) => (
     <ContentBlock format={block.format}>
+      {JSON.stringify(block, null, 2)}
       <img
         src={block.properties.source[0][0]}
         alt='NotionImage'
         width={block.format?.block_width}
         height={block.format?.block_height}
+        className={clsx(block.format?.block_page_width && 'w-full')}
       />
     </ContentBlock>
   ),
