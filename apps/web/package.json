@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@radix-ui/react-collapsible": "^1.0.3",
     "@react-three/drei": "^9.79.3",
     "@react-three/fiber": "^8.13.5",
     "@studio-freight/react-lenis": "^0.0.23",
