@@ -22,7 +22,7 @@ export const recruitBlockComponents = {
     </h3>
   ),
   paragraph: ({ block }) => (
-    <p className='text-[1.8rem]'>
+    <p className='min-h-[1em] whitespace-normal break-words text-[1.8rem]'>
       <RichTextRenderer richText={block.paragraph.rich_text} />
     </p>
   ),
@@ -81,5 +81,11 @@ export const recruitBlockComponents = {
     <ToggleBlock header={<RichTextRenderer richText={block.toggle.rich_text} />}>
       {renderBlocks(block.children)}
     </ToggleBlock>
+  ),
+  callout: ({ block, renderBlocks }) => (
+    <div className='flex'>
+      <div className=''>{block.callout.icon.type === 'emoji' && block.callout.icon.emoji}</div>
+      <div className='flex-grow'>{renderBlocks(block.children)}</div>
+    </div>
   ),
 } satisfies BlockComponentsBase;

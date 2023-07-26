@@ -85,6 +85,7 @@ const childrenableBlockTypes = [
   'column_list',
   'column',
   'toggle',
+  'callout',
 ] satisfies NotionBlock['type'][];
 
 function isChildrenableBlock(
