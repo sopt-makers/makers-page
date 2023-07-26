@@ -11,10 +11,10 @@ export default function MakersIntodution({ className }: GreetingProps) {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.7, 0.75, 1], [0, 1, 1, 0, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.15, 0.25, 0.7, 0.75, 1], [0, 1, 1, 0, 0]);
-  const opacity3 = useTransform(scrollYProgress, [0.3, 0.4, 0.7, 0.75, 1], [0, 1, 1, 0, 0]);
-  const opacity4 = useTransform(scrollYProgress, [0.45, 0.5, 0.7, 0.75, 1], [0, 1, 1, 0, 0]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.7, 0.75], [0, 1, 1, 0]);
+  const opacity2 = useTransform(scrollYProgress, [0.15, 0.25, 0.7, 0.75], [0, 1, 1, 0]);
+  const opacity3 = useTransform(scrollYProgress, [0.3, 0.4, 0.7, 0.75], [0, 1, 1, 0]);
+  const opacity4 = useTransform(scrollYProgress, [0.45, 0.5, 0.7, 0.75], [0, 1, 1, 0]);
 
   return (
     <article ref={containerRef} className={clsx('h-[360vh]', className)}>

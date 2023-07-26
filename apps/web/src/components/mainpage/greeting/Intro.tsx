@@ -11,7 +11,7 @@ export default function Intro({ className }: GreetingProps) {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.3, 1], [1, 1, 0, 0]);
+  const opacity = useTransform(scrollYProgress, [0.2, 0.3], [1, 0]);
 
   return (
     <article ref={containerRef} className={clsx('h-[120vh]', className)}>
@@ -20,7 +20,7 @@ export default function Intro({ className }: GreetingProps) {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 1 }}
         style={{ opacity }}
       >
         <h1 className='text-64-semibold mt-[6rem] text-center'>

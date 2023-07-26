@@ -13,13 +13,13 @@ export default function Missions({ className }: GreetingProps) {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.7, 1], [0, 1, 1, 0, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.2, 0.35, 0.6, 0.7, 1], [0, 1, 1, 0, 0]);
-  const opacity3 = useTransform(scrollYProgress, [0.45, 0.55, 0.6, 0.7, 1], [0, 1, 1, 0, 0]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.7], [0, 1, 1, 0]);
+  const opacity2 = useTransform(scrollYProgress, [0.2, 0.35, 0.6, 0.7], [0, 1, 1, 0]);
+  const opacity3 = useTransform(scrollYProgress, [0.45, 0.55, 0.6, 0.7], [0, 1, 1, 0]);
 
   return (
     <article ref={containerRef} className={clsx('h-[230vh]', className)}>
-      <div className='text-60-semibold sticky top-0 flex flex-col items-center justify-center gap-[1.6rem] pt-[27.2rem]'>
+      <div className='text-60-semibold sticky top-0 flex flex-col  items-center justify-center gap-[1.6rem] pt-[27.2rem]'>
         <m.p className='flex items-start justify-center gap-[1.792rem]' style={{ opacity: opacity1 }}>
           <span className='text-sub-skyblue text-16-regular'>MISSION 1.</span>
           <span>
