@@ -11,7 +11,7 @@ interface RecruitPageProps {}
 const RecruitPage: FC<RecruitPageProps> = async ({}) => {
   const { title, pageBlock, blockMap } = await gateway.recruit.pageUnofficial.query({});
 
-  async function getBlock(id: string) {
+  function getBlock(id: string) {
     const block = blockMap[id];
     if (block) {
       return block;

@@ -1,52 +1,49 @@
-import clsx from 'clsx';
 import type { Block } from 'notion-types';
-import { FC } from 'react';
+import { FC, ReactElement, ReactNode } from 'react';
 
 import { BlockComponentsBase, BlockResolver } from './BlockResolver';
 import { NotionRendererContext, PageLinkRenderer } from './types';
 
 interface BlockRendererProps {
-  className?: string;
   blocks: string[];
   blockComponents: BlockComponentsBase;
   renderPageLink: PageLinkRenderer;
-  getBlock: (id: string) => Promise<Block>;
+  getBlock: (id: string) => Block;
+  renderContainer?: (children: ReactNode) => ReactElement;
 }
 
-const BlockRenderer: FC<BlockRendererProps> = async ({
-  className,
+const BlockRenderer: FC<BlockRendererProps> = ({
   blocks,
   blockComponents,
   getBlock,
   renderPageLink,
+  renderContainer = (children) => <div className='flex flex-col'>{children}</div>,
 }) => {
-  const fetchedBlocks = await Promise.all(blocks.map(async (blockId) => getBlock(blockId)));
+  const fetchedBlocks = blocks.map((blockId) => getBlock(blockId));
 
   const merged = mergeBlocks(fetchedBlocks);
 
   const ctx: NotionRendererContext = {
-    renderBlocks,
+    renderBlocks: (blockIds, options) => {
+      if (!blockIds || blockIds.length === 0) {
+        return <></>;
+      }
+
+      return (
+        <BlockRenderer
+          blocks={blockIds}
+          renderPageLink={renderPageLink}
+          blockComponents={blockComponents}
+          getBlock={getBlock}
+          renderContainer={options?.renderContainer}
+        />
+      );
+    },
     renderPageLink,
   };
 
-  function renderBlocks(blockIds: string[], className?: string) {
-    if (!blockIds || blockIds.length === 0) {
-      return <></>;
-    }
-
-    return (
-      <BlockRenderer
-        blocks={blockIds}
-        renderPageLink={renderPageLink}
-        blockComponents={blockComponents}
-        getBlock={getBlock}
-        className={className}
-      />
-    );
-  }
-
-  return (
-    <div className={clsx('flex flex-col', className)}>
+  return renderContainer(
+    <>
       {merged.map((entryOrArray, idx) => {
         if (Array.isArray(entryOrArray)) {
           return (
@@ -65,7 +62,7 @@ const BlockRenderer: FC<BlockRendererProps> = async ({
         }
         return (
           <BlockResolver
-            key={idx}
+            key={entryOrArray.block.id}
             block={entryOrArray.block}
             streak={entryOrArray.streak}
             blockComponents={blockComponents}
@@ -73,7 +70,7 @@ const BlockRenderer: FC<BlockRendererProps> = async ({
           />
         );
       })}
-    </div>
+    </>,
   );
 };
 

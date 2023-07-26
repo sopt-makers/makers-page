@@ -4,6 +4,7 @@ import type { BlockComponentsBase } from '@/components/notion/unofficial/BlockRe
 
 import SyntaxHighlighter from '../notion/renderer/SyntaxHighlighter';
 import TextRenderer from '../notion/unofficial/TextRenderer';
+import ContentBlock from './ContentBlock';
 import ToggleBlock from './ToggleBlock';
 
 export const recruitBlockComponents = {
@@ -68,7 +69,26 @@ export const recruitBlockComponents = {
       <div className='flex-grow'>{renderBlocks(block.content ?? [])}</div>
     </div>
   ),
-  column_list: ({ block, ctx: { renderBlocks } }) => renderBlocks(block.content ?? [], 'flex'),
+  column_list: ({ block, ctx: { renderBlocks } }) =>
+    renderBlocks(block.content ?? [], { renderContainer: (children) => <div className='flex'>{children}</div> }),
+  column: ({ block, ctx: { renderBlocks } }) =>
+    renderBlocks(block.content ?? [], {
+      renderContainer: (children) => (
+        <div className='flex-1' style={{ flexGrow: block.format.column_ratio * 100 }}>
+          {children}
+        </div>
+      ),
+    }),
+  image: ({ block }) => (
+    <ContentBlock format={block.format}>
+      <img
+        src={block.properties.source[0][0]}
+        alt='NotionImage'
+        width={block.format?.block_width}
+        height={block.format?.block_height}
+      />
+    </ContentBlock>
+  ),
 } satisfies BlockComponentsBase;
 
 function plainText(text?: Decoration[]) {
