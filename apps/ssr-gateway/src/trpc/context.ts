@@ -3,6 +3,7 @@ import { inferAsyncReturnType } from '@trpc/server';
 import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
 import { NotionClient } from '../notion';
+import { NotionUnofficialClient } from '../notion/unofficial/client';
 
 interface ContextDeps {
   env: {
@@ -10,13 +11,16 @@ interface ContextDeps {
   };
   waitUntil: (promise: Promise<void>) => void;
   checkApiKey: (apiKey: string) => boolean;
-  recruitNotionClient: NotionClient;
   image: {
     delete: (keys: string[]) => Promise<void>;
   };
   blog: {
     notion: NotionClient;
     databaseId: string;
+  };
+  recruit: {
+    notionClient: NotionUnofficialClient;
+    legacyNotionClient: NotionClient;
   };
   kv: KVNamespace;
 }

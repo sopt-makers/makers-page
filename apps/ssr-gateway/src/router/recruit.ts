@@ -17,7 +17,7 @@ export const recruitRouter = router({
       if (cachedBlocks) {
         return { cacheHit: true, blocks: cachedBlocks as ModifiedBlock[] };
       }
-      const { blocks, savedImageKeys } = await ctx.recruitNotionClient.getBlocks(pageId);
+      const { blocks, savedImageKeys } = await ctx.recruit.legacyNotionClient.getBlocks(pageId);
 
       await Promise.all([
         ctx.kv.put(`recruit:cache:page:${pageId}`, JSON.stringify(blocks)),
@@ -26,6 +26,13 @@ export const recruitRouter = router({
 
       return { cacheHit: false, blocks };
     }),
+  pageUnofficial: internalProcedure.input(z.object({ id: z.string().optional() })).query(async ({ ctx, input }) => {
+    const pageId = input.id ?? ctx.env.RECRUIT_NOTION_PAGE_ID;
+
+    const page = await ctx.recruit.notionClient.getPage(pageId);
+
+    return page;
+  }),
   invalidate: internalProcedure.mutation(async ({ ctx }) => {
     const { keys: cacheKeys } = await ctx.kv.list({ prefix: 'recruit:cache:' });
     const removeCachePromises = cacheKeys.map(async ({ name }) => ctx.kv.delete(name));
