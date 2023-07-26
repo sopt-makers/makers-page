@@ -11,12 +11,12 @@ export default function Intro({ className }: GreetingProps) {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const opacity = useTransform(scrollYProgress, [0.2, 0.3], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
     <article ref={containerRef} className={clsx('h-[120vh]', className)}>
       <m.div
-        className='sticky top-0 flex flex-col items-center justify-start pt-[32rem]'
+        className='sticky top-0 flex h-screen w-full flex-col items-center justify-center'
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
