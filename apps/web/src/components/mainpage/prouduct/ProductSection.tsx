@@ -15,8 +15,8 @@ export default function Product({ className }: ProductProps) {
       <div className='absolute inset-0 mt-[48rem]'>
         <article className={clsx('h-[250vh]', className)}>
           <div className='flex flex-row justify-start'>
-            <section className='min-w-[36.4rem] mr-[6.704rem]'>
-              <p className='sticky top-0 ml-[6rem] pt-[8.4rem] text-40-semibold'>
+            <section className='mr-[6.704rem] min-w-[36.4rem]'>
+              <p className='text-40-semibold sticky top-0 ml-[6rem] pt-[8.4rem]'>
                 메이커스는
                 <br />
                 3개의 제품으로
@@ -31,16 +31,16 @@ export default function Product({ className }: ProductProps) {
                 더하고 있어요.
               </p>
             </section>
-            <nav className='w-full h-max border-l border-solid border-white text-40-semibold'>
-              <div className='pl-[4rem] py-[2.4rem] flex flex-col border-b border-solid border-white'>
+            <nav className='text-40-semibold h-max w-full border-l border-solid border-white'>
+              <div className='flex flex-col border-b border-solid border-white py-[2.4rem] pl-[4rem]'>
                 <Title type='official' />
                 <Description type='official' />
               </div>
-              <div className='pl-[4rem] py-[2.4rem] flex flex-col border-b border-solid border-white'>
+              <div className='flex flex-col border-b border-solid border-white py-[2.4rem] pl-[4rem]'>
                 <Title type='playground' />
                 <Description type='playground' />
               </div>
-              <div className='pl-[4rem] py-[2.4rem] flex flex-col border-b border-solid border-white'>
+              <div className='flex flex-col border-b border-solid border-white py-[2.4rem] pl-[4rem]'>
                 <Title type='app' />
                 <Description type='app' />
               </div>

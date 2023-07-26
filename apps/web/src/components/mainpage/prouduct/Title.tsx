@@ -9,9 +9,9 @@ export default function Title({ type }: TitleProps) {
     case 'official':
       return (
         <Link className='sticky top-0' href='https://www.sopt.org/'>
-          <div className='py-[2.4rem] flex flex-row justify-start items-end bg-black100 z-10 cursor-pointer'>
+          <div className='bg-black100 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
             <span className='hover:text-sub-yellow'>SOPT 공식 홈페이지</span>
-            <div className='flex flex-row justify-cetner items-center'>
+            <div className='justify-cetner flex flex-row items-center'>
               <ArrowIcon className='fill-sub-yellow' />
               <span className='text-16-regular'>OFFICIAL</span>
             </div>
@@ -21,9 +21,9 @@ export default function Title({ type }: TitleProps) {
     case 'playground':
       return (
         <Link className='sticky top-0' href='https://playground.sopt.org/'>
-          <div className='py-[2.4rem] flex flex-row justify-start items-end bg-black100 z-10 cursor-pointer'>
+          <div className='bg-black100 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
             <span className='hover:text-sub-skyblue'>SOPT 플레이그라운드</span>
-            <div className='flex flex-row justify-cetner items-center'>
+            <div className='justify-cetner flex flex-row items-center'>
               <ArrowIcon className='fill-sub-skyblue' />
               <span className='text-16-regular'>
                 PLAYGROUND
@@ -35,9 +35,9 @@ export default function Title({ type }: TitleProps) {
       );
     case 'app':
       return (
-        <div className='py-[2.4rem] sticky top-0 flex flex-row justify-start items-end bg-black100 z-10 cursor-pointer'>
+        <div className='bg-black100 sticky top-0 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
           <span className='hover:text-sub-pink'>SOPT 공식 앱</span>
-          <div className='flex flex-row justify-cetner items-center'>
+          <div className='justify-cetner flex flex-row items-center'>
             <ArrowIcon className='fill-sub-pink' />
             <span className='text-16-regular'>
               APP

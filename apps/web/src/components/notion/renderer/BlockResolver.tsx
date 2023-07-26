@@ -69,7 +69,7 @@ const blockComponents = {
   column_list: ({ block, renderBlocks }) => (
     <div className='flex whitespace-pre'>
       {block.children.map((column) => (
-        <div key={column.id} className='flex-1 min-w-0'>
+        <div key={column.id} className='min-w-0 flex-1'>
           {renderBlocks([column])}
         </div>
       ))}
