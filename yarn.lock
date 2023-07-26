@@ -3016,6 +3016,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.0.0-beta.0":
+  version: 5.0.0-beta.0
+  resolution: "@tanstack/query-core@npm:5.0.0-beta.0"
+  checksum: 9ecf1f1a10e6454b8f9b6cc8d175f28c2d3cf0d77da42230f1d5c5f41982f9a4a4cc89e036e8c2cadb9ded6da460cb4e99e84714855e2d952cd9a781fa8fc8cc
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:beta":
+  version: 5.0.0-beta.2
+  resolution: "@tanstack/react-query@npm:5.0.0-beta.2"
+  dependencies:
+    "@tanstack/query-core": 5.0.0-beta.0
+    client-only: 0.0.1
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+    react-native: "*"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: f6139d0545af9566d82d9f3e4a918ae822a5f6255ed4bf10194f495ba4d032e36771f5dc5785fac2a7de008df66141fe5dcbb5edeee6a2018ffccbb01241dac0
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -14186,6 +14212,7 @@ turbo@latest:
     "@react-three/drei": ^9.79.3
     "@react-three/fiber": ^8.13.5
     "@studio-freight/react-lenis": ^0.0.23
+    "@tanstack/react-query": beta
     "@trpc/client": ^10.35.0
     "@trpc/server": ^10.35.0
     "@types/date-fns": ^2.6.0
