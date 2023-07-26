@@ -29,6 +29,7 @@ module.exports = {
       'pink-sub': '#8F388A',
       'yellow-sub': '#816600',
       'dark1': '#252629',
+      'gray1': '#3C3D40',
       'gray2': '#1C1D1E',
     },
     fontFamily: {
@@ -37,11 +38,14 @@ module.exports = {
     },
     fontSize: {
       '80-bold': ['8rem', { lineHeight: '130%', letterSpacing: '-0.16rem', fontWeight: 700 }],
+      '64-bold': ['6.4rem', { lineHeight: '130%', letterSpacing: '-0.128rem', fontWeight: 700 }],
       '64-semibold': ['6.4rem', { lineHeight: '140%', letterSpacing: '-0.128rem', fontWeight: 600 }],
       '60-semibold': ['6rem', { lineHeight: '160%', letterSpacing: '-0.12rem', fontWeight: 600 }],
       '40-semibold': ['4rem', { lineHeight: '160%', letterSpacing: '-0.08rem', fontWeight: 600 }],
       '32-regular': ['3.2rem', { lineHeight: '160%', letterSpacing: '0.064rem', fontWeight: 400 }],
       '24-semibold': ['2.4rem', { lineHeight: '150%', letterSpacing: '-0.048rem', fontWeight: 600 }],
+      '18-semibold': ['1.8rem', { lineHeight: '150%', letterSpacing: '-0.036rem', fontWeight: 600 }],
+      '18-regular': ['1.8rem', { lineHeight: '150%', letterSpacing: '-0.036rem', fontWeight: 400 }],
       '16-regular': ['1.6rem', { lineHeight: '130%', letterSpacing: '-0.128rem', fontWeight: 400 }],
     },
     backgroundImage: {

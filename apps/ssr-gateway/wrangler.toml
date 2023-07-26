@@ -1,6 +1,7 @@
 name = "makers-page-ssr-gateway"
 main = "src/worker.ts"
 compatibility_date = "2023-07-05"
+account_id = "3b0da57608b817b625bbd70a9927b4a4"
 
 kv_namespaces = [
   { binding = "MAKERS_PAGE_KV", id = "4d8354cca877431f9e08086354ccb22e" }
@@ -11,4 +12,7 @@ kv_namespaces = [
 name = "makers-page-ssr-gateway-preview"
 kv_namespaces = [
   { binding = "MAKERS_PAGE_KV", id = "6ef1beb3d9324722869cc2c58027d46f", preview_id = "6ef1beb3d9324722869cc2c58027d46f" }
+]
+r2_buckets = [
+  { binding = "MAKERS_PAGE_R2", bucket_name = "makers-page-bucket", preview_bucket_name = "makers-page-bucket" }
 ]

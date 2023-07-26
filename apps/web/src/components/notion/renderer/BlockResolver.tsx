@@ -69,7 +69,7 @@ const blockComponents = {
   column_list: ({ block, renderBlocks }) => (
     <div className='flex whitespace-pre'>
       {block.children.map((column) => (
-        <div key={column.id} className='flex-grow flex-shrink-0'>
+        <div key={column.id} className='min-w-0 flex-1'>
           {renderBlocks([column])}
         </div>
       ))}
@@ -80,6 +80,16 @@ const blockComponents = {
   code: ({ block }) => (
     <SyntaxHighlighter language={block.code.language} code={block.code.rich_text.map((t) => t.plain_text).join('')} />
   ),
+  image: ({ block }) =>
+    block.image.type === 'external' ? (
+      <img
+        src={block.image.external.url}
+        alt={block.image.caption.map((v) => v.plain_text).join('')}
+        className='w-full'
+      />
+    ) : (
+      <div>Invalid Image: {JSON.stringify(block.image, null, 2)}</div>
+    ),
 } satisfies BlockRendererObjectBase;
 
 type BlockRendererObjectBase = {
