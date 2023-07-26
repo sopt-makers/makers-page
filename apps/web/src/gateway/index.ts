@@ -33,7 +33,7 @@ export const gateway = createTRPCProxyClient<AppRouter>({
       enabled: () => DEV_MODE,
     }),
     httpBatchLink({
-      url: SSR_GATEWAY_URL,
+      url: SSR_GATEWAY_URL ?? '',
       fetch: serviceBindingFetch,
       async headers() {
         return {

@@ -84,7 +84,7 @@ export const recruitBlockComponents = {
   ),
   callout: ({ block, renderBlocks }) => (
     <div className='flex'>
-      <div className=''>{block.callout.icon.type === 'emoji' && block.callout.icon.emoji}</div>
+      <div className=''>{block.callout.icon?.type === 'emoji' && block.callout.icon.emoji}</div>
       <div className='flex-grow'>{renderBlocks(block.children)}</div>
     </div>
   ),
