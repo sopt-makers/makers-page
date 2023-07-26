@@ -11,7 +11,7 @@ interface FeedbackCardProps {
 }
 
 const FeedbackCard: FC<FeedbackCardProps> = ({ className, content, name, position, isDark }) => {
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,

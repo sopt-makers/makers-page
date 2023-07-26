@@ -40,7 +40,7 @@ async function ArticlePage({ id }: ArticlePageProps) {
         </h1>
         <div className='text-gray60 mt-[8px] text-[14px] font-light'>
           {/* {article.publishedAt && format(article.publishedAt, 'yyyy.MM.dd')} */}
-          {article.publishedAt.toString()}
+          {article.publishedAt?.toString()}
         </div>
         <div className='mt-[40px] md:mt-[80px]'>
           <BlockRenderer

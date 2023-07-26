@@ -32,7 +32,7 @@ const ImageBlock: FC<ImageBlockProps> = ({ url, command }) => {
 
 export default ImageBlock;
 
-function parseCommand<T>(command: string, schema: z.ZodType<T>): T {
+function parseCommand<T>(command: string, schema: z.ZodType<T>): T | null {
   const json = safeParseJSON(command.replaceAll('”', '"'));
   if (!json) {
     return null;
