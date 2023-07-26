@@ -3243,6 +3243,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash-es@npm:^4.17.8":
+  version: 4.17.8
+  resolution: "@types/lodash-es@npm:4.17.8"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 36356169a1862e2a1b09cde3b11b3790ab2c2e477778d70f825b216479ea93bd1a960767dbefcd00d6604312170a1b15209f0fa1c35ddf8861bc233c9b0d3e56
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*":
+  version: 4.14.196
+  resolution: "@types/lodash@npm:4.14.196"
+  checksum: 201d17c3e62ae02a93c99ec78e024b2be9bd75564dd8fd8c26f6ac51a985ab280d28ce2688c3bcdfe785b0991cd9814edff19ee000234c7b45d9a697f09feb6a
+  languageName: node
+  linkType: hard
+
 "@types/mdast@npm:^3.0.0":
   version: 3.0.11
   resolution: "@types/mdast@npm:3.0.11"
@@ -9124,6 +9140,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
+  languageName: node
+  linkType: hard
+
 "lodash.camelcase@npm:^4.3.0":
   version: 4.3.0
   resolution: "lodash.camelcase@npm:4.3.0"
@@ -12707,9 +12730,11 @@ __metadata:
     "@cloudflare/workers-types": ^4.20230628.0
     "@notionhq/client": ^2.2.6
     "@trpc/server": ^10.35.0
+    "@types/lodash-es": ^4.17.8
     eslint: ^8.44.0
     eslint-config-custom: "*"
     hono: ^3.3.3
+    lodash-es: ^4.17.21
     notion-types: ^6.16.0
     notion-utils: ^6.16.0
     superjson: ^1.13.1

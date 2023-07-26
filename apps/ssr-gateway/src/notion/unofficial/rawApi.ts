@@ -44,8 +44,26 @@ export function createUnofficialNotionRawClient() {
     return data;
   }
 
+  async function syncRecordValues(blockIds: string[]) {
+    const response = await fetchWithErrorHandling('https://www.notion.so/api/v3/syncRecordValues', {
+      method: 'POST',
+      headers: defaultHeaders,
+      body: JSON.stringify({
+        requests: blockIds.map((blockId) => ({
+          table: 'block',
+          id: blockId,
+          version: -1,
+        })),
+      }),
+    });
+
+    const data: PageChunk = await response.json();
+    return data;
+  }
+
   return {
     loadPageChunk,
+    syncRecordValues,
   };
 }
 

@@ -11,13 +11,21 @@ interface RecruitPageProps {}
 const RecruitPage: FC<RecruitPageProps> = async ({}) => {
   const { title, pageBlock, blockMap } = await gateway.recruit.pageUnofficial.query({});
 
+  async function getBlock(id: string) {
+    const block = blockMap[id];
+    if (block) {
+      return block;
+    }
+    throw new Error('Invalid Block Id: ' + id);
+  }
+
   return (
     <div>
       {title}
       <BlockRenderer
         blocks={pageBlock.content ?? []}
         blockComponents={recruitBlockComponents}
-        blockMap={blockMap}
+        getBlock={getBlock}
         renderPageLink={({ id, name, className }) => (
           <Link href={`/recruit/${id}`} className={className}>
             {name}

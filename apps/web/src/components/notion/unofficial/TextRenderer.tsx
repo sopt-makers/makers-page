@@ -3,10 +3,10 @@ import type { Decoration, SubDecoration } from 'notion-types';
 import { FC } from 'react';
 
 interface TextRendererProps {
-  text: Decoration[];
+  text?: Decoration[];
 }
 
-const TextRenderer: FC<TextRendererProps> = ({ text }) => {
+const TextRenderer: FC<TextRendererProps> = ({ text = [] }) => {
   return text.map(([text, deco], idx) => {
     if (!deco) {
       return text;

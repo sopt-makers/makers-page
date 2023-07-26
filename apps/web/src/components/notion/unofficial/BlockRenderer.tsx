@@ -9,29 +9,22 @@ interface BlockRendererProps {
   className?: string;
   blocks: string[];
   blockComponents: BlockComponentsBase;
-  blockMap: Record<string, Block>;
   renderPageLink: PageLinkRenderer;
+  getBlock: (id: string) => Promise<Block>;
 }
 
 const BlockRenderer: FC<BlockRendererProps> = async ({
   className,
   blocks,
   blockComponents,
-  blockMap,
+  getBlock,
   renderPageLink,
 }) => {
-  const merged = mergeBlocks(
-    blocks.map((blockId) => {
-      const block = blockMap[blockId];
-      if (block) {
-        return block;
-      }
-      throw new Error('No block found');
-    }),
-  );
+  const fetchedBlocks = await Promise.all(blocks.map(async (blockId) => getBlock(blockId)));
+
+  const merged = mergeBlocks(fetchedBlocks);
 
   const ctx: NotionRendererContext = {
-    blockMap,
     renderBlocks,
     renderPageLink,
   };
@@ -43,10 +36,10 @@ const BlockRenderer: FC<BlockRendererProps> = async ({
 
     return (
       <BlockRenderer
-        blocks={blocks}
+        blocks={blockIds}
         renderPageLink={renderPageLink}
         blockComponents={blockComponents}
-        blockMap={blockMap}
+        getBlock={getBlock}
         className={className}
       />
     );
