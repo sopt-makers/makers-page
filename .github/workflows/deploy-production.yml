@@ -1,4 +1,4 @@
-name: Development Web Deploy
+name: Production Web Deploy
 
 on:
   workflow_dispatch:
