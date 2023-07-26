@@ -7,7 +7,7 @@ import { BlockComponentsBase, BlockResolver } from './BlockResolver';
 interface BlockRendererProps {
   className?: string;
   blocks: ModifiedBlock[];
-  renderPageLink: (id: string, name: string) => ReactElement;
+  renderPageLink: (options: { id: string; name: string; className?: string }) => ReactElement;
   blockComponents: BlockComponentsBase;
 }
 

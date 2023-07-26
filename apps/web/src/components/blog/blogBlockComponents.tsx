@@ -55,7 +55,7 @@ export const blogBlockComponents = {
     </div>
   ),
   column: ({ block, renderBlocks }) => <>{renderBlocks(block.children)}</>,
-  child_page: ({ block, renderPageLink }) => <div>{renderPageLink(block.id, block.child_page.title)}</div>,
+  child_page: () => <div>Child page not supported.</div>,
   code: ({ block }) => (
     <SyntaxHighlighter language={block.code.language} code={block.code.rich_text.map((t) => t.plain_text).join('')} />
   ),

@@ -16,7 +16,11 @@ const RecruitPage: FC<RecruitPageProps> = async ({}) => {
       <BlockRenderer
         blocks={blocks}
         blockComponents={recruitBlockComponents}
-        renderPageLink={(id, name) => <Link href={`/recruit/${id}`}>{name}</Link>}
+        renderPageLink={({ id, name, className }) => (
+          <Link href={`/recruit/${id}`} className={className}>
+            {name}
+          </Link>
+        )}
       />
     </div>
   );

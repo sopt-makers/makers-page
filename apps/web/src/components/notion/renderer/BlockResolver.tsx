@@ -5,7 +5,7 @@ interface BlockComponentProps<T extends string = string> {
   block: ModifiedBlock & { type: T };
   streak: number;
   renderBlocks: (blocks: ModifiedBlock[]) => ReactElement;
-  renderPageLink: (id: string, name: string) => ReactElement;
+  renderPageLink: (options: { id: string; name: string; className?: string }) => ReactElement;
 }
 
 type BlockResolverProps = BlockComponentProps<string> & {

@@ -58,7 +58,9 @@ export const recruitBlockComponents = {
   ),
   column: ({ block, renderBlocks }) => <>{renderBlocks(block.children)}</>,
   child_page: ({ block, renderPageLink }) => (
-    <div className='text-[1.8rem]'>{renderPageLink(block.id, block.child_page.title)}</div>
+    <div className='text-[1.8rem]'>
+      {renderPageLink({ id: block.id, name: block.child_page.title, className: 'w-full block' })}
+    </div>
   ),
   code: ({ block }) => (
     <SyntaxHighlighter language={block.code.language} code={block.code.rich_text.map((t) => t.plain_text).join('')} />
