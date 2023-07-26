@@ -1,2 +1,2 @@
-export type { ModifiedBlock } from './notion';
+export type { ModifiedBlock } from './notion/officialApi/client';
 export type { AppRouter } from './router';

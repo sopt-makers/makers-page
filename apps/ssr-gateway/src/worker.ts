@@ -12,8 +12,8 @@ import { ExecutionContext, KVNamespace } from '@cloudflare/workers-types';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { Hono } from 'hono/quick';
 
-import { createNotionClient, NotionImageHandler } from './notion';
-import { createNotionUnofficialClient } from './notion/unofficial/client';
+import { createNotionUnofficialClient } from './notion/api/client';
+import { createNotionClient, NotionImageHandler } from './notion/officialApi/client';
 import { appRouter } from './router';
 import { createContextFactory } from './trpc/context';
 

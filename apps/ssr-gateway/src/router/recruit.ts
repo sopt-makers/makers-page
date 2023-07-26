@@ -1,32 +1,9 @@
 import { z } from 'zod';
 
-import { ModifiedBlock } from '../notion';
 import { internalProcedure, router } from '../trpc/stub';
 
 export const recruitRouter = router({
-  page: internalProcedure
-    .input(
-      z.object({
-        id: z.string().optional(),
-      }),
-    )
-    .query(async ({ ctx, input }) => {
-      const pageId = input.id ?? ctx.env.RECRUIT_NOTION_PAGE_ID;
-
-      const { value: cachedBlocks } = await ctx.kv.getWithMetadata(`recruit:cache:page:${pageId}`, 'json');
-      if (cachedBlocks) {
-        return { cacheHit: true, blocks: cachedBlocks as ModifiedBlock[] };
-      }
-      const { blocks, savedImageKeys } = await ctx.recruit.legacyNotionClient.getBlocks(pageId);
-
-      await Promise.all([
-        ctx.kv.put(`recruit:cache:page:${pageId}`, JSON.stringify(blocks)),
-        ctx.kv.put(`recruit:image:${pageId}`, JSON.stringify(savedImageKeys)),
-      ]);
-
-      return { cacheHit: false, blocks };
-    }),
-  pageUnofficial: internalProcedure.input(z.object({ id: z.string().optional() })).query(async ({ ctx, input }) => {
+  page: internalProcedure.input(z.object({ id: z.string().optional() })).query(async ({ ctx, input }) => {
     const pageId = input.id ?? ctx.env.RECRUIT_NOTION_PAGE_ID;
 
     const page = await ctx.recruit.notionClient.getPage(pageId);

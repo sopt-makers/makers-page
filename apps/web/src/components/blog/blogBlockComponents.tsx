@@ -1,6 +1,6 @@
-import type { BlockComponentsBase } from '@/components/notion/renderer/BlockResolver';
-import RichTextRenderer from '@/components/notion/renderer/RichTextRenderer';
-import SyntaxHighlighter from '@/components/notion/renderer/SyntaxHighlighter';
+import type { BlockComponentsBase } from '@/components/notion/official/BlockResolver';
+import RichTextRenderer from '@/components/notion/official/RichTextRenderer';
+import SyntaxHighlighter from '@/components/notion/official/SyntaxHighlighter';
 
 export const blogBlockComponents = {
   heading_1: ({ block }) => (

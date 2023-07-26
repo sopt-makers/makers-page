@@ -3,7 +3,7 @@ import { Decoration } from 'notion-types';
 
 import type { BlockComponentsBase } from '@/components/notion/unofficial/BlockResolver';
 
-import SyntaxHighlighter from '../notion/renderer/SyntaxHighlighter';
+import SyntaxHighlighter from '../notion/official/SyntaxHighlighter';
 import TextRenderer from '../notion/unofficial/TextRenderer';
 import ContentBlock from './ContentBlock';
 import ToggleBlock from './ToggleBlock';
@@ -82,7 +82,6 @@ export const recruitBlockComponents = {
     }),
   image: ({ block }) => (
     <ContentBlock format={block.format}>
-      {JSON.stringify(block, null, 2)}
       <img
         src={block.properties.source[0][0]}
         alt='NotionImage'

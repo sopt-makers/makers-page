@@ -2,8 +2,8 @@ import { KVNamespace } from '@cloudflare/workers-types';
 import { inferAsyncReturnType } from '@trpc/server';
 import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
-import { NotionClient } from '../notion';
-import { NotionUnofficialClient } from '../notion/unofficial/client';
+import { NotionUnofficialClient } from '../notion/api/client';
+import { NotionClient } from '../notion/officialApi/client';
 
 interface ContextDeps {
   env: {

@@ -9,7 +9,7 @@ import { gateway } from '../../gateway';
 interface RecruitPageProps {}
 
 const RecruitPage: FC<RecruitPageProps> = async ({}) => {
-  const { title, pageBlock, blockMap } = await gateway.recruit.pageUnofficial.query({});
+  const { title, pageBlock, blockMap } = await gateway.recruit.page.query({});
 
   function getBlock(id: string) {
     const block = blockMap[id];
@@ -32,15 +32,6 @@ const RecruitPage: FC<RecruitPageProps> = async ({}) => {
           </Link>
         )}
       />
-      {/* <BlockRenderer
-        blocks={blocks}
-        blockComponents={recruitBlockComponents}
-        renderPageLink={({ id, name, className }) => (
-          <Link href={`/recruit/${id}`} className={className}>
-            {name}
-          </Link>
-        )}
-      /> */}
     </div>
   );
 };
