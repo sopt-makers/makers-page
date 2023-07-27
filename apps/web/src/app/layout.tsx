@@ -36,7 +36,10 @@ const suitFont = localFont({
   variable: '--font-suit',
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const metadata = {
+  metadataBase: BASE_URL ? new URL(BASE_URL) : undefined,
   title: 'SOPT Makers',
   description: '',
   colorScheme: 'dark',
@@ -44,6 +47,8 @@ export const metadata = {
   openGraph: {
     title: 'SOPT Makers',
     description: '',
+    url: BASE_URL ?? undefined,
+    type: 'website',
   },
 };
 
