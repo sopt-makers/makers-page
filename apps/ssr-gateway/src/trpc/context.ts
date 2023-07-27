@@ -6,9 +6,6 @@ import { NotionUnofficialClient } from '../notion/api/client';
 import { NotionClient } from '../notion/officialApi/client';
 
 interface ContextDeps {
-  env: {
-    RECRUIT_NOTION_PAGE_ID: string;
-  };
   waitUntil: (promise: Promise<void>) => void;
   checkApiKey: (apiKey: string) => boolean;
   image: {
@@ -20,7 +17,7 @@ interface ContextDeps {
   };
   recruit: {
     notionClient: NotionUnofficialClient;
-    legacyNotionClient: NotionClient;
+    rootPageId: string;
   };
   kv: KVNamespace;
 }

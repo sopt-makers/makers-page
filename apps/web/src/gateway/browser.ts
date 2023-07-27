@@ -3,7 +3,14 @@ import { createContext, useContext } from 'react';
 import { AppRouter } from 'ssr-gateway';
 
 export const TrpcContext = createContext<ReturnType<typeof createTRPCProxyClient<AppRouter>>>(
-  new Proxy({}, { get: () => console.log('nop') }) as never,
+  new Proxy(
+    {},
+    {
+      get: () => {
+        throw new Error('TrpcContext is not set.');
+      },
+    },
+  ) as never,
 );
 
 export const useGateway = () => {

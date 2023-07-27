@@ -107,9 +107,6 @@ export default {
         req: request,
         router: appRouter,
         createContext: createContextFactory({
-          env: {
-            RECRUIT_NOTION_PAGE_ID: env.RECRUIT_NOTION_PAGE_ID,
-          },
           waitUntil: ctx.waitUntil,
           checkApiKey(apiKey) {
             return apiKey.trim() === env.INTERNAL_API_KEY;
@@ -123,7 +120,7 @@ export default {
           },
           recruit: {
             notionClient: createNotionUnofficialClient(imageHandler),
-            legacyNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY, imageHandler),
+            rootPageId: env.RECRUIT_NOTION_PAGE_ID,
           },
           kv: env.MAKERS_PAGE_KV,
         }),
