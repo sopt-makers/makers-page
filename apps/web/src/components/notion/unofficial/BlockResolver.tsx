@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 
 import { NotionRendererContext } from './types';
 
-interface BlockComponentProps<T extends string = string> {
+export interface BlockComponentProps<T extends string = string> {
   block: Block & { type: T };
   streak: number;
   ctx: NotionRendererContext;

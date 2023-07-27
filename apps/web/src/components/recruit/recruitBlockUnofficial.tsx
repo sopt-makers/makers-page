@@ -7,6 +7,8 @@ import SyntaxHighlighter from '../notion/official/SyntaxHighlighter';
 import { colorStyles } from '../notion/unofficial/colors';
 import TextRenderer from '../notion/unofficial/TextRenderer';
 import ContentBlock from './ContentBlock';
+import TableBlock from './table/TableBlock';
+import TableRowBlock from './table/TableRowBlock';
 import ToggleBlock from './ToggleBlock';
 
 export const recruitBlockComponents = {
@@ -100,19 +102,25 @@ export const recruitBlockComponents = {
       ),
     }),
   image: ({ block }) => (
-    <ContentBlock format={block.format} className='my-[1rem]'>
-      <img
-        src={block.properties.source[0][0]}
-        alt='NotionImage'
-        width={block.format?.block_width}
-        height={block.format?.block_height}
-        className={clsx(block.format?.block_page_width && 'w-full')}
-        style={{ aspectRatio: block.format?.block_aspect_ratio && 1 / block.format?.block_aspect_ratio }}
-      />
-    </ContentBlock>
+    <>
+      {block.properties.source[0][0] && (
+        <ContentBlock format={block.format} className='my-[1rem]'>
+          <img
+            src={block.properties.source[0][0]}
+            alt='NotionImage'
+            width={block.format?.block_width}
+            height={block.format?.block_height}
+            className={clsx(block.format?.block_page_width && 'w-full')}
+            style={{ aspectRatio: block.format?.block_aspect_ratio && 1 / block.format?.block_aspect_ratio }}
+          />
+        </ContentBlock>
+      )}
+    </>
   ),
   page: ({ block, ctx: { renderPageLink } }) =>
     renderPageLink({ id: block.id, name: plainText(block.properties?.title), className: 'text-[1.8rem] px-[1rem]' }),
+  table: (props) => <TableBlock {...props} />,
+  table_row: ({ block }) => <TableRowBlock columns={block.properties} />,
 } satisfies BlockComponentsBase;
 
 function plainText(text?: Decoration[]) {
