@@ -11,7 +11,7 @@ interface ProductProps {
 
 export default function ProductSection({ className }: ProductProps) {
   return (
-    <div className='relative h-[300vh]'>
+    <div className='relative h-[380vh]'>
       <div className='absolute inset-0 mt-[48rem]'>
         <article className={clsx('h-[300vh]', className)}>
           <div className='flex flex-row justify-start'>
