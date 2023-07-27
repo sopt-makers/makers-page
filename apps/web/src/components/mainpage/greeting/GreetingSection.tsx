@@ -8,8 +8,8 @@ import Missions from './Missions';
 
 export default function Greeting() {
   const { scrollYProgress } = useScroll();
-  const paddingBottomLogo = useTransform(scrollYProgress, [0, 0.01], ['35rem', '0rem']);
-  const opacityLogo = useTransform(scrollYProgress, [0, 0.01], [1, 0.5]);
+  const paddingBottomLogo = useTransform(scrollYProgress, [0, 0.07], ['35rem', '0rem']);
+  const opacityLogo = useTransform(scrollYProgress, [0, 0.07], [1, 0.5]);
 
   return (
     <div className='relative h-[770rem] md:h-[790rem]'>
