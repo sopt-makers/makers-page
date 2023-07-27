@@ -1,4 +1,4 @@
-import { uniq } from 'lodash-es';
+import { cloneDeep, uniq } from 'lodash-es';
 import { Block, PageChunk } from 'notion-types';
 import { parsePageId } from 'notion-utils';
 
@@ -21,82 +21,89 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
       return Object.keys(chunk.recordMap.block).map((key) => chunk.recordMap.block[key].value);
     };
 
-    const blockMap = Object.fromEntries(
-      Object.keys(chunk.recordMap.block).map((key) => [key, chunk.recordMap.block[key].value]),
-    );
+    const blockMap = Object.fromEntries(Object.values(chunk.recordMap.block).map(({ value }) => [value.id, value]));
     const pageBlock = blockMap[pageId];
 
     if (!pageBlock || pageBlock.type !== 'page') {
       throw new Error('Invalid page');
     }
-    const title = pageBlock.properties?.title?.map((v) => v[0]).join('') ?? '제목 없음';
+    const title = pageBlock.properties?.title?.map((v) => v[0]).join('') ?? null;
 
     const fetchMissing = async (blocks: Block[], blockMap: Record<string, Block>): Promise<Record<string, Block>> => {
-      const unknownBlocks = blocks
-        .flatMap((block) => {
-          if (block.content && block.content.length > 0) {
-            return block.content.filter((id) => !blockMap[id]);
-          }
-          return null;
-        })
-        .filter((id): id is string => !!id);
+      const unknownBlockIds = uniq(
+        blocks
+          .filter((block) => block.type !== 'page')
+          .flatMap((block) => {
+            if (block.content && block.content.length > 0) {
+              return block.content.filter((id) => !blockMap[id]);
+            }
+            return [];
+          }),
+      );
 
-      if (unknownBlocks.length === 0) {
+      if (unknownBlockIds.length === 0) {
         return blockMap;
       }
 
-      const newChunk = await notionRawAPI.syncRecordValues(uniq(unknownBlocks));
+      const newChunk = await notionRawAPI.syncRecordValues(unknownBlockIds);
 
-      const newBlockMap = {
+      const mergedBlockMap = {
         ...blockMap,
-        ...Object.fromEntries(
-          Object.keys(newChunk.recordMap.block).map((key) => [key, newChunk.recordMap.block[key].value]),
-        ),
+        ...Object.fromEntries(Object.values(newChunk.recordMap.block).map(({ value }) => [value.id, value])),
       };
 
-      return fetchMissing(getBlocks(newChunk), newBlockMap);
+      return fetchMissing(getBlocks(newChunk), mergedBlockMap);
     };
 
-    const newBlockMap = await fetchMissing(getBlocks(chunk), blockMap);
+    const mergedBlockMap = await fetchMissing(getBlocks(chunk), blockMap);
 
-    const imageBlocks = Object.values(newBlockMap).filter(
-      (block): block is typeof block & { type: 'image' } => block.type === 'image',
-    );
+    return {
+      title,
+      pageBlock,
+      blockMap: mergedBlockMap,
+    };
+  }
 
-    const queries = imageBlocks.flatMap((block) => {
+  async function SignFileUrls(blockMap: Record<string, Block>) {
+    const queries = Object.values(blockMap).flatMap((block) => {
+      if (block.type !== 'image') {
+        return [];
+      }
+
       const source = block.properties?.source[0][0];
       if (source.includes('/secure.notion-static.com/')) {
         return {
-          permissionRecord: {
-            table: 'block' as const,
-            id: block.id,
+          blockId: block.id,
+          query: {
+            permissionRecord: {
+              table: 'block' as const,
+              id: block.id,
+            },
+            url: source,
           },
-          url: source,
         };
       }
       return [];
     });
 
-    const { signedUrls } = await notionRawAPI.getSignedFileUrls(queries);
+    const { signedUrls } = await notionRawAPI.getSignedFileUrls(queries.map(({ query }) => query));
 
-    const imageSignedUrlMap = Object.fromEntries(signedUrls.map((url, idx) => [imageBlocks[idx].id, url]));
+    const imageSignedUrlMap = Object.fromEntries(queries.map(({ blockId }, idx) => [blockId, signedUrls[idx]]));
 
-    for (const block of Object.values(newBlockMap)) {
+    const clonedBlockMap = cloneDeep(blockMap);
+
+    for (const block of Object.values(clonedBlockMap)) {
       if (block.type === 'image') {
-        console.log();
         block.properties.source = [[imageSignedUrlMap[block.id]]];
       }
     }
 
-    return {
-      title,
-      pageBlock,
-      blockMap: newBlockMap,
-    };
+    return clonedBlockMap;
   }
 
   return {
     getPage,
+    SignFileUrls,
   };
 }
 

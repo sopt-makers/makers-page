@@ -7,6 +7,7 @@ export const runtime = 'edge';
 
 async function trpcProxy(request: Request) {
   const url = new URL(request.url);
+
   const targetUrl = new URL(SSR_GATEWAY_DOMAIN ?? '');
   url.protocol = targetUrl.protocol;
   url.host = targetUrl.host;
@@ -17,7 +18,7 @@ async function trpcProxy(request: Request) {
     headers: request.headers,
   });
 
-  return await serviceBindingFetch(url, newRequest);
+  return await serviceBindingFetch(newRequest);
 }
 
 export const GET = trpcProxy;

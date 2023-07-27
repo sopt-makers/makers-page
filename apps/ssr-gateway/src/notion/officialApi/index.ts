@@ -67,7 +67,6 @@ export function createRawNotionAPIClient(notionApiKey: string) {
     } = {},
   ) {
     const parsedPageId = parsePageId(id);
-    console.log(parsedPageId);
 
     if (!parsedPageId) {
       throw new Error(`invalid notion pageId "${id}"`);
