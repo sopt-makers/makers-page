@@ -21,6 +21,7 @@ module.exports = {
       'pink-sub': '#8F388A',
       'yellow-sub': '#816600',
       'dark1': '#252629',
+      'gray0': '#808388',
       'gray1': '#3C3D40',
       'gray2': '#1C1D1E',
     },

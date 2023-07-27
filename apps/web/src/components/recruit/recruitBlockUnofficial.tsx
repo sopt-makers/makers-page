@@ -4,6 +4,7 @@ import { Decoration } from 'notion-types';
 import type { BlockComponentsBase } from '@/components/notion/unofficial/BlockResolver';
 
 import SyntaxHighlighter from '../notion/official/SyntaxHighlighter';
+import { colorStyles } from '../notion/unofficial/colors';
 import TextRenderer from '../notion/unofficial/TextRenderer';
 import ContentBlock from './ContentBlock';
 import ToggleBlock from './ToggleBlock';
@@ -68,7 +69,12 @@ export const recruitBlockComponents = {
     const icon = block.format.page_icon.startsWith('/') ? null : block.format.page_icon;
 
     return (
-      <div className={clsx('flex py-[1.6rem] pr-[1.6rem]', icon && 'pl-[1.6rem]')}>
+      <div
+        className={clsx(
+          'my-[0.6rem] flex rounded-lg p-[1.6rem]',
+          colorStyles[block.format.block_color] ?? 'bg-[#292929]',
+        )}
+      >
         {icon && (
           <div className='font-emoji flex h-[2.4rem] w-[2.4rem] items-center justify-center pr-[1rem] text-[2rem]'>
             {icon}
@@ -79,7 +85,6 @@ export const recruitBlockComponents = {
             <TextRenderer text={block.properties.title} />
           </div>
           {renderBlocks(block.content ?? [])}
-          {/* {renderBlocks(block.content ?? [], { renderContainer: (children) => <div>{children}</div> })} */}
         </div>
       </div>
     );
@@ -95,13 +100,14 @@ export const recruitBlockComponents = {
       ),
     }),
   image: ({ block }) => (
-    <ContentBlock format={block.format}>
+    <ContentBlock format={block.format} className='my-[1rem]'>
       <img
         src={block.properties.source[0][0]}
         alt='NotionImage'
         width={block.format?.block_width}
         height={block.format?.block_height}
         className={clsx(block.format?.block_page_width && 'w-full')}
+        style={{ aspectRatio: block.format?.block_aspect_ratio && 1 / block.format?.block_aspect_ratio }}
       />
     </ContentBlock>
   ),

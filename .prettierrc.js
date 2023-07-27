@@ -9,6 +9,7 @@ const config = {
   tabWidth: 2,
   trailingComma: 'all',
   plugins: ['prettier-plugin-tailwindcss'],
+  tailwindAttributes: ['.*Styles', '.*Style'],
 };
 
 module.exports = config;
