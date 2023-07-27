@@ -44,7 +44,7 @@ export default function RecruitButton() {
 
   return (
     <button className='bg-dark1 mb-[5.104rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] px-[4rem] py-[1.6rem]'>
-      <p className='text-24-semibold'>3기 합류하기 (~8/05)</p>
+      <p className='md:text-24-semibold text-18-semibold'>3기 합류하기 (~8/05)</p>
       <p className='text-16-regular mt-[1.2rem]'>{timeLeft}</p>
     </button>
   );

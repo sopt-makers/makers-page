@@ -25,8 +25,9 @@ export default function Intro({ className }: GreetingProps) {
         transition={{ delay: 1 }}
         style={{ opacity }}
       >
-        <h1 className='text-64-semibold mt-[6rem] text-center'>
-          SOPT에 없던 새로운 가치를 <br />
+        <h1 className='md:text-64-semibold text-32-regular mt-[6rem] text-center font-semibold'>
+          SOPT에 없던 <br className='md:hidden' />
+          새로운 가치를 <br />
           제품을 통해 만들어갑니다.
         </h1>
         <RecruitButton />

@@ -25,30 +25,34 @@ export default function MakersIntodution({ className }: GreetingProps) {
           </p>
         </m.div>
         <m.div
-          className='mt-[6rem] flex flex-col items-center justify-center text-center'
+          className='mt-[3rem] flex flex-col items-center justify-center text-center md:mt-[6rem]'
           style={{ opacity: opacity2 }}
         >
-          <p className='text-40-semibold'>
+          <p className='md:text-40-semibold text-24-semibold'>
             SOPT에 필요한 프로덕트를 만들어
             <br /> <span className='text-brand-orange'>3천여명의 구성원</span>들을{' '}
-            <span className='text-brand-skyblue'>연결</span>하고 <span className='text-brand-yellow'>새로운 가치</span>
+            <span className='text-brand-skyblue'>연결</span>하고 <br className='md:hidden' />
+            <span className='text-brand-yellow'>새로운 가치</span>
             를 제공하기 위한
             <br /> SOPT 특수 기구예요.
           </p>
         </m.div>
         <m.div
-          className='mt-[4rem] flex flex-col items-center justify-center text-center'
+          className='mt-[2rem] flex flex-col items-center justify-center text-center md:mt-[4rem]'
           style={{ opacity: opacity3 }}
         >
-          <p className='text-32-regular'>
-            수년간 방치되어 SOPT를 잘 드러내지 못하는 공식 홈페이지를 보고
+          <p className='md:text-32-regular text-18-regular font-semibold'>
+            수년간 방치되어 SOPT를 잘 드러내지 못하는 <br className='md:hidden' />
+            공식 홈페이지를 보고
             <br />
-            홈페이지에 오너십을 가진 조직의 부재라는 문제 의식으로부터
+            홈페이지에 오너십을 가진 <br className='md:hidden' />
+            조직의 부재라는 문제 의식으로부터
             <br />
-            이를 지속 가능한 방법으로 해결하고자 22년 7월 30일 특수 기구로 시작했어요.
+            이를 지속 가능한 방법으로 해결하고자
+            <br className='md:hidden' /> 22년 7월 30일 특수 기구로 시작했어요.
           </p>
         </m.div>
-        <m.div className='mt-[6rem]' style={{ opacity: opacity4 }}>
+        <m.div className='mt-[2rem]' style={{ opacity: opacity4 }}>
           <button className='text-24-semibold flex flex-row items-center justify-center gap-[0.8rem] px-[3.2rem] py-[2.4rem]'>
             makers 탄생 배경 보러가기 <ArrowIcon />
           </button>
