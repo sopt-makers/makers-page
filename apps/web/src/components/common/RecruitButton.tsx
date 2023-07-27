@@ -7,8 +7,8 @@ export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
 
   useEffect(() => {
-    const deadline = dayjs('2023-08-05T13:00:00'); // August 5, 2023, 13:00:00
-    const start = dayjs('2023-07-29T00:00:00'); // July 29, 2023, 00:00:00
+    const deadline = dayjs('2023-08-05T13:00:00');
+    const start = dayjs('2023-07-29T00:00:00');
 
     const calculateTimeLeft = () => {
       const now = dayjs();
@@ -39,7 +39,7 @@ export default function RecruitButton() {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    return () => clearInterval(timer); // clear the interval on component unmount
+    return () => clearInterval(timer);
   }, []);
 
   return (
