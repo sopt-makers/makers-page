@@ -9,11 +9,11 @@ interface ProductProps {
   className?: string;
 }
 
-export default function Product({ className }: ProductProps) {
+export default function ProductSection({ className }: ProductProps) {
   return (
     <div className='relative h-[300vh]'>
       <div className='absolute inset-0 mt-[48rem]'>
-        <article className={clsx('h-[250vh]', className)}>
+        <article className={clsx('h-[300vh]', className)}>
           <div className='flex flex-row justify-start'>
             <section className='mr-[6.704rem] min-w-[36.4rem]'>
               <p className='text-40-semibold sticky top-0 ml-[6rem] pt-[8.4rem]'>
@@ -32,18 +32,47 @@ export default function Product({ className }: ProductProps) {
               </p>
             </section>
             <nav className='text-40-semibold h-max w-full border-l border-solid border-white'>
-              <div className='flex flex-col border-b border-solid border-white py-[2.4rem] pl-[4rem]'>
-                <Title type='official' />
-                <Description type='official' />
-              </div>
-              <div className='flex flex-col border-b border-solid border-white py-[2.4rem] pl-[4rem]'>
-                <Title type='playground' />
-                <Description type='playground' />
-              </div>
-              <div className='flex flex-col border-b border-solid border-white py-[2.4rem] pl-[4rem]'>
-                <Title type='app' />
-                <Description type='app' />
-              </div>
+              <Title type='official' className='sticky top-0'>
+                OFFICIAL
+              </Title>
+              <Description type='official'>
+                SOPT 공식 홈페이지에서는 그동안 잘 드러나지 않던 SOPT의 다양한 활동들과 사람들을 소개하고, 멋진 결과물을
+                잘 보여주어
+                <br /> SOPT가 지닌 열정과 가치들을 잘 알리는 역할을 해요.
+                <br />
+                <br /> 그로 인해 대외적으로 후원 및 협력을 용이하게 하고, 더 많은 분들이 SOPT를 잘 이해하고 지원할 수
+                있도록 도와요.
+              </Description>
+              <Title type='playground' className='sticky top-[11.1rem] border-t border-solid border-white'>
+                PLAYGROUND
+                <br />& CREW
+              </Title>
+              <Description type='playground'>
+                플레이그라운드에서는 SOPT 전체 회원들의 소개를 볼 수 있고, 나보다 앞을 걸어가고 있는 OB들에게 멘토링을
+                신청할 수 있어요.
+                <br /> 앱잼, 솝커톤, 솝텀 등 프로젝트를 등록할 수 있고 스터디, 세미나 등의 모임을 열고 또 참여할 수
+                있어요.
+                <br />
+                SOPT 플레이그라운드는 SOPT 회원들이 소통하고 연결될 수 있는 공간이에요. 멘토링을 통한 가치있는 연결,
+                끝말잇기와 같은
+                <br /> 가벼운 연결도 만들어가고 있어요. 현재는 약 500명의 회원이 있으며 앞으로 모임 피드, 커뮤니티 등
+                여러 가치있는 연결을 만들어
+                <br />
+                가고자 해요.
+              </Description>
+              <Title type='app' className='sticky top-[22.4rem] border-t border-solid border-white'>
+                APP
+                <br />& OPERATION
+              </Title>
+              <Description type='app'>
+                공식앱을 통해서 SOPT 정규 세미나와 데모데이 등 공식 행사의 출석 인증 및 관리를 할 수 있어요.
+                <br /> 솝탬프를 통해 SOPT를 A부터 Z까지 즐길 수 있는 미션을 달성하며 회원들과 함께 랭킹을 쌓을 수
+                있어요.
+                <br />
+                <br />
+                공식앱은 SOPT 활동이 더욱 편하고 즐거울 수 있도록 돕는 역할을 하며 여러 서비스들의 중심점의 역할을
+                하고자 해요.
+              </Description>
             </nav>
           </div>
         </article>
