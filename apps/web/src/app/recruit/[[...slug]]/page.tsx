@@ -34,7 +34,7 @@ const RecruitPage: FC<RecruitPageProps> = async ({ params: { slug = [] } }) => {
   }
 
   return (
-    <div>
+    <div className='whitespace-pre-wrap'>
       {pageId && <h1>{title}</h1>}
       <div>{JSON.stringify(path)}</div>
       <BlockRenderer
@@ -46,6 +46,7 @@ const RecruitPage: FC<RecruitPageProps> = async ({ params: { slug = [] } }) => {
             {name}
           </Link>
         )}
+        renderContainer={(children) => <div className='flex flex-col'>{children}</div>}
       />
     </div>
   );

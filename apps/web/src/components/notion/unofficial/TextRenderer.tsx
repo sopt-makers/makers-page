@@ -1,20 +1,50 @@
 import clsx from 'clsx';
-import type { Decoration, SubDecoration } from 'notion-types';
+import type { Decoration, LinkFormat, SubDecoration } from 'notion-types';
 import { FC } from 'react';
+
+import { colorStyles } from './colors';
 
 interface TextRendererProps {
   text?: Decoration[];
 }
 
 const TextRenderer: FC<TextRendererProps> = ({ text = [] }) => {
-  return text.map(([text, deco], idx) => {
+  return text.map(([c, deco], idx) => {
     if (!deco) {
-      return text;
+      return c;
+    }
+
+    const linkDeco = deco.find((v): v is LinkFormat => v[0] === 'a');
+    if (linkDeco) {
+      return (
+        <a key={idx} href={linkDeco[1]} target='_blank' className={clsx(getSubdecoClass(deco))}>
+          {c}
+        </a>
+      );
+    }
+
+    if (deco.find((v) => v[0] === 'c')) {
+      const isLeftCode = idx > 0 && hasType(text[idx - 1][1], 'c');
+      const isRightCode = idx < text.length - 1 && hasType(text[idx + 1][1], 'c');
+
+      return (
+        <span
+          key={idx}
+          className={clsx(
+            'rounded bg-[rgba(135,131,120,0.15)] py-[0.1rem] text-[#a33434]',
+            !isLeftCode && 'rounded-l-[0.3rem] pl-[0.7rem]',
+            !isRightCode && 'rounded-r-[0.3rem] pr-[0.7rem]',
+          )}
+          {...{ 'data-role': 'code' }}
+        >
+          <span className={clsx(getSubdecoClass(deco), 'text-[1.6rem]')}>{c}</span>
+        </span>
+      );
     }
 
     return (
       <span key={idx} className={clsx(getSubdecoClass(deco))}>
-        {text}
+        {c}
       </span>
     );
   });
@@ -30,15 +60,23 @@ function getSubdecoClass(subDeco: SubDecoration[]): string[] {
   return [getStyle(subDeco[0]), ...getSubdecoClass(subDeco.slice(1))];
 }
 
-function getStyle([type, _extra]: SubDecoration) {
+function getStyle([type, extra]: SubDecoration) {
   if (type === 'b') {
-    const newStyle = 'font-bold';
-    return newStyle;
+    return 'font-bold';
   }
   if (type === '_') {
-    const newStyle = 'underline-offset-1';
-    return newStyle;
+    return 'underline underline-offset-1';
+  }
+  if (type === 'a') {
+    return 'text-[rgba(233,233,233,0.5)] hover:text-gray0 decoration-gray0 cursor-pointer underline hover:underline-offset-1';
+  }
+  if (type === 'h') {
+    return colorStyles[extra] ?? '';
   }
 
   return '';
+}
+
+function hasType(subDeco: SubDecoration[] | undefined, type: SubDecoration['0']) {
+  return subDeco && subDeco.some((deco) => deco[0] === type);
 }
