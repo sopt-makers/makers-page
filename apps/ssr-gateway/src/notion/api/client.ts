@@ -1,4 +1,4 @@
-import { uniq } from 'lodash-es';
+import { cloneDeep, uniq } from 'lodash-es';
 import { Block, PageChunk } from 'notion-types';
 import { parsePageId } from 'notion-utils';
 
@@ -57,34 +57,6 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
 
     const mergedBlockMap = await fetchMissing(getBlocks(chunk), blockMap);
 
-    const imageBlocks = Object.values(mergedBlockMap).filter(
-      (block): block is typeof block & { type: 'image' } => block.type === 'image',
-    );
-
-    const queries = imageBlocks.flatMap((block) => {
-      const source = block.properties?.source[0][0];
-      if (source.includes('/secure.notion-static.com/')) {
-        return {
-          permissionRecord: {
-            table: 'block' as const,
-            id: block.id,
-          },
-          url: source,
-        };
-      }
-      return [];
-    });
-
-    const { signedUrls } = await notionRawAPI.getSignedFileUrls(queries);
-
-    const imageSignedUrlMap = Object.fromEntries(signedUrls.map((url, idx) => [imageBlocks[idx].id, url]));
-
-    for (const block of Object.values(mergedBlockMap)) {
-      if (block.type === 'image') {
-        block.properties.source = [[imageSignedUrlMap[block.id]]];
-      }
-    }
-
     return {
       title,
       pageBlock,
@@ -92,8 +64,46 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
     };
   }
 
+  async function SignFileUrls(blockMap: Record<string, Block>) {
+    const queries = Object.values(blockMap).flatMap((block) => {
+      if (block.type !== 'image') {
+        return [];
+      }
+
+      const source = block.properties?.source[0][0];
+      if (source.includes('/secure.notion-static.com/')) {
+        return {
+          blockId: block.id,
+          query: {
+            permissionRecord: {
+              table: 'block' as const,
+              id: block.id,
+            },
+            url: source,
+          },
+        };
+      }
+      return [];
+    });
+
+    const { signedUrls } = await notionRawAPI.getSignedFileUrls(queries.map(({ query }) => query));
+
+    const imageSignedUrlMap = Object.fromEntries(queries.map(({ blockId }, idx) => [blockId, signedUrls[idx]]));
+
+    const clonedBlockMap = cloneDeep(blockMap);
+
+    for (const block of Object.values(clonedBlockMap)) {
+      if (block.type === 'image') {
+        block.properties.source = [[imageSignedUrlMap[block.id]]];
+      }
+    }
+
+    return clonedBlockMap;
+  }
+
   return {
     getPage,
+    SignFileUrls,
   };
 }
 

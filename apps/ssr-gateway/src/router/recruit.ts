@@ -26,7 +26,11 @@ export const recruitRouter = router({
       return { status: 'NEED_REFRESH' } as const;
     }
 
-    return { status: 'SUCCESS', ...validated.data } as const;
+    const { blockMap, ...pageData } = validated.data;
+
+    const blockMapSigned = await ctx.recruit.notionClient.SignFileUrls(blockMap);
+
+    return { status: 'SUCCESS', ...pageData, blockMap: blockMapSigned } as const;
   }),
   refresh: publicProcedure.mutation(async ({ ctx }) => {
     console.log('Start Refetching...');
