@@ -15,15 +15,15 @@ interface TitleMap {
 
 const titleMap: TitleMap = {
   official: {
-    color: 'sub-yellow',
+    color: 'brand-yellow',
     text: 'SOPT 공식 홈페이지',
   },
   playground: {
-    color: 'sub-skyblue',
+    color: 'brand-skyblue',
     text: 'SOPT 플레이그라운드',
   },
   app: {
-    color: 'sub-pink',
+    color: 'brand-pink',
     text: 'SOPT 공식 앱',
   },
 };

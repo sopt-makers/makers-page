@@ -21,7 +21,7 @@ export default function ProductSection({ className }: ProductProps) {
                 <br />
                 3개의 제품으로
                 <br />
-                <span className='text-main-makers'>
+                <span className='text-brand-orange'>
                   SOPT에
                   <br />
                   없던 가치
