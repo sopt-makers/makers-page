@@ -1,6 +1,6 @@
 export function OwnershipImage(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width={368} height={338} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width={368} height={338} viewBox='0 0 368 338' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_445_5)'>
         <path
           d='M381.408 153.683L184.744 338v-50.638L381.408 102.74v50.943zM381.408 86.678L184.744 270.997v-50.638L381.408 35.736v50.943zM381.408 18.185L184.744 202.502v-50.638L381.408-32.758v50.943zM381.408-48.82L184.744 135.499V84.86L381.408-99.762v50.943zM381.408-117.313L184.744 67.004V16.366l196.664-184.622v50.943z'
@@ -22,7 +22,7 @@ export function OwnershipImage(props: React.SVGProps<SVGSVGElement>) {
 
 export function ConnectionImage(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width={368} height={338} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width={368} height={338} viewBox='0 0 368 338' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_445_407)'>
         <path
           d='M-64.34 137.319l187.676 200.008h-51.56l-187.987-200.008h51.871zM73.304 176.714l148.579 160.613h-51.301L73.304 230.899v-54.185zM185.497 179.745l142.515 156.067h-51.559l-90.956-98.088v-57.979zM140.336-136.934L328.012 63.074h-51.561L88.465-136.934h51.871z'
@@ -48,7 +48,7 @@ export function ConnectionImage(props: React.SVGProps<SVGSVGElement>) {
 
 export function BaseImage(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width={368} height={338} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width={368} height={338} viewBox='0 0 368 338' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_445_712)'>
         <path
           d='M463.105 154.332L266.229 338v-50.459l196.876-183.972v50.763zM400.738 104.356L203.861 288.024v-50.459L400.738 53.593v50.763zM394.302 1.627L139.269 238.048v-50.46L394.302-49.136V1.627z'
@@ -71,7 +71,7 @@ export function BaseImage(props: React.SVGProps<SVGSVGElement>) {
 
 export function OpportunityImage(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width={368} height={338} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width={368} height={338} viewBox='0 0 368 338' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_445_1188)'>
         <path
           d='M404.875 153.683L208.211 338v-50.638L404.875 102.74v50.943zM339.32 104.546L142.656 288.863v-50.638L339.32 53.604v50.942zM345.279-8.765L80.081 238.238V137.875L281.477-53.603l63.802 44.838z'
@@ -101,7 +101,7 @@ export function OpportunityImage(props: React.SVGProps<SVGSVGElement>) {
 
 export function PleasureImage(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width={368} height={338} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width={368} height={338} viewBox='0 0 368 338' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_445_66)'>
         <path
           d='M375.709 122.588l42.555 41.329h-42.556l-41.354-41.329h41.355zM221.634-54l154.049 165.316h-42.322L179.057-54h42.577zM180.305-.147L334.354 165.17h-42.323L137.728-.147h42.577zM348.126-.147L502.175 165.17h-42.322L305.549-.147h42.577zM248.092 175.189l44.933 45.086h-42.453l-42.71-42.314 40.23-2.772z'
