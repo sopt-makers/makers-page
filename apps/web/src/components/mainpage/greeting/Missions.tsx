@@ -18,7 +18,7 @@ export default function Missions({ className }: GreetingProps) {
   const opacity3 = useTransform(scrollYProgress, [0.45, 0.55, 0.6, 0.7], [0, 1, 1, 0]);
 
   return (
-    <article ref={containerRef} className={clsx('h-[280vh]', className)}>
+    <article ref={containerRef} className={clsx('h-[280rem] md:h-[300rem]', className)}>
       <div className='sticky top-0 flex h-screen w-full items-center justify-center'>
         <div className='md:text-60-semibold text-24-semibold flex flex-col justify-center gap-[3rem] p-[2rem] md:items-center md:gap-[1.6rem]'>
           <m.p
