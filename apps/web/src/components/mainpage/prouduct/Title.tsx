@@ -1,54 +1,50 @@
-import Link from 'next/link';
+import clsx from 'clsx';
 
 interface TitleProps {
   type: 'official' | 'playground' | 'app';
+  children: React.ReactNode;
+  className?: string;
 }
 
-export default function Title({ type }: TitleProps) {
-  switch (type) {
-    case 'official':
-      return (
-        <Link className='sticky top-0' href='https://www.sopt.org/'>
-          <div className='bg-black100 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
-            <span className='hover:text-brand-yellow'>SOPT 공식 홈페이지</span>
-            <div className='justify-cetner flex flex-row items-center'>
-              <ArrowIcon className='fill-brand-yellow' />
-              <span className='text-16-regular'>OFFICIAL</span>
-            </div>
-          </div>
-        </Link>
-      );
-    case 'playground':
-      return (
-        <Link className='sticky top-0' href='https://playground.sopt.org/'>
-          <div className='bg-black100 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
-            <span className='hover:text-brand-skyblue'>SOPT 플레이그라운드</span>
-            <div className='justify-cetner flex flex-row items-center'>
-              <ArrowIcon className='fill-brand-skyblue' />
-              <span className='text-16-regular'>
-                PLAYGROUND
-                <br />& CREW
-              </span>
-            </div>
-          </div>
-        </Link>
-      );
-    case 'app':
-      return (
-        <div className='bg-black100 sticky top-0 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
-          <span className='hover:text-brand-pink'>SOPT 공식 앱</span>
-          <div className='justify-cetner flex flex-row items-center'>
-            <ArrowIcon className='fill-brand-pink' />
-            <span className='text-16-regular'>
-              APP
-              <br />& OPERATION
-            </span>
-          </div>
-        </div>
-      );
-    default:
-      return null;
-  }
+interface TitleMap {
+  [key: string]: {
+    hoverColor: string;
+    fillColor: string;
+    text: string;
+  };
+}
+
+const titleMap: TitleMap = {
+  official: {
+    hoverColor: 'hover:text-brand-yellow',
+    fillColor: 'fill-brand-yellow',
+    text: 'SOPT 공식 홈페이지',
+  },
+  playground: {
+    hoverColor: 'hover:text-brand-skyblue',
+    fillColor: 'fill-brand-skyblue',
+    text: 'SOPT 플레이그라운드',
+  },
+  app: {
+    hoverColor: 'hover:text-brand-pink',
+    fillColor: 'fill-brand-pink',
+    text: 'SOPT 공식 앱',
+  },
+};
+
+export default function Title({ type, children, className }: TitleProps) {
+  const titleConfig = titleMap[type];
+  return (
+    <div
+      className={clsx('bg-black100 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]', className)}
+    >
+      <span className={`${titleConfig.hoverColor} pl-[4rem]`}>{titleConfig.text}</span>
+      <div className='justify-cetner flex flex-row items-center'>
+        <ArrowIcon className={`mx-[0.8rem] ${titleConfig.fillColor}`} />
+        <span className='text-16-regular ml-[0.8rem]'>{children}</span>
+      </div>
+    </div>
+  );
 }
 
 function ArrowIcon(props: React.SVGProps<SVGSVGElement>) {
