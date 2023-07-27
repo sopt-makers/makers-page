@@ -36,6 +36,17 @@ const suitFont = localFont({
   variable: '--font-suit',
 });
 
+export const metadata = {
+  title: 'SOPT Makers',
+  description: '',
+  colorScheme: 'dark',
+  themeColor: '#0F1010',
+  openGraph: {
+    title: 'SOPT Makers',
+    description: '',
+  },
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='ko' className={clsx(suitFont.variable, 'bg-black100 text-[62.5%] text-white')}>
