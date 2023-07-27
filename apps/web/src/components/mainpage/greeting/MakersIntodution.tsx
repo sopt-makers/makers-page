@@ -30,9 +30,9 @@ export default function MakersIntodution({ className }: GreetingProps) {
         >
           <p className='text-40-semibold'>
             SOPT에 필요한 프로덕트를 만들어
-            <br /> <span className='text-main-makers'>3천여명의 구성원</span>들을{' '}
-            <span className='text-sub-skyblue'>연결</span>하고 <span className='text-sub-yellow'>새로운 가치</span>를
-            제공하기 위한
+            <br /> <span className='text-brand-orange'>3천여명의 구성원</span>들을{' '}
+            <span className='text-brand-skyblue'>연결</span>하고 <span className='text-brand-yellow'>새로운 가치</span>
+            를 제공하기 위한
             <br /> SOPT 특수 기구예요.
           </p>
         </m.div>

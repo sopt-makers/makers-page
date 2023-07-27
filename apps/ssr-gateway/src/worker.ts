@@ -12,7 +12,8 @@ import { ExecutionContext, KVNamespace } from '@cloudflare/workers-types';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { Hono } from 'hono/quick';
 
-import { createNotionClient, NotionImageHandler } from './notion';
+import { createNotionUnofficialClient } from './notion/api/client';
+import { createNotionClient, NotionImageHandler } from './notion/officialApi/client';
 import { appRouter } from './router';
 import { createContextFactory } from './trpc/context';
 
@@ -106,9 +107,6 @@ export default {
         req: request,
         router: appRouter,
         createContext: createContextFactory({
-          env: {
-            RECRUIT_NOTION_PAGE_ID: env.RECRUIT_NOTION_PAGE_ID,
-          },
           waitUntil: ctx.waitUntil,
           checkApiKey(apiKey) {
             return apiKey.trim() === env.INTERNAL_API_KEY;
@@ -120,7 +118,10 @@ export default {
           image: {
             delete: imageHandler.delete,
           },
-          recruitNotionClient: createNotionClient(env.RECRUIT_NOTION_API_KEY, imageHandler),
+          recruit: {
+            notionClient: createNotionUnofficialClient(imageHandler),
+            rootPageId: env.RECRUIT_NOTION_PAGE_ID,
+          },
           kv: env.MAKERS_PAGE_KV,
         }),
       });

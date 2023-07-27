@@ -2,21 +2,22 @@ import { KVNamespace } from '@cloudflare/workers-types';
 import { inferAsyncReturnType } from '@trpc/server';
 import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
-import { NotionClient } from '../notion';
+import { NotionUnofficialClient } from '../notion/api/client';
+import { NotionClient } from '../notion/officialApi/client';
 
 interface ContextDeps {
-  env: {
-    RECRUIT_NOTION_PAGE_ID: string;
-  };
   waitUntil: (promise: Promise<void>) => void;
   checkApiKey: (apiKey: string) => boolean;
-  recruitNotionClient: NotionClient;
   image: {
     delete: (keys: string[]) => Promise<void>;
   };
   blog: {
     notion: NotionClient;
     databaseId: string;
+  };
+  recruit: {
+    notionClient: NotionUnofficialClient;
+    rootPageId: string;
   };
   kv: KVNamespace;
 }

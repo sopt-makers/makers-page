@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { m, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { SVGProps, useRef } from 'react';
 
 interface GreetingProps {
   className?: string;
@@ -37,7 +37,7 @@ export default function Intro({ className }: GreetingProps) {
   );
 }
 
-function ArrowIcon(props) {
+function ArrowIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg width={48} height={48} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path

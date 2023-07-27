@@ -1,4 +1,4 @@
-import { createRawNotionAPIClient } from './api';
+import { createRawNotionAPIClient } from '.';
 import { callWithPagination } from './pagination';
 import { NotionBlock, NotionPage } from './types';
 
