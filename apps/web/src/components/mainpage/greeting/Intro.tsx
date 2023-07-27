@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { m, useScroll, useTransform } from 'framer-motion';
 import { SVGProps, useRef } from 'react';
 
+import RecruitButton from '@/components/common/RecruitButton';
+
 interface GreetingProps {
   className?: string;
 }
@@ -27,10 +29,7 @@ export default function Intro({ className }: GreetingProps) {
           SOPT에 없던 새로운 가치를 <br />
           제품을 통해 만들어갑니다.
         </h1>
-        <button className='bg-dark1 mb-[5.104rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] px-[4rem] py-[1.6rem]'>
-          <p className='text-24-semibold'>3기 합류하기 (~8/88)</p>
-          <p className='text-16-regular mt-[1.2rem]'>72:21:03 뒤 지원 마감</p>
-        </button>
+        <RecruitButton />
         <ArrowIcon />
       </m.div>
     </article>

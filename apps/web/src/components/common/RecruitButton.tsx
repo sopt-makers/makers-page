@@ -17,7 +17,7 @@ export default function RecruitButton() {
 
       const difference = deadline.diff(now, 'second');
 
-      let timeLeft = '지원이 마감되었어요.';
+      let timeLeft = '3기 지원이 마감되었어요.';
 
       if (difference > 0) {
         const hours = Math.floor(difference / 3600);

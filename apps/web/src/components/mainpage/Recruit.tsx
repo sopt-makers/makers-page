@@ -3,12 +3,14 @@
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
+import RecruitButton from '../common/RecruitButton';
+
 export default function Recruit() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false });
 
   return (
-    <article ref={ref} className='flex flex-row justify-between items-center mt-[23.808rem] mb-[14.4rem]'>
+    <article ref={ref} className='mb-[14.4rem] mt-[23.808rem] flex flex-row items-center justify-between'>
       <LeftFrame
         style={{
           opacity: isInView ? 1 : 0,
@@ -21,18 +23,15 @@ export default function Recruit() {
           opacity: isInView ? 1 : 0,
           transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 1.2s',
         }}
-        className='flex justify-center items-center'
+        className='flex items-center justify-center'
       >
-        <div className='absolute flex flex-col justify-center items-center'>
+        <div className='absolute flex flex-col items-center justify-center'>
           <h1 className='text-80-bold text-center'>
             SOPT에 새로운 가치를 더하는
             <br />
             메이커스에 합류하세요
           </h1>
-          <button className='mt-[4rem] mb-[5.104rem] px-[4rem] py-[1.6rem] bg-dark1 rounded-[1.2rem] border border-solid border-[#808388]'>
-            <p className='text-24-semibold'>3기 합류하기 (~8/88)</p>
-            <p className='text-16-regular mt-[1.2rem]'>72:21:03 뒤 지원 마감</p>
-          </button>
+          <RecruitButton />
         </div>
       </section>
       <RightFrame
