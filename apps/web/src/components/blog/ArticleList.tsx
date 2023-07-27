@@ -16,7 +16,7 @@ const ArticleList: FC<ArticleListProps> = async ({ category: currentCategory }) 
   return (
     <div className='flex flex-col items-center'>
       <div className='w-full max-w-[800px]'>
-        <div className='sticky top-0 flex gap-[8px] bg-black100 px-[16px] py-[12px] md:mt-[56px]'>
+        <div className='bg-black100 sticky top-0 flex gap-[8px] px-[16px] py-[12px] md:mt-[56px]'>
           <Link href='/blog'>
             <Chip active={!currentCategory}>전체</Chip>
           </Link>
@@ -34,18 +34,18 @@ const ArticleList: FC<ArticleListProps> = async ({ category: currentCategory }) 
               className='flex px-[24px] py-[16px] md:py-[40px]'
             >
               <div className='flex flex-grow flex-col'>
-                <div className='text-[14px] font-light text-gray60 md:text-[16px]'>
+                <div className='text-gray60 text-[14px] font-light md:text-[16px]'>
                   {/* {article.category} | {article.publishedAt && format(article.publishedAt, 'yyyy.MM.dd')} */}
-                  {article.publishedAt.toString()}
+                  {article.publishedAt?.toString()}
                 </div>
-                <h1 className='mt-[6px] line-clamp-2 break-keep text-[22px] font-bold leading-tight text-white100 md:mt-[8px] md:text-[28px]'>
+                <h1 className='text-white100 mt-[6px] line-clamp-2 break-keep text-[22px] font-bold leading-tight md:mt-[8px] md:text-[28px]'>
                   {article.title}
                 </h1>
                 <div className='mt-[12px] text-[14px] font-light md:text-[16px]'>
                   {article.editors.length === 1 && (
                     <>
                       <span className='text-white100'>{article.editors[0].name}</span>
-                      <span className='px-[4px] text-gray60'>∙</span>
+                      <span className='text-gray60 px-[4px]'>∙</span>
                       <span className='text-gray60'>{article.editors[0].role}</span>
                     </>
                   )}

@@ -9,14 +9,6 @@ module.exports = {
       'black100': '#0F1010',
       'white': '#FFFFFF',
 
-      /* TODO: Figma의 색상 이름 변경으로 밑의 brand-[color] 형식으로 변경 필요 */
-      'main-makers': '#FF6E1D',
-      'sub-skyblue': '#5DDBFF',
-      'sub-blue': '#1F299C',
-      'sub-pink': '#FDBBF9',
-      'sub-yellow': '#FFCA00',
-      /*   */
-
       'brand-orange': '#FF6E1D',
       'brand-skyblue': '#5DDBFF',
       'brand-blue': '#1F299C',

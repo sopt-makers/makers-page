@@ -40,9 +40,9 @@ const FeedbackSection: FC<FeedbackSectionProps> = ({}) => {
 export default FeedbackSection;
 
 const cardColorStyles = [
-  { style: 'bg-sub-skyblue', dark: false },
-  { style: 'bg-main-makers', dark: false },
-  { style: 'bg-sub-yellow', dark: false },
-  { style: 'bg-sub-blue', dark: true },
-  { style: 'bg-sub-pink', dark: false },
+  { style: 'bg-brand-skyblue', dark: false },
+  { style: 'bg-brand-orange', dark: false },
+  { style: 'bg-brand-yellow', dark: false },
+  { style: 'bg-brand-blue', dark: true },
+  { style: 'bg-brand-pink', dark: false },
 ];

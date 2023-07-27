@@ -22,7 +22,7 @@ export default function Missions({ className }: GreetingProps) {
       <div className='sticky top-0 flex h-screen w-full items-center justify-center'>
         <div className='text-60-semibold flex flex-col  items-center justify-center gap-[1.6rem]'>
           <m.p className='flex items-start justify-center gap-[1.792rem]' style={{ opacity: opacity1 }}>
-            <span className='text-sub-skyblue text-16-regular'>MISSION 1.</span>
+            <span className='text-brand-skyblue text-16-regular'>MISSION 1.</span>
             <span>
               3천명이 넘는 SOPT 구성원들의
               <br />
@@ -30,11 +30,11 @@ export default function Missions({ className }: GreetingProps) {
             </span>
           </m.p>
           <m.p className='flex gap-[1.792rem]' style={{ opacity: opacity2 }}>
-            <span className='text-main-makers text-16-regular'>MISSION 2.</span>
+            <span className='text-brand-orange text-16-regular'>MISSION 2.</span>
             <span>SOPT 활동이 더 즐거울 수 있도록 도우며,</span>
           </m.p>
           <m.p className='flex gap-[1.792rem]' style={{ opacity: opacity3 }}>
-            <span className='text-sub-pink text-16-regular'>MISSION 3.</span>
+            <span className='text-brand-pink text-16-regular'>MISSION 3.</span>
             <span>SOPT를 대내외적으로 더 잘 알려요.</span>
           </m.p>
         </div>

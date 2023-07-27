@@ -1,41 +1,90 @@
+import { Block } from 'notion-types';
+import { parsePageId } from 'notion-utils';
 import { z } from 'zod';
 
-import { ModifiedBlock } from '../notion';
-import { internalProcedure, router } from '../trpc/stub';
+import { Context } from '../trpc/context';
+import { internalProcedure, publicProcedure, router } from '../trpc/stub';
 
 export const recruitRouter = router({
-  page: internalProcedure
-    .input(
-      z.object({
-        id: z.string().optional(),
-      }),
-    )
-    .query(async ({ ctx, input }) => {
-      const pageId = input.id ?? ctx.env.RECRUIT_NOTION_PAGE_ID;
+  page: internalProcedure.input(z.object({ id: z.string().optional() })).query(async ({ ctx, input }) => {
+    const pageId = parsePageId(input.id ?? ctx.recruit.rootPageId);
+    if (!pageId) {
+      return { status: 'NOT_FOUND' } as const;
+    }
 
-      const { value: cachedBlocks } = await ctx.kv.getWithMetadata(`recruit:cache:page:${pageId}`, 'json');
-      if (cachedBlocks) {
-        return { cacheHit: true, blocks: cachedBlocks as ModifiedBlock[] };
-      }
-      const { blocks, savedImageKeys } = await ctx.recruitNotionClient.getBlocks(pageId);
+    const allowedPages = (await ctx.kv.get(kvKeys.allowedPages(), 'json')) as string[] | null;
+    if (!allowedPages) {
+      return { status: 'NEED_REFRESH' } as const;
+    }
 
-      await Promise.all([
-        ctx.kv.put(`recruit:cache:page:${pageId}`, JSON.stringify(blocks)),
-        ctx.kv.put(`recruit:image:${pageId}`, JSON.stringify(savedImageKeys)),
-      ]);
+    if (!allowedPages.includes(pageId)) {
+      return { status: 'NOT_FOUND' } as const;
+    }
 
-      return { cacheHit: false, blocks };
-    }),
-  invalidate: internalProcedure.mutation(async ({ ctx }) => {
-    const { keys: cacheKeys } = await ctx.kv.list({ prefix: 'recruit:cache:' });
-    const removeCachePromises = cacheKeys.map(async ({ name }) => ctx.kv.delete(name));
+    const validated = pageRecordValidator.safeParse(await ctx.kv.get(kvKeys.page(pageId), 'json'));
+    if (!validated.success) {
+      return { status: 'NEED_REFRESH' } as const;
+    }
 
-    const { keys: imageMetaKeys } = await ctx.kv.list({ prefix: 'recruit:image:' });
-    const removeImagePromises = imageMetaKeys.map(async (kvKey) => {
-      const imageKeys = (await ctx.kv.get(kvKey.name, 'json')) as string[];
-      await ctx.image.delete(imageKeys ?? []);
-      await ctx.kv.delete(kvKey.name);
-    });
-    await Promise.all([...removeCachePromises, ...removeImagePromises]);
+    const { blockMap, ...pageData } = validated.data;
+
+    const blockMapSigned = await ctx.recruit.notionClient.SignFileUrls(blockMap);
+
+    return { status: 'SUCCESS', ...pageData, blockMap: blockMapSigned } as const;
+  }),
+  refresh: publicProcedure.mutation(async ({ ctx }) => {
+    console.log('Start Refetching...');
+
+    await refetchPages(ctx);
+    return 'refresh!';
   }),
 });
+
+type PathFragment = {
+  id: string;
+  title: string;
+};
+
+const pageRecordValidator = z.object({
+  version: z.literal(1),
+  id: z.string(),
+  title: z.string().nullable(),
+  path: z.array(z.custom<PathFragment>()),
+  blockMap: z.custom<Record<string, Block>>(),
+});
+type PageRecord = z.infer<typeof pageRecordValidator>;
+
+const kvKeys = {
+  page: (pageId: string) => `recruit:page:${pageId}`,
+  allowedPages: () => 'recruit:allowdPages',
+};
+
+async function refetchPages(ctx: Context) {
+  const allowedPages: string[] = [];
+
+  async function traverse(pageId: string, path: PathFragment[] = []) {
+    const { blockMap, title, pageBlock } = await ctx.recruit.notionClient.getPage(pageId);
+    const childPageIds = (pageBlock.content ?? []).filter((id) => blockMap[id]?.type === 'page' && id != pageId);
+
+    console.log('Refetching:', pageId, '->', childPageIds);
+
+    const newPath: PathFragment[] = [...path, { id: pageId, title: title ?? '' }];
+
+    const childTraversePromises = childPageIds.map(async (id) => traverse(id, newPath));
+    await Promise.all(childTraversePromises);
+
+    const record: PageRecord = {
+      version: 1,
+      id: pageId,
+      title,
+      path: newPath,
+      blockMap,
+    };
+    await ctx.kv.put(kvKeys.page(pageId), JSON.stringify(record));
+
+    allowedPages.push(pageId);
+  }
+
+  await traverse(parsePageId(ctx.recruit.rootPageId));
+  await ctx.kv.put(kvKeys.allowedPages(), JSON.stringify(allowedPages));
+}
