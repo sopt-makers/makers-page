@@ -25,14 +25,16 @@ const FeedbackCard: FC<FeedbackCardProps> = ({ className, content, name, positio
   return (
     <m.div
       ref={ref}
-      className={clsx('flex flex-col gap-[2.4rem] rounded-[0.8rem] p-[4rem]', className)}
+      className={clsx('flex flex-col gap-[2.4rem] rounded-[0.8rem] p-[2rem] md:p-[4rem]', className)}
       style={{ opacity, scale }}
     >
-      <div className={clsx('text-24-semibold', isDark ? 'text-white' : 'text-black100')}>{content}</div>
+      <div className={clsx('md:text-24-semibold text-[1.8rem]', isDark ? 'text-white' : 'text-black100')}>
+        {content}
+      </div>
       <div className={clsx('flex items-center self-end', isDark ? 'text-white' : 'text-gray1')}>
-        <span className='text-18-semibold'>{name}</span>
-        <span className='text-18-regular px-[0.1rem]'>∙</span>
-        <span className='text-18-regular'>{position}</span>
+        <span className='md:text-18-semibold text-[1.4rem]'>{name}</span>
+        <span className='md:text-18-regular px-[0.1rem] text-[1.4rem]'>∙</span>
+        <span className='md:text-18-regular text-[1.4rem]'>{position}</span>
       </div>
     </m.div>
   );

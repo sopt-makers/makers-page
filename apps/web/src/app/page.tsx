@@ -11,7 +11,7 @@ import Recruit from '@/components/mainpage/Recruit';
 export default function Page() {
   return (
     <ReactLenis root>
-      <div>
+      <div className='overflow-x-clip'>
         {/* <Header /> */}
         <GreetingSection />
         <ProductSection />
