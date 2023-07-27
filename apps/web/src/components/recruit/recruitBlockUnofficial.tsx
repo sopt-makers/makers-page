@@ -10,28 +10,28 @@ import ToggleBlock from './ToggleBlock';
 
 export const recruitBlockComponents = {
   header: ({ block }) => (
-    <h1 className='text-[4rem] font-bold'>
+    <h1 className='mb-[1rem] mt-[3rem] text-[4rem] font-bold leading-[130%]'>
       <TextRenderer text={block.properties?.title} />
     </h1>
   ),
   sub_header: ({ block }) => (
-    <h2 className='text-[3.2rem] font-bold'>
+    <h2 className='mb-[1rem] mt-[2.4rem] text-[3.2rem] font-bold'>
       <TextRenderer text={block.properties?.title} />
     </h2>
   ),
   sub_sub_header: ({ block }) => (
-    <h3 className='text-[2.4rem] font-bold'>
+    <h3 className='mb-[1rem] mt-[1.5rem] text-[2.4rem] font-bold'>
       <TextRenderer text={block.properties?.title} />
     </h3>
   ),
   text: ({ block }) => (
-    <p className='min-h-[1em] whitespace-normal break-words text-[1.8rem]'>
+    <p className='min-h-[1em] break-words py-[0.4rem] text-[1.8rem] leading-[140%]'>
       <TextRenderer text={block.properties?.title} />
     </p>
   ),
   bulleted_list: ({ block, ctx: { renderBlocks } }) => (
     <div className='flex'>
-      <div className='pr-[8px]'>•</div>
+      <div className='pr-[8px] text-[1.8rem]'>•</div>
       <div className='flex flex-grow flex-col'>
         <div className='text-[1.8rem]'>
           <TextRenderer text={block.properties?.title} />
@@ -42,7 +42,7 @@ export const recruitBlockComponents = {
   ),
   numbered_list: ({ block, streak, ctx: { renderBlocks } }) => (
     <div className='flex'>
-      <div className='pr-[8px]'>{streak + 1}.</div>
+      <div className='pr-[8px] text-[1.8rem]'>{streak + 1}.</div>
       <div className='flex flex-grow flex-col'>
         <div className='text-[1.8rem]'>
           <TextRenderer text={block.properties?.title} />
@@ -56,7 +56,7 @@ export const recruitBlockComponents = {
   ),
   divider: () => (
     <div className='flex h-[1.3rem] w-full items-center'>
-      <div className='h-[1px] w-full border-b border-white' />
+      <div className='h-[1px] w-full border-b border-white/30' />
     </div>
   ),
   toggle: ({ block, ctx: { renderBlocks } }) => (
@@ -64,12 +64,26 @@ export const recruitBlockComponents = {
       {renderBlocks(block.content ?? [])}
     </ToggleBlock>
   ),
-  callout: ({ block, ctx: { renderBlocks } }) => (
-    <div className='flex whitespace-pre'>
-      <div className=''>{block.format.page_icon.startsWith('/') ? '' : block.format.page_icon}</div>
-      <div className='flex-grow'>{renderBlocks(block.content ?? [])}</div>
-    </div>
-  ),
+  callout: ({ block, ctx: { renderBlocks } }) => {
+    const icon = block.format.page_icon.startsWith('/') ? null : block.format.page_icon;
+
+    return (
+      <div className={clsx('flex py-[1.6rem] pr-[1.6rem]', icon && 'pl-[1.6rem]')}>
+        {icon && (
+          <div className='font-emoji flex h-[2.4rem] w-[2.4rem] items-center justify-center pr-[1rem] text-[2rem]'>
+            {icon}
+          </div>
+        )}
+        <div className='flex-grow text-[1.8rem] leading-[140%]'>
+          <div>
+            <TextRenderer text={block.properties.title} />
+          </div>
+          {renderBlocks(block.content ?? [])}
+          {/* {renderBlocks(block.content ?? [], { renderContainer: (children) => <div>{children}</div> })} */}
+        </div>
+      </div>
+    );
+  },
   column_list: ({ block, ctx: { renderBlocks } }) =>
     renderBlocks(block.content ?? [], { renderContainer: (children) => <div className='flex'>{children}</div> }),
   column: ({ block, ctx: { renderBlocks } }) =>
@@ -92,7 +106,7 @@ export const recruitBlockComponents = {
     </ContentBlock>
   ),
   page: ({ block, ctx: { renderPageLink } }) =>
-    renderPageLink({ id: block.id, name: plainText(block.properties?.title) }),
+    renderPageLink({ id: block.id, name: plainText(block.properties?.title), className: 'text-[1.8rem] px-[1rem]' }),
 } satisfies BlockComponentsBase;
 
 function plainText(text?: Decoration[]) {

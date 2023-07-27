@@ -27,6 +27,15 @@ module.exports = {
     fontFamily: {
       sans: ['var(--font-suit)', ...defaultTheme.fontFamily.sans],
       mono: [...defaultTheme.fontFamily.mono],
+      emoji: [
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'NotoColorEmoji',
+        'Noto Color Emoji',
+        'Segoe UI Symbol',
+        'Android Emoji',
+        'EmojiSymbols',
+      ],
     },
     fontSize: {
       '80-bold': ['8rem', { lineHeight: '130%', letterSpacing: '-0.16rem', fontWeight: 700 }],
