@@ -49,7 +49,7 @@ function getStyle([type, extra]: SubDecoration) {
     return 'underline underline-offset-1';
   }
   if (type === 'a') {
-    return 'text-gray1 hover:text-gray0 decoration-gray0 cursor-pointer underline hover:underline-offset-1';
+    return 'text-[rgba(233,233,233,0.5)] hover:text-gray0 decoration-gray0 cursor-pointer underline hover:underline-offset-1';
   }
   if (type === 'h') {
     return colorStyles[extra] ?? '';
@@ -58,8 +58,4 @@ function getStyle([type, extra]: SubDecoration) {
   return '';
 }
 
-<div className='underline underline-offset-1' />;
-
-// function hasType(subDeco: SubDecoration[], type: SubDecoration['0']) {
-//   return subDeco.some((deco) => deco[0] === type);
-// }
+<div className='text-[rgba(233,233,233,0.5)] underline underline-offset-1' />;

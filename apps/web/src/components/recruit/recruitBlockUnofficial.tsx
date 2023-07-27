@@ -76,7 +76,7 @@ export const recruitBlockComponents = {
         )}
       >
         {icon && (
-          <div className='font-emoji flex h-[2.4rem] w-[2.4rem] items-center justify-center pr-[1rem] text-[2rem]'>
+          <div className='font-emoji mr-[1rem] mt-[0.2rem] flex h-[2.4rem] w-[2.4rem] items-center justify-center text-[2rem] leading-[100%]'>
             {icon}
           </div>
         )}
