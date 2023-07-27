@@ -10,9 +10,9 @@ export default function Title({ type }: TitleProps) {
       return (
         <Link className='sticky top-0' href='https://www.sopt.org/'>
           <div className='bg-black100 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
-            <span className='hover:text-sub-yellow'>SOPT 공식 홈페이지</span>
+            <span className='hover:text-brand-yellow'>SOPT 공식 홈페이지</span>
             <div className='justify-cetner flex flex-row items-center'>
-              <ArrowIcon className='fill-sub-yellow' />
+              <ArrowIcon className='fill-brand-yellow' />
               <span className='text-16-regular'>OFFICIAL</span>
             </div>
           </div>
@@ -22,9 +22,9 @@ export default function Title({ type }: TitleProps) {
       return (
         <Link className='sticky top-0' href='https://playground.sopt.org/'>
           <div className='bg-black100 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
-            <span className='hover:text-sub-skyblue'>SOPT 플레이그라운드</span>
+            <span className='hover:text-brand-skyblue'>SOPT 플레이그라운드</span>
             <div className='justify-cetner flex flex-row items-center'>
-              <ArrowIcon className='fill-sub-skyblue' />
+              <ArrowIcon className='fill-brand-skyblue' />
               <span className='text-16-regular'>
                 PLAYGROUND
                 <br />& CREW
@@ -36,9 +36,9 @@ export default function Title({ type }: TitleProps) {
     case 'app':
       return (
         <div className='bg-black100 sticky top-0 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]'>
-          <span className='hover:text-sub-pink'>SOPT 공식 앱</span>
+          <span className='hover:text-brand-pink'>SOPT 공식 앱</span>
           <div className='justify-cetner flex flex-row items-center'>
-            <ArrowIcon className='fill-sub-pink' />
+            <ArrowIcon className='fill-brand-pink' />
             <span className='text-16-regular'>
               APP
               <br />& OPERATION
