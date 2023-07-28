@@ -1,3 +1,5 @@
+'use client';
+
 import { m, useScroll, useTransform } from 'framer-motion';
 
 import MakersLogo3D from '@/components/common/MakersLogo3D';

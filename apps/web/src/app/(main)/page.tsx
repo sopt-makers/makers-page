@@ -1,6 +1,4 @@
-'use client';
-
-import { ReactLenis } from '@studio-freight/react-lenis';
+import { Suspense } from 'react';
 
 import CoreValueSection from '@/components/mainpage/coreValue/CoreValueSection';
 import FeedbackSection from '@/components/mainpage/feedback/FeedbackSection';
@@ -10,15 +8,15 @@ import RecruitSection from '@/components/mainpage/recruit/RecruitSection';
 
 export default function Page() {
   return (
-    <ReactLenis root>
-      <div className='overflow-x-clip'>
-        {/* <Header /> */}
-        <GreetingSection />
+    <div className='overflow-x-clip'>
+      {/* <Header /> */}
+      <GreetingSection />
+      <Suspense fallback={<div />}>
         <ProductSection />
         <CoreValueSection />
         <FeedbackSection />
         <RecruitSection />
-      </div>
-    </ReactLenis>
+      </Suspense>
+    </div>
   );
 }
