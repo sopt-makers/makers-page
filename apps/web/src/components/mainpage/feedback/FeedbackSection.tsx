@@ -23,25 +23,27 @@ const FeedbackSection: FC<FeedbackSectionProps> = ({}) => {
       </div>
       <div className='mt-[4rem] flex justify-end md:mt-0 md:flex-1'>
         <div className='flex w-full max-w-[70rem] flex-col gap-[1.4rem] md:gap-[2.9rem] md:p-[20rem_8rem_0_0]'>
-          {feedbacks.map((feedback, idx) => {
-            const { style, dark } = cardColorStyles[idx % cardColorStyles.length];
-            const content = feedback.content.split('**').map((text, idx) => {
-              if (idx % 2 === 0) {
+          {shuffle(feedbacks)
+            .slice(-11)
+            .map((feedback, idx) => {
+              const { style, dark } = cardColorStyles[idx % cardColorStyles.length];
+              const content = feedback.content.split('**').map((text, idx) => {
+                if (idx % 2 === 0) {
+                  return (
+                    <span key={idx} className='font-normal'>
+                      {text}
+                    </span>
+                  );
+                }
                 return (
-                  <span key={idx} className='font-normal'>
+                  <span key={idx} className='font-bold'>
                     {text}
                   </span>
                 );
-              }
-              return (
-                <span key={idx} className='font-bold'>
-                  {text}
-                </span>
-              );
-            });
+              });
 
-            return <FeedbackCard key={idx} className={style} isDark={dark} {...feedback} content={content} />;
-          })}
+              return <FeedbackCard key={idx} className={style} isDark={dark} {...feedback} content={content} />;
+            })}
         </div>
       </div>
     </div>
@@ -57,3 +59,17 @@ const cardColorStyles = [
   { style: 'bg-brand-blue', dark: true },
   { style: 'bg-brand-pink', dark: false },
 ];
+
+function shuffle<T>(array: T[]): T[] {
+  const shuffledArray = [...array];
+
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+
+    const temp = shuffledArray[i];
+    shuffledArray[i] = shuffledArray[randomIndex];
+    shuffledArray[randomIndex] = temp;
+  }
+
+  return shuffledArray;
+}
