@@ -10,13 +10,19 @@ interface AdminPageProps {}
 const AdminPage: FC<AdminPageProps> = ({}) => {
   const gateway = useGateway();
 
-  const { mutate, status, data } = useMutation({ mutationFn: () => gateway.recruit.refresh.mutate() });
+  const { mutate, status, error } = useMutation({ mutationFn: () => gateway.recruit.refresh.mutate() });
 
   return (
-    <div className='text-18-regular'>
-      <button onClick={() => mutate()}>리크루트 페이지 새로고침</button>
+    <div className='text-18-regular px-[1rem] py-[1rem]'>
+      <button
+        className='bg-gray1 rounded-[1rem] px-[2rem] py-[1rem]'
+        onClick={() => mutate()}
+        disabled={status === 'pending'}
+      >
+        리크루트 페이지 새로고침
+      </button>
       <p>Result: {status}</p>
-      <p>{JSON.stringify(data)}</p>
+      <p>{error && error.message}</p>
     </div>
   );
 };
