@@ -11,13 +11,15 @@ interface CoreValueMobileProps {
 
 const CoreValueMobile: FC<CoreValueMobileProps> = ({ className }) => {
   return (
-    <div className={clsx('flex justify-center', className)}>
+    <div className={clsx('flex flex-col items-center justify-center', className)}>
+      <h1 className='text-40-semibold mt-[40rem]'>CORE VALUE</h1>
+
       <div className='grid w-fit auto-rows-fr grid-cols-2 gap-x-[2.4rem] gap-y-[2.4rem]'>
         <div className=''></div>
         <div className='row-span-2'></div>
         {cards.map((card, idx) => (
-          <Flipper key={idx} className='row-span-2'>
-            {(flipValue) => <ValueCard className='h-[20rem] w-[14rem]' {...card} seq={idx + 1} flipValue={flipValue} />}
+          <Flipper key={idx} className='row-span-2 text-[0.6rem]'>
+            {(flipValue) => <ValueCard className='' {...card} seq={idx + 1} flipValue={flipValue} />}
           </Flipper>
         ))}
       </div>
@@ -49,7 +51,7 @@ const Flipper: FC<FlipperProps> = ({ className, children }) => {
   }
 
   return (
-    <div className={className} onClick={handleClick}>
+    <div className={clsx('', className)} onClick={handleClick}>
       {children(spring)}
     </div>
   );
