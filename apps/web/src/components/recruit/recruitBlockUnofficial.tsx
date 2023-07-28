@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { Decoration } from 'notion-types';
+import { ReactNode } from 'react';
 
 import type { BlockComponentsBase } from '@/components/notion/unofficial/BlockResolver';
 
@@ -11,32 +12,36 @@ import TableBlock from './table/TableBlock';
 import TableRowBlock from './table/TableRowBlock';
 import ToggleBlock from './ToggleBlock';
 
+export const renderRecruitBlockContainer = (children: ReactNode) => (
+  <div className='flex flex-col text-[1.6rem] md:text-[1.8rem]'>{children}</div>
+);
+
 export const recruitBlockComponents = {
   header: ({ block }) => (
-    <h1 className='mb-[1rem] mt-[3rem] text-[4rem] font-bold leading-[130%]'>
+    <h1 className='mb-[1rem] mt-[3rem] text-[3rem] font-bold leading-[130%] md:text-[4rem]'>
       <TextRenderer text={block.properties?.title} />
     </h1>
   ),
   sub_header: ({ block }) => (
-    <h2 className='mb-[1rem] mt-[2.4rem] text-[3.2rem] font-bold'>
+    <h2 className='mb-[1rem] mt-[2.4rem] text-[2.6rem] font-bold md:text-[3.2rem]'>
       <TextRenderer text={block.properties?.title} />
     </h2>
   ),
   sub_sub_header: ({ block }) => (
-    <h3 className='mb-[1rem] mt-[1.5rem] text-[2.4rem] font-bold'>
+    <h3 className='mb-[1rem] mt-[1.6rem] text-[2rem] font-bold md:text-[2.4rem]'>
       <TextRenderer text={block.properties?.title} />
     </h3>
   ),
   text: ({ block }) => (
-    <p className='min-h-[1em] break-words py-[0.4rem] text-[1.8rem] leading-[140%]'>
+    <p className='min-h-[1em] break-words py-[0.6rem] font-normal leading-[150%] text-white/80'>
       <TextRenderer text={block.properties?.title} />
     </p>
   ),
   bulleted_list: ({ block, ctx: { renderBlocks } }) => (
     <div className='flex'>
-      <div className='pr-[8px] text-[1.8rem]'>•</div>
+      <div className='pr-[8px]'>•</div>
       <div className='flex flex-grow flex-col'>
-        <div className='text-[1.8rem]'>
+        <div className=''>
           <TextRenderer text={block.properties?.title} />
         </div>
         {renderBlocks(block.content ?? [])}
@@ -45,9 +50,9 @@ export const recruitBlockComponents = {
   ),
   numbered_list: ({ block, streak, ctx: { renderBlocks } }) => (
     <div className='flex'>
-      <div className='pr-[8px] text-[1.8rem]'>{streak + 1}.</div>
+      <div className='pr-[8px]'>{streak + 1}.</div>
       <div className='flex flex-grow flex-col'>
-        <div className='text-[1.8rem]'>
+        <div className=''>
           <TextRenderer text={block.properties?.title} />
         </div>
         {renderBlocks(block.content ?? [])}
@@ -73,7 +78,7 @@ export const recruitBlockComponents = {
     return (
       <div
         className={clsx(
-          'my-[0.6rem] flex rounded-lg p-[1.6rem]',
+          'my-[1rem] flex rounded-[1rem] p-[2.2rem]',
           colorStyles[block.format.block_color] ?? 'bg-[#292929]',
         )}
       >
@@ -82,8 +87,8 @@ export const recruitBlockComponents = {
             {icon}
           </div>
         )}
-        <div className='flex-grow text-[1.8rem] leading-[140%]'>
-          <div>
+        <div className='flex-grow leading-[140%]'>
+          <div className='mb-[1rem]'>
             <TextRenderer text={block.properties.title} />
           </div>
           {renderBlocks(block.content ?? [])}
@@ -92,7 +97,9 @@ export const recruitBlockComponents = {
     );
   },
   column_list: ({ block, ctx: { renderBlocks } }) =>
-    renderBlocks(block.content ?? [], { renderContainer: (children) => <div className='flex'>{children}</div> }),
+    renderBlocks(block.content ?? [], {
+      renderContainer: (children) => <div className='flex flex-col md:flex-row'>{children}</div>,
+    }),
   column: ({ block, ctx: { renderBlocks } }) =>
     renderBlocks(block.content ?? [], {
       renderContainer: (children) => (
@@ -104,7 +111,7 @@ export const recruitBlockComponents = {
   image: ({ block }) => (
     <>
       {block.properties.source[0][0] && (
-        <ContentBlock format={block.format} className='my-[1rem]'>
+        <ContentBlock format={block.format} className='mx-[0.6rem] my-[1rem]'>
           <img
             src={block.properties.source[0][0]}
             alt='NotionImage'
@@ -127,7 +134,7 @@ export const recruitBlockComponents = {
           <span className='pl-[0.6rem] text-white/60'>{' >'}</span>
         </>
       ),
-      className: 'text-[1.8rem] px-[1rem] py-[0.4rem] hover:bg-white/10 rounded transition-colors',
+      className: 'px-[1rem] py-[0.4rem] hover:bg-white/10 rounded transition-colors',
     }),
   table: (props) => <TableBlock {...props} />,
   table_row: ({ block }) => <TableRowBlock columns={block.properties} />,
