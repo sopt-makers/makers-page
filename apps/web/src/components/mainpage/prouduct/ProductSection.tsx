@@ -13,7 +13,7 @@ export default function ProductSection({ className }: ProductProps) {
       <article className={clsx('', className)}>
         <div className='flex flex-col justify-start md:flex-row'>
           <section className='mr-[6.704rem] min-w-[36.4rem]'>
-            <p className='md:text-40-semibold text-32-regular sticky top-0 ml-[2rem] pt-[8.4rem] font-semibold md:ml-[6rem]'>
+            <p className='md:text-40-semibold text-32-regular sticky top-0 ml-[2rem] pt-[18.4rem] font-semibold md:ml-[6rem]'>
               메이커스는 <br />
               3개의 제품으로
               <br />
