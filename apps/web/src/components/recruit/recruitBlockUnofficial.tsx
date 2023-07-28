@@ -8,6 +8,7 @@ import SyntaxHighlighter from '../notion/official/SyntaxHighlighter';
 import { colorStyles } from '../notion/unofficial/colors';
 import TextRenderer from '../notion/unofficial/TextRenderer';
 import ContentBlock from './ContentBlock';
+import EnterRecruitBlock from './customBlocks/EnterRecruitBlock';
 import TableBlock from './table/TableBlock';
 import TableRowBlock from './table/TableRowBlock';
 import ToggleBlock from './ToggleBlock';
@@ -59,9 +60,17 @@ export const recruitBlockComponents = {
       </div>
     </div>
   ),
-  code: ({ block }) => (
-    <SyntaxHighlighter language={plainText(block.properties?.language)} code={plainText(block.properties?.title)} />
-  ),
+  code: ({ block }) => {
+    const customType = plainText(block.properties.caption).trim().toUpperCase();
+
+    if (customType === 'CUSTOM:RECRUIT_BUTTON') {
+      return <EnterRecruitBlock data={plainText(block.properties.title)} />;
+    }
+
+    return (
+      <SyntaxHighlighter language={plainText(block.properties?.language)} code={plainText(block.properties?.title)} />
+    );
+  },
   divider: () => (
     <div className='flex h-[1.3rem] w-full items-center'>
       <div className='h-[1px] w-full border-b border-white/30' />
