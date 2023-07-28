@@ -34,20 +34,16 @@ const ValueCard: FC<ValueCardProps> = ({ className, image, keyword, name, descri
               <span className='text-[2.8em] font-semibold'>{name}</span>
             </span>
           </div>
-          <div
-            className={clsx(orbitron.className, 'absolute left-0 right-0 top-[3.2em] flex justify-center text-[2.4em]')}
-          >
-            {formattedSeq}
+          <div className={clsx(orbitron.className, 'absolute left-0 right-0 top-[3.2em] flex justify-center ')}>
+            <span className='text-[2.4em]'>{formattedSeq}</span>
           </div>
         </div>
       }
       back={
         <div className='relative h-[52em] w-[36.8em] overflow-clip rounded-[0.8em]'>
           <div className='h-full w-full text-[2.4em] font-semibold leading-[150%]'>{description}</div>
-          <div
-            className={clsx(orbitron.className, 'absolute left-0 right-0 top-[3.2em] flex justify-center text-[2.4em]')}
-          >
-            {formattedSeq}
+          <div className={clsx(orbitron.className, 'absolute left-0 right-0 top-[3.2em] flex justify-center')}>
+            <span className='text-[2.4em]'>{formattedSeq}</span>
           </div>
         </div>
       }
