@@ -15,13 +15,18 @@ const ToggleBlock: FC<ToggleBlockProps> = ({ className, header, children }) => {
   return (
     <Collapsible.Root className={className} open={open} onOpenChange={setOpen}>
       <Collapsible.Trigger asChild>
-        <div className='flex cursor-pointer items-center text-[1.8rem]'>
-          <ToggleIcon className={clsx('h-[2rem] w-[2rem] transform transition-transform', open && 'rotate-[90deg]')} />{' '}
+        <div className='flex cursor-pointer items-center rounded py-[0.4rem] text-[1.8rem] transition-colors hover:bg-white/5'>
+          <ToggleIcon
+            className={clsx(
+              'mr-[0.4rem] h-[2.4rem] w-[2.4rem] transform transition-transform',
+              open && 'rotate-[90deg]',
+            )}
+          />
           {header}
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content asChild>
-        <div className='min-h-[2rem]'>{children}</div>
+        <div className='min-h-[2rem] pl-[2rem]'>{children}</div>
       </Collapsible.Content>
     </Collapsible.Root>
   );

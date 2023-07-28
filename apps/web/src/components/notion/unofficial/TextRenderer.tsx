@@ -65,10 +65,10 @@ function getStyle([type, extra]: SubDecoration) {
     return 'font-bold';
   }
   if (type === '_') {
-    return 'underline underline-offset-1';
+    return 'underline underline-offset-4';
   }
   if (type === 'a') {
-    return 'text-[rgba(233,233,233,0.5)] hover:text-gray0 decoration-gray0 cursor-pointer underline hover:underline-offset-1';
+    return 'text-[#e2e2e2] hover:text-gray0 decoration-[#dfdfdf] hover:decoration-gray0 cursor-pointer underline underline-offset-2 transition-colors';
   }
   if (type === 'h') {
     return colorStyles[extra] ?? '';
@@ -80,3 +80,6 @@ function getStyle([type, extra]: SubDecoration) {
 function hasType(subDeco: SubDecoration[] | undefined, type: SubDecoration['0']) {
   return subDeco && subDeco.some((deco) => deco[0] === type);
 }
+
+const _newStyles =
+  'text-[#ffffff] hover:text-gray0 decoration-[#ffffff] hover:decoration-gray0 cursor-pointer underline underline-offset-2 transition-colors';

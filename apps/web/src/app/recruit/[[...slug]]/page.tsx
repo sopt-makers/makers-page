@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { FC } from 'react';
 
 import BlockRenderer from '@/components/notion/unofficial/BlockRenderer';
-import { recruitBlockComponents } from '@/components/recruit/recruitBlockUnofficial';
+import { recruitBlockComponents, renderRecruitBlockContainer } from '@/components/recruit/recruitBlockUnofficial';
 
 import { gateway } from '../../../gateway';
 
@@ -58,7 +58,7 @@ const RecruitPage: FC<RecruitPageProps> = async ({ params: { slug = [] } }) => {
             {name}
           </Link>
         )}
-        renderContainer={(children) => <div className='flex flex-col'>{children}</div>}
+        renderContainer={renderRecruitBlockContainer}
       />
     </div>
   );

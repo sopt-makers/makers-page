@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { Decoration } from 'notion-types';
+import { ReactNode } from 'react';
 
 import type { BlockComponentsBase } from '@/components/notion/unofficial/BlockResolver';
 
@@ -10,6 +11,8 @@ import ContentBlock from './ContentBlock';
 import TableBlock from './table/TableBlock';
 import TableRowBlock from './table/TableRowBlock';
 import ToggleBlock from './ToggleBlock';
+
+export const renderRecruitBlockContainer = (children: ReactNode) => <div className='flex flex-col'>{children}</div>;
 
 export const recruitBlockComponents = {
   header: ({ block }) => (
@@ -28,7 +31,7 @@ export const recruitBlockComponents = {
     </h3>
   ),
   text: ({ block }) => (
-    <p className='min-h-[1em] break-words py-[0.4rem] text-[1.8rem] leading-[140%]'>
+    <p className='min-h-[1em] break-words py-[0.6rem] text-[1.8rem] font-normal leading-[150%] text-white/80'>
       <TextRenderer text={block.properties?.title} />
     </p>
   ),
@@ -73,7 +76,7 @@ export const recruitBlockComponents = {
     return (
       <div
         className={clsx(
-          'my-[0.6rem] flex rounded-lg p-[1.6rem]',
+          'my-[1rem] flex rounded-[1rem] p-[2.2rem]',
           colorStyles[block.format.block_color] ?? 'bg-[#292929]',
         )}
       >
@@ -83,7 +86,7 @@ export const recruitBlockComponents = {
           </div>
         )}
         <div className='flex-grow text-[1.8rem] leading-[140%]'>
-          <div>
+          <div className='mb-[1rem]'>
             <TextRenderer text={block.properties.title} />
           </div>
           {renderBlocks(block.content ?? [])}
@@ -104,7 +107,7 @@ export const recruitBlockComponents = {
   image: ({ block }) => (
     <>
       {block.properties.source[0][0] && (
-        <ContentBlock format={block.format} className='my-[1rem]'>
+        <ContentBlock format={block.format} className='mx-[0.6rem] my-[1rem]'>
           <img
             src={block.properties.source[0][0]}
             alt='NotionImage'
