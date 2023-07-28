@@ -13,7 +13,7 @@ import TableRowBlock from './table/TableRowBlock';
 import ToggleBlock from './ToggleBlock';
 
 export const renderRecruitBlockContainer = (children: ReactNode) => (
-  <div className='flex flex-col text-[1.6rem] md:text-[1.8rem]'>{children}</div>
+  <div className='flex flex-col text-[1.6rem] text-[#f4f4f4] md:text-[1.8rem]'>{children}</div>
 );
 
 export const recruitBlockComponents = {
@@ -39,9 +39,9 @@ export const recruitBlockComponents = {
   ),
   bulleted_list: ({ block, ctx: { renderBlocks } }) => (
     <div className='flex'>
-      <div className='pr-[8px]'>•</div>
+      <div className='pr-[8px] leading-[150%] text-white/80'>•</div>
       <div className='flex flex-grow flex-col'>
-        <div className=''>
+        <div className='leading-[150%] text-white/80'>
           <TextRenderer text={block.properties?.title} />
         </div>
         {renderBlocks(block.content ?? [])}
@@ -50,9 +50,9 @@ export const recruitBlockComponents = {
   ),
   numbered_list: ({ block, streak, ctx: { renderBlocks } }) => (
     <div className='flex'>
-      <div className='pr-[8px]'>{streak + 1}.</div>
+      <div className='pr-[8px] leading-[150%] text-white/80'>{streak + 1}.</div>
       <div className='flex flex-grow flex-col'>
-        <div className=''>
+        <div className='leading-[150%] text-white/80'>
           <TextRenderer text={block.properties?.title} />
         </div>
         {renderBlocks(block.content ?? [])}
