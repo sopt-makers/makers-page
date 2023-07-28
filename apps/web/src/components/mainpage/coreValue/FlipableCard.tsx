@@ -16,7 +16,7 @@ const FlipableCard: FC<FlipableCardProps> = forwardRef<HTMLDivElement, FlipableC
     return (
       <div ref={ref} className={clsx(className)} style={{ perspective: '1000px' }}>
         <m.div className='relative h-full w-full ' style={{ rotateY: frontRotation, transformStyle: 'preserve-3d' }}>
-          <div className={`absolute inset-0`} style={{ backfaceVisibility: 'hidden' }}>
+          <div className={``} style={{ backfaceVisibility: 'hidden' }}>
             {front}
           </div>
           <m.div className={`absolute inset-0`} style={{ backfaceVisibility: 'hidden', rotateY: '180deg' }}>

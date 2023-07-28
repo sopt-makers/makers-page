@@ -12,7 +12,8 @@ import RecruitSection from '@/components/mainpage/recruit/RecruitSection';
 export default function Page() {
   return (
     <ReactLenis root>
-      <div>
+
+  <div className='overflow-x-clip'>
         <FloatingSection />
         <GreetingSection />
         <ProductSection />
