@@ -18,7 +18,7 @@ export default function Greeting() {
       <div className='absolute inset-0'>
         <div className='sticky top-0 flex h-[100vh] items-center justify-center'>
           <m.div style={{ paddingBottom: paddingBottomLogo, opacity: opacityLogo }}>
-            <MakersLogo3D className='h-[27rem] w-[27rem] md:h-[40rem] md:w-[40rem]' />
+            <MakersLogo3D className='h-[27rem] w-full max-w-[40rem] md:h-[40rem] md:w-[40rem]' />
           </m.div>
         </div>
       </div>
