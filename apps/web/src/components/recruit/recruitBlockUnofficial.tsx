@@ -122,7 +122,7 @@ export const recruitBlockComponents = {
       id: block.id,
       name: (
         <>
-          {block.format.page_icon && <span className='pr-[0.6rem]'>{block.format.page_icon}</span>}
+          {block.format?.page_icon && <span className='pr-[0.6rem]'>{block.format.page_icon}</span>}
           <span className='underline decoration-white/20 underline-offset-4'>{plainText(block.properties?.title)}</span>
           <span className='pl-[0.6rem] text-white/60'>{' >'}</span>
         </>
