@@ -7,8 +7,8 @@ import Header from './Header';
 
 export default function FloatingSection() {
   const { scrollYProgress } = useScroll();
-  const opacityHeader = useTransform(scrollYProgress, [0, 0.07], [0, 1]);
-  const opacityFooter = useTransform(scrollYProgress, [0, 0.07, 0.97, 0.99], [0, 1, 1, 0]);
+  const opacityHeader = useTransform(scrollYProgress, [0, 0.005], [0, 1]);
+  const opacityFooter = useTransform(scrollYProgress, [0, 0.005, 0.97, 0.99], [0, 1, 1, 0]);
   const displayFooter = useTransform(scrollYProgress, [0, 0.07, 0.97, 0.99], ['none', 'block', 'block', 'none']);
 
   return (
