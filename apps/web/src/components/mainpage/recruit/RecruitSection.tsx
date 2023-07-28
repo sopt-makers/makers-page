@@ -10,10 +10,7 @@ export default function RecruitSection() {
   const isInView = useInView(ref, { once: false });
 
   return (
-    <article
-      ref={ref}
-      className='mb-[14.4rem] mt-[23.808rem] flex h-[50vh] flex-row items-center justify-center md:h-[65rem] md:justify-between'
-    >
+    <article ref={ref} className='mb-[14.4rem] mt-[23.808rem] flex flex-row items-center justify-between'>
       <LeftFrame
         style={{
           opacity: isInView ? 1 : 0,

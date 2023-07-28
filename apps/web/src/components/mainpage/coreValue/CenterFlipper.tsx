@@ -1,3 +1,5 @@
+'use client';
+
 import { MotionValue, useTransform } from 'framer-motion';
 import { FC, ReactElement } from 'react';
 

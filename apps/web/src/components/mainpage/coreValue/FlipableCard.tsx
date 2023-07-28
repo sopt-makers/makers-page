@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import { m, MotionValue, useTransform } from 'framer-motion';
 import { FC, forwardRef, ReactNode } from 'react';

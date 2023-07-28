@@ -1,4 +1,4 @@
-'use clinet';
+'use client';
 
 import { m, useScroll, useTransform } from 'framer-motion';
 

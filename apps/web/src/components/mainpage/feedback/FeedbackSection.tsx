@@ -1,6 +1,3 @@
-'use client';
-
-import { m } from 'framer-motion';
 import { FC } from 'react';
 
 import { feedbacks } from './data';
@@ -25,13 +22,13 @@ const FeedbackSection: FC<FeedbackSectionProps> = ({}) => {
         </div>
       </div>
       <div className='mt-[4rem] md:mt-0 md:flex-1'>
-        <m.div className='flex flex-col gap-[1.4rem] md:gap-[2.9rem] md:p-[20rem_8rem_0_0]'>
+        <div className='flex flex-col gap-[1.4rem] md:gap-[2.9rem] md:p-[20rem_8rem_0_0]'>
           {feedbacks.map((feedback, idx) => {
             const { style, dark } = cardColorStyles[idx % cardColorStyles.length];
 
             return <FeedbackCard key={idx} className={style} isDark={dark} {...feedback} />;
           })}
-        </m.div>
+        </div>
       </div>
     </div>
   );

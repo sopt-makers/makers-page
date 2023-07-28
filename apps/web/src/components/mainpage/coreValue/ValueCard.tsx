@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import { MotionValue } from 'framer-motion';
 import { Orbitron } from 'next/font/google';
