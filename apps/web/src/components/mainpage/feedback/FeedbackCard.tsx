@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { m, useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import { FC, useRef } from 'react';
 
 interface FeedbackCardProps {
@@ -21,8 +21,6 @@ const FeedbackCard: FC<FeedbackCardProps> = ({ className, content, name, positio
   });
   const opacity = useTransform(scrollYProgress, [0, 0.2, 1], [0, 1, 1]);
   const scale = useTransform(scrollYProgress, [0, 0.2, 1], [0.95, 1, 1]);
-
-  useMotionValueEvent(scrollYProgress, 'change', console.log);
 
   return (
     <m.div
