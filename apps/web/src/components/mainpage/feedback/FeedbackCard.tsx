@@ -2,10 +2,10 @@
 
 import clsx from 'clsx';
 import { m, useScroll, useTransform } from 'framer-motion';
-import { FC, useRef } from 'react';
+import { FC, ReactNode, useRef } from 'react';
 
 interface FeedbackCardProps {
-  content: string;
+  content: ReactNode;
   name: string;
   position: string;
   isDark: boolean;
