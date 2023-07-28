@@ -12,7 +12,9 @@ import TableBlock from './table/TableBlock';
 import TableRowBlock from './table/TableRowBlock';
 import ToggleBlock from './ToggleBlock';
 
-export const renderRecruitBlockContainer = (children: ReactNode) => <div className='flex flex-col'>{children}</div>;
+export const renderRecruitBlockContainer = (children: ReactNode) => (
+  <div className='flex flex-col text-[1.8rem]'>{children}</div>
+);
 
 export const recruitBlockComponents = {
   header: ({ block }) => (
@@ -31,15 +33,15 @@ export const recruitBlockComponents = {
     </h3>
   ),
   text: ({ block }) => (
-    <p className='min-h-[1em] break-words py-[0.6rem] text-[1.8rem] font-normal leading-[150%] text-white/80'>
+    <p className='min-h-[1em] break-words py-[0.6rem] font-normal leading-[150%] text-white/80'>
       <TextRenderer text={block.properties?.title} />
     </p>
   ),
   bulleted_list: ({ block, ctx: { renderBlocks } }) => (
     <div className='flex'>
-      <div className='pr-[8px] text-[1.8rem]'>•</div>
+      <div className='pr-[8px]'>•</div>
       <div className='flex flex-grow flex-col'>
-        <div className='text-[1.8rem]'>
+        <div className=''>
           <TextRenderer text={block.properties?.title} />
         </div>
         {renderBlocks(block.content ?? [])}
@@ -48,9 +50,9 @@ export const recruitBlockComponents = {
   ),
   numbered_list: ({ block, streak, ctx: { renderBlocks } }) => (
     <div className='flex'>
-      <div className='pr-[8px] text-[1.8rem]'>{streak + 1}.</div>
+      <div className='pr-[8px]'>{streak + 1}.</div>
       <div className='flex flex-grow flex-col'>
-        <div className='text-[1.8rem]'>
+        <div className=''>
           <TextRenderer text={block.properties?.title} />
         </div>
         {renderBlocks(block.content ?? [])}
@@ -85,7 +87,7 @@ export const recruitBlockComponents = {
             {icon}
           </div>
         )}
-        <div className='flex-grow text-[1.8rem] leading-[140%]'>
+        <div className='flex-grow leading-[140%]'>
           <div className='mb-[1rem]'>
             <TextRenderer text={block.properties.title} />
           </div>
@@ -130,7 +132,7 @@ export const recruitBlockComponents = {
           <span className='pl-[0.6rem] text-white/60'>{' >'}</span>
         </>
       ),
-      className: 'text-[1.8rem] px-[1rem] py-[0.4rem] hover:bg-white/10 rounded transition-colors',
+      className: 'px-[1rem] py-[0.4rem] hover:bg-white/10 rounded transition-colors',
     }),
   table: (props) => <TableBlock {...props} />,
   table_row: ({ block }) => <TableRowBlock columns={block.properties} />,

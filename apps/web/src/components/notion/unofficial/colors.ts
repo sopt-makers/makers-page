@@ -3,7 +3,7 @@ import { Color } from 'notion-types';
 export const colorStyles = {
   blue: 'text-[#4552E8]',
   brown: 'text-[#8f6e30]',
-  gray: 'text-[#9b9a97]',
+  gray: 'text-[#c1bfbc]',
   pink: 'text-[#FDBBF9]',
   purple: 'text-[#7f46db]',
   orange: 'text-[#FF6E1D]',
