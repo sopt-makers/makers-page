@@ -22,7 +22,7 @@ const RecruitPage: FC<RecruitPageProps> = async ({ params: { slug = [] } }) => {
     notFound();
   }
 
-  const { blockMap, path, title, id } = page;
+  const { blockMap, path, id } = page;
   const pageBlock = blockMap[id];
 
   function getBlock(id: string) {
@@ -35,8 +35,20 @@ const RecruitPage: FC<RecruitPageProps> = async ({ params: { slug = [] } }) => {
 
   return (
     <div className='whitespace-pre-wrap'>
-      {pageId && <h1>{title}</h1>}
-      <div>{JSON.stringify(path)}</div>
+      <div className='flex flex-wrap items-center gap-2 text-[1.6rem]'>
+        {path.map((fragment) => (
+          <>
+            <Link
+              key={fragment.id}
+              href={fragment.id ? `/recruit/${fragment.id}` : '/recruit/'}
+              className='rounded-[0.6rem] border border-white/25 px-[1.2rem] py-[0.6rem] transition-colors hover:bg-[#282a2b]'
+            >
+              {fragment.title}
+            </Link>
+            <div className='last:hidden'>{'>'}</div>
+          </>
+        ))}
+      </div>
       <BlockRenderer
         blocks={pageBlock.content ?? []}
         blockComponents={recruitBlockComponents}
