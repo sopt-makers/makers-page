@@ -8,7 +8,7 @@ interface FeedbackSectionProps {}
 
 const FeedbackSection: FC<FeedbackSectionProps> = ({}) => {
   return (
-    <div className='flex flex-col px-[2rem] pt-[30rem] md:flex-row md:p-0'>
+    <div className='mb-[4rem] flex flex-col px-[2rem] pt-[30rem] md:flex-row md:p-0'>
       <div>
         <div className='sticky top-0 flex flex-col gap-[1rem] md:gap-[2.4rem] md:p-[20rem_8rem_0]'>
           <div className='md:text-64-bold flex flex-col text-[4rem] font-semibold leading-[120%]'>
@@ -21,8 +21,8 @@ const FeedbackSection: FC<FeedbackSectionProps> = ({}) => {
           </div>
         </div>
       </div>
-      <div className='mt-[4rem] md:mt-0 md:flex-1'>
-        <div className='flex flex-col gap-[1.4rem] md:gap-[2.9rem] md:p-[20rem_8rem_0_0]'>
+      <div className='mt-[4rem] flex justify-end md:mt-0 md:flex-1'>
+        <div className='flex w-full max-w-[70rem] flex-col gap-[1.4rem] md:gap-[2.9rem] md:p-[20rem_8rem_0_0]'>
           {feedbacks.map((feedback, idx) => {
             const { style, dark } = cardColorStyles[idx % cardColorStyles.length];
 

@@ -15,6 +15,7 @@ export default function Page() {
       <CoreValueSection />
       <FeedbackSection />
       <RecruitSection />
+
       <RenderingLoading />
     </div>
   );

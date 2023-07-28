@@ -1,6 +1,6 @@
 'use client';
 
-import { useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 import RecruitButton from '../../common/RecruitButton';
@@ -10,22 +10,19 @@ export default function RecruitSection() {
   const isInView = useInView(ref, { once: false });
 
   return (
-    <article ref={ref} className='mb-[14.4rem] mt-[23.808rem] flex flex-row items-center justify-between'>
-      <LeftFrame
-        style={{
-          opacity: isInView ? 1 : 0,
-          transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s',
-        }}
-        className='mt-[13.504rem] hidden md:block'
-      />
-      <section
-        style={{
-          opacity: isInView ? 1 : 0,
-          transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 1.2s',
-        }}
-        className='flex items-center justify-center'
-      >
-        <div className='absolute flex flex-col items-center justify-center'>
+    <m.article className='overflow-clip-x relative mb-[14.4rem] mt-[24rem] flex flex-row items-center justify-between '>
+      <div className='absolute inset-0 flex transform-gpu items-center'>
+        <div className='flex w-full justify-between'>
+          <m.div initial={{ x: '-100%' }} animate={{ x: isInView ? '0%' : '-100%' }} transition={{ bounce: 0 }}>
+            <LeftFrame className='h-[57.2rem]' />
+          </m.div>
+          <m.div initial={{ x: '100%' }} animate={{ x: isInView ? '0%' : '100%' }} transition={{ bounce: 0 }}>
+            <RightFrame className='h-[53.5rem] translate-x-[1.5rem] transform' />
+          </m.div>
+        </div>
+      </div>
+      <div className='relative flex w-full items-center justify-center py-[20rem]'>
+        <div ref={ref} className='flex flex-col items-center justify-center px-[1rem]'>
           <h1 className='text-40-semibold md:text-80-bold text-center font-bold'>
             SOPT에 <br className='md:hidden' />
             새로운 가치를 더하는
@@ -34,21 +31,14 @@ export default function RecruitSection() {
           </h1>
           <RecruitButton />
         </div>
-      </section>
-      <RightFrame
-        style={{
-          opacity: isInView ? 1 : 0,
-          transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s',
-        }}
-        className='mb-[9.696rem] hidden md:block'
-      />
-    </article>
+      </div>
+    </m.article>
   );
 }
 
 function LeftFrame(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width={410} height={535} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width={410} height={535} viewBox='0 0 410 535' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_220_3523)'>
         <path d='M410 248.004L342 304v-44.004L410 204v44.004z' fill='#F3BD39' />
         <path d='M342 260H224v44h118v-44z' fill='#E5A324' />
@@ -78,7 +68,7 @@ function LeftFrame(props: React.SVGProps<SVGSVGElement>) {
 
 function RightFrame(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width={431} height={572} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg width={431} height={572} viewBox='0 0 431 572' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g clipPath='url(#prefix__clip0_220_3522)'>
         <path d='M293.34 226.303l-86.022 75.568v-55.823l86.022-75.569v55.824z' fill='#DCB0D2' />
         <path d='M207.265 245.693H0v55.721h207.265v-55.721z' fill='#D59AC5' />
