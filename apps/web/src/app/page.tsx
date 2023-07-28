@@ -4,6 +4,7 @@ import { ReactLenis } from '@studio-freight/react-lenis';
 
 import CoreValueSection from '@/components/mainpage/coreValue/CoreValueSection';
 import FeedbackSection from '@/components/mainpage/feedback/FeedbackSection';
+import FloatingSection from '@/components/mainpage/floating/FloatingSection';
 import GreetingSection from '@/components/mainpage/greeting/GreetingSection';
 import ProductSection from '@/components/mainpage/prouduct/ProductSection';
 import RecruitSection from '@/components/mainpage/recruit/RecruitSection';
@@ -11,8 +12,9 @@ import RecruitSection from '@/components/mainpage/recruit/RecruitSection';
 export default function Page() {
   return (
     <ReactLenis root>
-      <div className='overflow-x-clip'>
-        {/* <Header /> */}
+
+  <div className='overflow-x-clip'>
+        <FloatingSection />
         <GreetingSection />
         <ProductSection />
         <CoreValueSection />
