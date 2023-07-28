@@ -13,22 +13,22 @@ import TableRowBlock from './table/TableRowBlock';
 import ToggleBlock from './ToggleBlock';
 
 export const renderRecruitBlockContainer = (children: ReactNode) => (
-  <div className='flex flex-col text-[1.8rem]'>{children}</div>
+  <div className='flex flex-col text-[1.6rem] md:text-[1.8rem]'>{children}</div>
 );
 
 export const recruitBlockComponents = {
   header: ({ block }) => (
-    <h1 className='mb-[1rem] mt-[3rem] text-[4rem] font-bold leading-[130%]'>
+    <h1 className='mb-[1rem] mt-[3rem] text-[3rem] font-bold leading-[130%] md:text-[4rem]'>
       <TextRenderer text={block.properties?.title} />
     </h1>
   ),
   sub_header: ({ block }) => (
-    <h2 className='mb-[1rem] mt-[2.4rem] text-[3.2rem] font-bold'>
+    <h2 className='mb-[1rem] mt-[2.4rem] text-[2.6rem] font-bold md:text-[3.2rem]'>
       <TextRenderer text={block.properties?.title} />
     </h2>
   ),
   sub_sub_header: ({ block }) => (
-    <h3 className='mb-[1rem] mt-[1.5rem] text-[2.4rem] font-bold'>
+    <h3 className='mb-[1rem] mt-[1.6rem] text-[2rem] font-bold md:text-[2.4rem]'>
       <TextRenderer text={block.properties?.title} />
     </h3>
   ),
@@ -97,7 +97,9 @@ export const recruitBlockComponents = {
     );
   },
   column_list: ({ block, ctx: { renderBlocks } }) =>
-    renderBlocks(block.content ?? [], { renderContainer: (children) => <div className='flex'>{children}</div> }),
+    renderBlocks(block.content ?? [], {
+      renderContainer: (children) => <div className='flex flex-col md:flex-row'>{children}</div>,
+    }),
   column: ({ block, ctx: { renderBlocks } }) =>
     renderBlocks(block.content ?? [], {
       renderContainer: (children) => (

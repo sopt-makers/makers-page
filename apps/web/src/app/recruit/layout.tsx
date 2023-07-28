@@ -10,9 +10,9 @@ interface RecruitLayoutProps {
 const RecruitLayout: FC<RecruitLayoutProps> = ({ children }) => {
   return (
     <div className=''>
-      <div className='flex p-[2rem_3rem_1rem]'>
-        <Link href='/' className='p-[1rem_1.5rem] '>
-          <MakersLogo />
+      <div className='flex md:p-[2rem_3rem_1rem]'>
+        <Link href='/' className='py-[2rem] md:p-[1rem_1.5rem] '>
+          <MakersLogo className='h-[2rem] md:h-[3rem]' />
         </Link>
       </div>
       {children}
