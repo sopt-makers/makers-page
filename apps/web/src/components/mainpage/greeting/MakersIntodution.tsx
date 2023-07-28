@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { m, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
+import { RightArrowIcon } from '@/components/common/RightArrowIcon';
+
 interface GreetingProps {
   className?: string;
 }
@@ -41,7 +43,7 @@ export default function MakersIntodution({ className }: GreetingProps) {
           className='mt-[2rem] flex flex-col items-center justify-center text-center md:mt-[4rem]'
           style={{ opacity: opacity3 }}
         >
-          <p className='md:text-32-regular text-18-regular font-semibold'>
+          <p className='md:text-28-regular text-18-regular font-semibold'>
             수년간 방치되어 SOPT를 잘 드러내지 못하는 <br className='md:hidden' />
             공식 홈페이지를 보고
             <br />
@@ -54,7 +56,7 @@ export default function MakersIntodution({ className }: GreetingProps) {
         </m.div>
         <m.div className='mt-[2rem]' style={{ opacity: opacity4 }}>
           <button className='text-24-semibold flex flex-row items-center justify-center gap-[0.8rem] px-[3.2rem] py-[2.4rem]'>
-            makers 탄생 배경 보러가기 <ArrowIcon />
+            makers 탄생 배경 보러가기 <RightArrowIcon />
           </button>
         </m.div>
       </div>
@@ -82,20 +84,6 @@ function TextLogo(props: React.SVGProps<SVGSVGElement>) {
         d='M221.82 19.302v8.325h25.617a.724.724 0 00.723-.726v-7.597c0-4.346-3.509-7.868-7.84-7.868h-10.657c-4.331 0-7.84 3.522-7.84 7.868l-.003-.002zm20.883 2.848h-14.917a.51.51 0 01-.508-.51V18.86c0-1.074.869-1.946 1.939-1.946h11.544c1.071 0 1.939.872 1.939 1.946v3.293l.003-.002z'
         fill='#fff'
       />
-    </svg>
-  );
-}
-
-function ArrowIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg width={24} height={24} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
-      <path
-        fillRule='evenodd'
-        clipRule='evenodd'
-        d='M16.8 11.4c-1.463 0-2.796-1.333-2.796-2.796v-.6h-1.2v.6c0 1.064.466 2.063 1.199 2.796H6.6v1.2h7.403c-.733.733-1.2 1.732-1.2 2.796v.6h1.2v-.6c0-1.463 1.334-2.796 2.797-2.796h.6v-1.2h-.6z'
-        fill='#fff'
-      />
-      <circle cx={12} cy={12} r={11.5} stroke='#fff' />
     </svg>
   );
 }
