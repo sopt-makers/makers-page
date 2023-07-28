@@ -27,7 +27,7 @@ const TableRowBlock: FC<TableRowBlockProps> = ({ columns }) => {
         return (
           <td
             key={idx}
-            className='border-gray0 border-spacing-0 whitespace-pre-wrap border px-[1rem] py-[0.4rem] align-top text-[1.8rem]'
+            className='border-gray0 border-spacing-0 whitespace-pre-wrap border px-[1rem] py-[0.8rem] align-top text-[1.8rem]'
             style={{ width: width && `${width / totalWidth}%` }}
           >
             <TextRenderer text={text} />
