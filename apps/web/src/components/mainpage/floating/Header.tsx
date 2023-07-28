@@ -1,5 +1,7 @@
 // import Link from 'next/link';
 
+'use client';
+
 import MakersLogo from '@/components/common/icons/MakersLogo';
 
 import { handleScroll } from './handleScroll';
@@ -13,9 +15,9 @@ export default function Header() {
   const navButtons: NavButton[] = [
     { name: 'INTRODUTION', position: 3000 },
     { name: 'OUR MISSION', position: 6500 },
-    { name: 'SERVICE', position: 7900 },
-    { name: 'CORE VALUE', position: 10010 },
-    { name: 'FEEDBACK', position: 14000 },
+    { name: 'SERVICE', position: 8100 },
+    { name: 'CORE VALUE', position: 10400 },
+    { name: 'FEEDBACK', position: 14500 },
     // { name: 'MEMBERS', position: undefined },
     { name: 'RECRUIT', position: 50000 },
   ];
