@@ -64,7 +64,22 @@ async function refetchPages(ctx: Context) {
 
   async function traverse(pageId: string, path: PathFragment[] = []) {
     const { blockMap, title, pageBlock } = await ctx.recruit.notionClient.getPage(pageId);
-    const childPageIds = (pageBlock.content ?? []).filter((id) => blockMap[id]?.type === 'page' && id != pageId);
+
+    const childPageIds: string[] = [];
+    function findChildPages(block: Block) {
+      for (const childId of block.content ?? []) {
+        const child = blockMap[childId];
+        if (!child || childId === pageId) {
+          continue;
+        }
+        if (child.type === 'page') {
+          childPageIds.push(child.id);
+          continue;
+        }
+        findChildPages(child);
+      }
+    }
+    findChildPages(pageBlock);
 
     console.log('Refetching:', pageId, '->', childPageIds);
 
