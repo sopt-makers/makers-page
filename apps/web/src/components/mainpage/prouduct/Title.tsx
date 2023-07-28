@@ -8,6 +8,7 @@ interface TitleProps {
 
 interface TitleMap {
   [key: string]: {
+    textColor: string;
     hoverColor: string;
     fillColor: string;
     text: string;
@@ -16,16 +17,19 @@ interface TitleMap {
 
 const titleMap: TitleMap = {
   official: {
+    textColor: 'text-brand-yellow',
     hoverColor: 'hover:text-brand-yellow',
     fillColor: 'fill-brand-yellow',
     text: 'SOPT 공식 홈페이지',
   },
   playground: {
+    textColor: 'text-brand-skyblue',
     hoverColor: 'hover:text-brand-skyblue',
     fillColor: 'fill-brand-skyblue',
     text: 'SOPT 플레이그라운드',
   },
   app: {
+    textColor: 'text-brand-pink',
     hoverColor: 'hover:text-brand-pink',
     fillColor: 'fill-brand-pink',
     text: 'SOPT 공식 앱',
@@ -38,9 +42,11 @@ export default function Title({ type, children, className }: TitleProps) {
     <div
       className={clsx('bg-black100 z-10 flex cursor-pointer flex-row items-end justify-start py-[2.4rem]', className)}
     >
-      <span className={`${titleConfig.hoverColor} pl-[4rem]`}>{titleConfig.text}</span>
+      <span className={`${titleConfig.hoverColor} md:text-white ${titleConfig.textColor} pl-[2rem] md:pl-[4rem]`}>
+        {titleConfig.text}
+      </span>
       <div className='justify-cetner flex flex-row items-center'>
-        <ArrowIcon className={`mx-[0.8rem] ${titleConfig.fillColor}`} />
+        <ArrowIcon className={`mx-[0.8rem] hidden md:block ${titleConfig.fillColor}`} />
         <span className='text-16-regular ml-[0.8rem]'>{children}</span>
       </div>
     </div>

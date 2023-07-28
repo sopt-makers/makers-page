@@ -3,20 +3,23 @@
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-import RecruitButton from '../common/RecruitButton';
+import RecruitButton from '../../common/RecruitButton';
 
-export default function Recruit() {
+export default function RecruitSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false });
 
   return (
-    <article ref={ref} className='mb-[14.4rem] mt-[23.808rem] flex flex-row items-center justify-between'>
+    <article
+      ref={ref}
+      className='mb-[14.4rem] mt-[23.808rem] flex h-[50vh] flex-row items-center justify-center md:h-[65rem] md:justify-between'
+    >
       <LeftFrame
         style={{
           opacity: isInView ? 1 : 0,
           transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s',
         }}
-        className='mt-[13.504rem]'
+        className='mt-[13.504rem] hidden md:block'
       />
       <section
         style={{
@@ -26,8 +29,9 @@ export default function Recruit() {
         className='flex items-center justify-center'
       >
         <div className='absolute flex flex-col items-center justify-center'>
-          <h1 className='text-80-bold text-center'>
-            SOPT에 새로운 가치를 더하는
+          <h1 className='text-40-semibold md:text-80-bold text-center font-bold'>
+            SOPT에 <br className='md:hidden' />
+            새로운 가치를 더하는
             <br />
             메이커스에 합류하세요
           </h1>
@@ -39,7 +43,7 @@ export default function Recruit() {
           opacity: isInView ? 1 : 0,
           transition: 'all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s',
         }}
-        className='mb-[9.696rem]'
+        className='mb-[9.696rem] hidden md:block'
       />
     </article>
   );
