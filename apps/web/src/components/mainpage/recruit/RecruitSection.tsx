@@ -10,7 +10,7 @@ export default function RecruitSection() {
   const isInView = useInView(ref, { once: false });
 
   return (
-    <m.article className='overflow-clip-x relative mb-[14.4rem] mt-[24rem] flex flex-row items-center justify-between '>
+    <m.article className='overflow-clip-x relative mb-[10rem] mt-[24rem] flex flex-row items-center justify-between '>
       <div className='absolute inset-0 flex transform-gpu items-center'>
         <div className='flex w-full justify-between'>
           <m.div initial={{ x: '-100%' }} animate={{ x: isInView ? '0%' : '-100%' }} transition={{ bounce: 0 }}>
@@ -21,7 +21,7 @@ export default function RecruitSection() {
           </m.div>
         </div>
       </div>
-      <div className='relative flex w-full items-center justify-center py-[20rem]'>
+      <div className='relative flex w-full items-center justify-center pt-[20rem]'>
         <div ref={ref} className='flex flex-col items-center justify-center px-[1rem]'>
           <h1 className='text-40-semibold md:text-80-bold text-center font-bold'>
             SOPT에 <br className='md:hidden' />
