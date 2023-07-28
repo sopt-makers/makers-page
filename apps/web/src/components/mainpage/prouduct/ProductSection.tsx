@@ -9,7 +9,7 @@ interface ProductProps {
 
 export default function ProductSection({ className }: ProductProps) {
   return (
-    <div className=''>
+    <div className='mt-[20rem]'>
       <article className={clsx('', className)}>
         <div className='flex flex-col justify-start md:flex-row'>
           <section className='mr-[6.704rem] min-w-[36.4rem]'>
