@@ -15,7 +15,7 @@ export default function Description({ type, children }: DescriptionProps) {
         src={descriptionConfig.imageUrl}
         alt={descriptionConfig.altText}
       />
-      <div className='text-16-regular'>
+      <div className='text-16-regular-desc'>
         <span>{children}</span>
       </div>
     </div>

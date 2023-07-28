@@ -50,6 +50,7 @@ module.exports = {
       '18-semibold': ['1.8rem', { lineHeight: '150%', letterSpacing: '-0.036rem', fontWeight: 600 }],
       '18-regular': ['1.8rem', { lineHeight: '150%', letterSpacing: '-0.036rem', fontWeight: 400 }],
       '16-regular': ['1.6rem', { lineHeight: '130%', letterSpacing: '-0.128rem', fontWeight: 400 }],
+      '16-regular-desc': ['1.6rem', { lineHeight: '160%', letterSpacing: '-0.128rem', fontWeight: 400 }],
     },
     backgroundImage: {
       'makers-logo':
