@@ -41,7 +41,7 @@ export const recruitRouter = router({
 });
 
 type PathFragment = {
-  id: string;
+  id: string | null;
   title: string;
 };
 
@@ -60,6 +60,7 @@ const kvKeys = {
 };
 
 async function refetchPages(ctx: Context) {
+  const rootPageId = parsePageId(ctx.recruit.rootPageId);
   const allowedPages: string[] = [];
 
   async function traverse(pageId: string, path: PathFragment[] = []) {
@@ -83,7 +84,7 @@ async function refetchPages(ctx: Context) {
 
     console.log('Refetching:', pageId, '->', childPageIds);
 
-    const newPath: PathFragment[] = [...path, { id: pageId, title: title ?? '' }];
+    const newPath: PathFragment[] = [...path, { id: pageId === rootPageId ? null : pageId, title: title ?? '' }];
 
     const childTraversePromises = childPageIds.map(async (id) => traverse(id, newPath));
     await Promise.all(childTraversePromises);
@@ -100,6 +101,6 @@ async function refetchPages(ctx: Context) {
     allowedPages.push(pageId);
   }
 
-  await traverse(parsePageId(ctx.recruit.rootPageId));
+  await traverse(rootPageId);
   await ctx.kv.put(kvKeys.allowedPages(), JSON.stringify(allowedPages));
 }

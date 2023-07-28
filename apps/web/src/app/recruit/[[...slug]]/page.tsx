@@ -40,7 +40,7 @@ const RecruitPage: FC<RecruitPageProps> = async ({ params: { slug = [] } }) => {
           <>
             <Link
               key={fragment.id}
-              href={`/recruit/${fragment.id}`}
+              href={fragment.id ? `/recruit/${fragment.id}` : '/recruit/'}
               className='rounded-[0.6rem] border border-white/25 px-[1.2rem] py-[0.6rem] transition-colors hover:bg-[#282a2b]'
             >
               {fragment.title}
