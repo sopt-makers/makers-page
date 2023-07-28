@@ -8,7 +8,7 @@ export interface NotionRendererContext {
     blockIds: string[],
     options?: { renderContainer?: (children: ReactNode) => ReactElement },
   ) => ReactElement;
-  renderPageLink: (options: { id: string; name: string; className?: string }) => ReactElement;
+  renderPageLink: PageLinkRenderer;
 }
 
-export type PageLinkRenderer = (options: { id: string; name: string; className?: string }) => ReactElement;
+export type PageLinkRenderer = (options: { id: string; name: ReactNode; className?: string }) => ReactElement;

@@ -118,7 +118,17 @@ export const recruitBlockComponents = {
     </>
   ),
   page: ({ block, ctx: { renderPageLink } }) =>
-    renderPageLink({ id: block.id, name: plainText(block.properties?.title), className: 'text-[1.8rem] px-[1rem]' }),
+    renderPageLink({
+      id: block.id,
+      name: (
+        <>
+          {block.format.page_icon && <span className='pr-[0.6rem]'>{block.format.page_icon}</span>}
+          <span className='underline decoration-white/20 underline-offset-4'>{plainText(block.properties?.title)}</span>
+          <span className='pl-[0.6rem] text-white/60'>{' >'}</span>
+        </>
+      ),
+      className: 'text-[1.8rem] px-[1rem] py-[0.4rem] hover:bg-white/10 rounded transition-colors',
+    }),
   table: (props) => <TableBlock {...props} />,
   table_row: ({ block }) => <TableRowBlock columns={block.properties} />,
 } satisfies BlockComponentsBase;
