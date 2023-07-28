@@ -7,7 +7,7 @@ interface RecruitLayoutProps {
 const RecruitLayout: FC<RecruitLayoutProps> = ({ children }) => {
   return (
     <div className='flex justify-center'>
-      <div className='w-[80rem] px-[2.4rem]'>{children}</div>
+      <div className='w-[100%] max-w-[80rem] px-[2.4rem] py-[4rem]'>{children}</div>
     </div>
   );
 };
