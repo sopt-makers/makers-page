@@ -1,5 +1,3 @@
-import { Suspense } from 'react';
-
 import { RenderingLoading } from '@/components/common/RenderingLoading';
 import CoreValueSection from '@/components/mainpage/coreValue/CoreValueSection';
 import FeedbackSection from '@/components/mainpage/feedback/FeedbackSection';
@@ -12,12 +10,10 @@ export default function Page() {
     <div className='overflow-x-clip'>
       {/* <Header /> */}
       <GreetingSection />
-      <Suspense fallback={<div />}>
-        <ProductSection />
-        <CoreValueSection />
-        <FeedbackSection />
-        <RecruitSection />
-      </Suspense>
+      <ProductSection />
+      <CoreValueSection />
+      <FeedbackSection />
+      <RecruitSection />
       <RenderingLoading />
     </div>
   );
