@@ -43,7 +43,7 @@ export default function MakersIntodution({ className }: GreetingProps) {
           className='mt-[2rem] flex flex-col items-center justify-center text-center md:mt-[4rem]'
           style={{ opacity: opacity3 }}
         >
-          <p className='md:text-32-regular text-18-regular font-semibold'>
+          <p className='md:text-28-regular text-18-regular font-semibold'>
             수년간 방치되어 SOPT를 잘 드러내지 못하는 <br className='md:hidden' />
             공식 홈페이지를 보고
             <br />
