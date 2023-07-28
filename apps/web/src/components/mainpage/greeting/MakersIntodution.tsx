@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { m, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
-import { RightArrowIcon } from '@/components/common/RightArrowIcon';
+// import { RightArrowIcon } from '@/components/common/RightArrowIcon';
 
 interface GreetingProps {
   className?: string;
@@ -16,7 +16,7 @@ export default function MakersIntodution({ className }: GreetingProps) {
   const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.7, 0.75], [0, 1, 1, 0]);
   const opacity2 = useTransform(scrollYProgress, [0.15, 0.25, 0.7, 0.75], [0, 1, 1, 0]);
   const opacity3 = useTransform(scrollYProgress, [0.3, 0.4, 0.7, 0.75], [0, 1, 1, 0]);
-  const opacity4 = useTransform(scrollYProgress, [0.45, 0.5, 0.7, 0.75], [0, 1, 1, 0]);
+  // const opacity4 = useTransform(scrollYProgress, [0.45, 0.5, 0.7, 0.75], [0, 1, 1, 0]);
 
   return (
     <article ref={containerRef} className={clsx('h-[335rem] md:h-[365rem]', className)}>
@@ -54,11 +54,11 @@ export default function MakersIntodution({ className }: GreetingProps) {
             <br className='md:hidden' /> 22년 7월 30일 특수 기구로 시작했어요.
           </p>
         </m.div>
-        <m.div className='mt-[2rem]' style={{ opacity: opacity4 }}>
+        {/* <m.div className='mt-[2rem]' style={{ opacity: opacity4 }}>
           <button className='text-24-semibold flex flex-row items-center justify-center gap-[0.8rem] px-[3.2rem] py-[2.4rem]'>
             makers 탄생 배경 보러가기 <RightArrowIcon />
           </button>
-        </m.div>
+        </m.div> */}
       </div>
     </article>
   );
