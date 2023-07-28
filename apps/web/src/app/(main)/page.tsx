@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 
+import { RenderingLoading } from '@/components/common/RenderingLoading';
 import CoreValueSection from '@/components/mainpage/coreValue/CoreValueSection';
 import FeedbackSection from '@/components/mainpage/feedback/FeedbackSection';
 import GreetingSection from '@/components/mainpage/greeting/GreetingSection';
@@ -17,6 +18,7 @@ export default function Page() {
         <FeedbackSection />
         <RecruitSection />
       </Suspense>
+      <RenderingLoading />
     </div>
   );
 }
