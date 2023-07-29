@@ -2,17 +2,21 @@ import { Block } from 'notion-types';
 import { parsePageId } from 'notion-utils';
 import { z } from 'zod';
 
+import { storageFactory } from '../storage/kv';
 import { Context } from '../trpc/context';
 import { internalProcedure, publicProcedure, router } from '../trpc/stub';
 
 export const recruitRouter = router({
   page: internalProcedure.input(z.object({ id: z.string().optional() })).query(async ({ ctx, input }) => {
+    const pageStorage = getPageStorage(ctx.kv);
+    const allowedPagesStorage = getAllowedPagesStorage(ctx.kv);
+
     const pageId = parsePageId(input.id ?? ctx.recruit.rootPageId);
     if (!pageId) {
       return { status: 'NOT_FOUND' } as const;
     }
 
-    const allowedPages = (await ctx.kv.get(kvKeys.allowedPages(), 'json')) as string[] | null;
+    const allowedPages = await allowedPagesStorage.get('');
     if (!allowedPages) {
       return { status: 'NEED_REFRESH' } as const;
     }
@@ -21,14 +25,17 @@ export const recruitRouter = router({
       return { status: 'NOT_FOUND' } as const;
     }
 
-    const validated = pageRecordValidator.safeParse(await ctx.kv.get(kvKeys.page(pageId), 'json'));
-    if (!validated.success) {
+    const data = await pageStorage.get(pageId);
+
+    if (!data) {
       return { status: 'NEED_REFRESH' } as const;
     }
 
-    const { blockMap, ...pageData } = validated.data;
+    const { blockMap, ...pageData } = data;
 
-    const blockMapSigned = await ctx.recruit.notionClient.SignFileUrls(blockMap);
+    const blockMapSigned = await (async () => {
+      return await ctx.recruit.notionClient.SignFileUrls(blockMap);
+    })();
 
     return { status: 'SUCCESS', ...pageData, blockMap: blockMapSigned } as const;
   }),
@@ -45,21 +52,27 @@ type PathFragment = {
   title: string;
 };
 
-const pageRecordValidator = z.object({
-  version: z.literal(1),
-  id: z.string(),
-  title: z.string().nullable(),
-  path: z.array(z.custom<PathFragment>()),
-  blockMap: z.custom<Record<string, Block>>(),
+const getPageStorage = storageFactory({
+  version: 1,
+  prefix: 'recruit:page:',
+  type: z.object({
+    id: z.string(),
+    title: z.string().nullable(),
+    path: z.array(z.custom<PathFragment>()),
+    blockMap: z.custom<Record<string, Block>>(),
+  }),
 });
-type PageRecord = z.infer<typeof pageRecordValidator>;
 
-const kvKeys = {
-  page: (pageId: string) => `recruit:page:${pageId}`,
-  allowedPages: () => 'recruit:allowdPages',
-};
+const getAllowedPagesStorage = storageFactory({
+  version: 1,
+  prefix: 'recruit:allowedPages',
+  type: z.array(z.string()),
+});
 
 async function refetchPages(ctx: Context) {
+  const pageStorage = getPageStorage(ctx.kv);
+  const allowedPagesStorage = getAllowedPagesStorage(ctx.kv);
+
   const rootPageId = parsePageId(ctx.recruit.rootPageId);
   const allowedPages: string[] = [];
 
@@ -89,18 +102,16 @@ async function refetchPages(ctx: Context) {
     const childTraversePromises = childPageIds.map(async (id) => traverse(id, newPath));
     await Promise.all(childTraversePromises);
 
-    const record: PageRecord = {
-      version: 1,
+    await pageStorage.put(pageId, {
       id: pageId,
       title,
       path: newPath,
       blockMap,
-    };
-    await ctx.kv.put(kvKeys.page(pageId), JSON.stringify(record));
+    });
 
     allowedPages.push(pageId);
   }
 
   await traverse(rootPageId);
-  await ctx.kv.put(kvKeys.allowedPages(), JSON.stringify(allowedPages));
+  await allowedPagesStorage.put('', allowedPages);
 }
