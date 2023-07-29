@@ -32,11 +32,11 @@ export default function MakersIntodution({ className }: GreetingProps) {
         >
           <p className='md:text-40-semibold text-24-semibold'>
             SOPT에 필요한 프로덕트를 만들어
-            <br /> <span className='text-brand-orange'>3천여명의 구성원</span>들을{' '}
+            <br /> <span className='text-brand-orange'>3천여 명의 구성원</span>들을{' '}
             <span className='text-brand-skyblue'>연결</span>하고 <br className='md:hidden' />
             <span className='text-brand-yellow'>새로운 가치</span>
             를 제공하기 위한
-            <br /> SOPT 특수 기구예요.
+            <br /> SOPT 정식 기구예요.
           </p>
         </m.div>
         <m.div
@@ -48,7 +48,7 @@ export default function MakersIntodution({ className }: GreetingProps) {
             공식 홈페이지를 보고
             <br />
             홈페이지에 오너십을 가진 <br className='md:hidden' />
-            조직의 부재라는 문제 의식으로부터
+            조직의 부재라는 문제의식으로부터
             <br />
             이를 지속 가능한 방법으로 해결하고자
             <br className='md:hidden' /> 22년 7월 30일 특수 기구로 시작했어요.
