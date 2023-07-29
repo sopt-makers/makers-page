@@ -27,7 +27,7 @@ export default function Intro({ className }: GreetingProps) {
       >
         <h1 className='md:text-64-semibold text-24-semibold text-center font-semibold'>
           SOPT에 없던 새로운 가치를 <br />
-          프로덕트를 통해 만들어갑니다.
+          프로덕트를 통해 만들어 갑니다.
         </h1>
         <RecruitButton />
         <ArrowIcon />
