@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import clsx from 'clsx';
-import { MotionValue, useAnimationFrame, useMotionValue } from 'framer-motion';
+import { MotionValue, useMotionValue } from 'framer-motion';
 import { FC, useEffect, useRef } from 'react';
 import { Group, Vector3 } from 'three';
 
@@ -46,45 +46,10 @@ const MakersLogo3D: FC<MakersLogo3DProps> = ({ className }) => {
     };
   }, [posX, posY]);
 
-  const value = useMotionValue(0);
-
-  // useEffect(() => {
-  //   const v = 0;
-
-  //   const cancel = requestAnimationFrame(() => {
-  //     value.set(value.get());
-  //   });
-
-  //   return () => {
-  //     cancelAnimationFrame(cancel);
-  //   };
-  // }, []);
-
-  useAnimationFrame(() => {
-    let newValue = value.get() + 5 / 6000;
-    if (newValue >= 1) {
-      newValue -= 1;
-    }
-    value.set(newValue);
-  });
-
   return (
     <div ref={containerRef} className={clsx('h-[200px]', className)}>
       <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 2] }}>
-        <ambientLight intensity={0.01} />
-        <hemisphereLight intensity={0.125} color='#8040df' groundColor='red' />
-        {/* <spotLight
-          castShadow
-          color='#d9dcc0'
-          intensity={1.5}
-          position={[-50, 50, 40]}
-          angle={0.25}
-          penumbra={1}
-          shadow-mapSize={[128, 128]}
-          shadow-bias={0.00005}
-        /> */}
-        <directionalLight color='#b1c1da' intensity={0.3} position={[3, 2, 3]} />
-        <Light progress={value} />
+        <Light />
         <Inner posY={posY} posX={posX} />
       </Canvas>
     </div>
