@@ -16,9 +16,11 @@ const FeedbackSection: FC<FeedbackSectionProps> = ({}) => {
             <span>직접 얘기하는</span>
             <span>활동 후기</span>
           </div>
-          <div className='md:text-24-semibold flex items-center gap-[0.8rem] align-middle text-[1.8rem] font-semibold'>
-            makers 구성원 전체보기 <GoIcon />
-          </div>
+          <a href='https://playground.sopt.org/makers'>
+            <div className='md:text-24-semibold flex items-center gap-[0.8rem] align-middle text-[1.8rem] font-semibold'>
+              makers 구성원 전체보기 <GoIcon />
+            </div>
+          </a>
         </div>
       </div>
       <div className='mt-[4rem] flex justify-end md:mt-0 md:flex-1'>
