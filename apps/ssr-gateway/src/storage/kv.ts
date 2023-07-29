@@ -1,4 +1,4 @@
-import type { KVNamespace } from '@cloudflare/workers-types';
+import type { KVNamespace, KVNamespacePutOptions } from '@cloudflare/workers-types';
 import { z } from 'zod';
 
 interface StorageConfig<T, V extends number> {
@@ -28,12 +28,12 @@ export function createStorageClient<T, V extends number>(kv: KVNamespace, config
     return parsed.data.data;
   }
 
-  async function put(key: string, value: T) {
+  async function put(key: string, value: T, option?: KVNamespacePutOptions) {
     const newData = {
       version,
       data: value,
     };
-    await kv.put(prefix + key, JSON.stringify(newData));
+    await kv.put(prefix + key, JSON.stringify(newData), option);
   }
 
   async function remove(key: string) {
@@ -50,7 +50,7 @@ export function createStorageClient<T, V extends number>(kv: KVNamespace, config
   async function deleteAll() {
     const keys = await list();
 
-    await Promise.all(keys.map((key) => remove(key.name)));
+    await Promise.all(keys.map(async (key) => await kv.delete(key.name)));
   }
 
   return {

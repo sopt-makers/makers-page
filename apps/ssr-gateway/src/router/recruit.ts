@@ -10,6 +10,7 @@ export const recruitRouter = router({
   page: internalProcedure.input(z.object({ id: z.string().optional() })).query(async ({ ctx, input }) => {
     const pageStorage = getPageStorage(ctx.kv);
     const allowedPagesStorage = getAllowedPagesStorage(ctx.kv);
+    const signedPageStorage = getSignedPageStorage(ctx.kv);
 
     const pageId = parsePageId(input.id ?? ctx.recruit.rootPageId);
     if (!pageId) {
@@ -25,6 +26,12 @@ export const recruitRouter = router({
       return { status: 'NOT_FOUND' } as const;
     }
 
+    const cached = await signedPageStorage.get(pageId);
+    if (cached) {
+      console.log('cached');
+      return { status: 'SUCCESS', ...cached } as const;
+    }
+
     const data = await pageStorage.get(pageId);
 
     if (!data) {
@@ -36,6 +43,13 @@ export const recruitRouter = router({
     const blockMapSigned = await (async () => {
       return await ctx.recruit.notionClient.SignFileUrls(blockMap);
     })();
+
+    const newSignedPage = {
+      ...pageData,
+      blockMap: blockMapSigned,
+    };
+
+    await signedPageStorage.put(pageId, newSignedPage, { expirationTtl: 60 * 50 });
 
     return { status: 'SUCCESS', ...pageData, blockMap: blockMapSigned } as const;
   }),
@@ -52,15 +66,23 @@ type PathFragment = {
   title: string;
 };
 
+const pageSchema = z.object({
+  id: z.string(),
+  title: z.string().nullable(),
+  path: z.array(z.custom<PathFragment>()),
+  blockMap: z.custom<Record<string, Block>>(),
+});
+
 const getPageStorage = storageFactory({
-  version: 1,
+  version: 2,
   prefix: 'recruit:page:',
-  type: z.object({
-    id: z.string(),
-    title: z.string().nullable(),
-    path: z.array(z.custom<PathFragment>()),
-    blockMap: z.custom<Record<string, Block>>(),
-  }),
+  type: pageSchema,
+});
+
+const getSignedPageStorage = storageFactory({
+  version: 2,
+  prefix: 'recruit:signedPage:',
+  type: pageSchema,
 });
 
 const getAllowedPagesStorage = storageFactory({
@@ -72,6 +94,7 @@ const getAllowedPagesStorage = storageFactory({
 async function refetchPages(ctx: Context) {
   const pageStorage = getPageStorage(ctx.kv);
   const allowedPagesStorage = getAllowedPagesStorage(ctx.kv);
+  const signedPagesStorage = getSignedPageStorage(ctx.kv);
 
   const rootPageId = parsePageId(ctx.recruit.rootPageId);
   const allowedPages: string[] = [];
@@ -114,4 +137,5 @@ async function refetchPages(ctx: Context) {
 
   await traverse(rootPageId);
   await allowedPagesStorage.put('', allowedPages);
+  await signedPagesStorage.deleteAll();
 }
