@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FC } from 'react';
 
+import GithubLogo from '@/components/common/icons/GithubLogo';
 import BlockRenderer from '@/components/notion/unofficial/BlockRenderer';
 import { recruitBlockComponents, renderRecruitBlockContainer } from '@/components/recruit/recruitBlockUnofficial';
 
@@ -60,6 +61,16 @@ const RecruitPage: FC<RecruitPageProps> = async ({ params: { slug = [] } }) => {
         )}
         renderContainer={renderRecruitBlockContainer}
       />
+
+      <div className='mt-[5rem] flex items-center justify-end pb-[1.6rem] pr-[2rem]'>
+        <a
+          href='https://github.com/sopt-makers/makers-page'
+          target='_blank'
+          className='flex w-[2rem] items-center justify-center text-[#6c6c6c]'
+        >
+          <GithubLogo />
+        </a>
+      </div>
     </div>
   );
 };
