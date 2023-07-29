@@ -19,22 +19,22 @@ export const renderRecruitBlockContainer = (children: ReactNode) => (
 
 export const recruitBlockComponents = {
   header: ({ block }) => (
-    <h1 className='mb-[1rem] mt-[3rem] text-[3rem] font-bold leading-[130%] md:text-[4rem]'>
+    <h1 className='mb-[1rem] mt-[3rem] break-keep text-[3rem] font-bold leading-[130%] md:text-[4rem]'>
       <TextRenderer text={block.properties?.title} />
     </h1>
   ),
   sub_header: ({ block }) => (
-    <h2 className='mb-[1rem] mt-[2.4rem] text-[2.6rem] font-bold md:text-[3.2rem]'>
+    <h2 className='mb-[1rem] mt-[2.4rem] break-keep text-[2.6rem] font-bold md:text-[3.2rem]'>
       <TextRenderer text={block.properties?.title} />
     </h2>
   ),
   sub_sub_header: ({ block }) => (
-    <h3 className='mb-[1rem] mt-[1.6rem] text-[2rem] font-bold md:text-[2.4rem]'>
+    <h3 className='mb-[1rem] mt-[1.6rem] break-keep text-[2rem] font-bold md:text-[2.4rem]'>
       <TextRenderer text={block.properties?.title} />
     </h3>
   ),
   text: ({ block }) => (
-    <p className='min-h-[1em] break-words py-[0.6rem] font-normal leading-[150%] text-white/80'>
+    <p className='min-h-[1em] py-[0.6rem] font-normal leading-[150%] text-white/80'>
       <TextRenderer text={block.properties?.title} />
     </p>
   ),
