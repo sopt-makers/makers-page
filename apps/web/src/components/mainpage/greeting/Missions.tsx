@@ -27,7 +27,7 @@ export default function Missions({ className }: GreetingProps) {
           >
             <span className='text-brand-skyblue text-16-regular flex h-[6rem] items-center'>MISSION 1.</span>
             <span>
-              3천명이 넘는 SOPT 구성원들의
+              3천 명이 넘는 SOPT 구성원들의
               <br />
               연결되지 못한 가치를 발견하고,
             </span>

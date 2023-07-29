@@ -14,9 +14,8 @@ export default function Greeting() {
   const { scrollYProgress: containerProgress } = useScroll({
     target: ref,
   });
-  const { scrollYProgress } = useScroll();
-  const paddingBottomLogo = useTransform(scrollYProgress, [0, 0.07], ['35rem', '0rem']);
-  const opacityLogo = useTransform(scrollYProgress, [0, 0.07], [1, 0.5]);
+  const paddingBottomLogo = useTransform(containerProgress, [0, 0.15], ['35rem', '0rem']);
+  const opacityLogo = useTransform(containerProgress, [0, 0.15], [1, 0.5]);
 
   return (
     <div ref={ref} className='relative h-[770rem] md:h-[790rem]'>

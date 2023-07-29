@@ -37,8 +37,8 @@ export default function ProductSection({ className }: ProductProps) {
               SOPT의 다양한 활동들과 사람들을 소개하고, 멋진 결과물을 잘 보여주어
               <br /> SOPT가 지닌 열정과 가치들을 잘 알리는 역할을 해요.
               <br />
-              <br /> 그로 인해 대외적으로 후원 및 협력을 용이하게 하고, 더 많은 분들이 SOPT를 잘 이해하고 지원할 수
-              있도록 도와요.
+              <br /> 그로 인해 대외적으로 후원 및 협력을 용이하게 하고, 더 많은 분이 SOPT를 잘 이해하고 지원할 수 있도록
+              도와요.
             </Description>
             <a href='https://playground.sopt.org/'>
               <Title
@@ -55,10 +55,10 @@ export default function ProductSection({ className }: ProductProps) {
               <br /> 앱잼, 솝커톤, 솝텀 등 프로젝트를 등록할 수 있고 스터디, 세미나 등의 모임을 열고 또 참여할 수
               있어요.
               <br />
-              SOPT 플레이그라운드는 SOPT 회원들이 소통하고 연결될 수 있는 공간이에요. 멘토링을 통한 가치있는 연결,
+              SOPT 플레이그라운드는 SOPT 회원들이 소통하고 연결될 수 있는 공간이에요. 멘토링을 통한 가치 있는 연결,
               끝말잇기와 같은
-              <br className='hidden md:block' /> 가벼운 연결도 만들어가고 있어요. <br className='md:hidden' />
-              현재는 약 500명의 회원이 있으며 앞으로 모임 피드, 커뮤니티 등 여러 가치있는 연결을 만들어
+              <br className='hidden md:block' /> 가벼운 연결도 만들어 가고 있어요. <br className='md:hidden' />
+              현재는 약 500명의 회원이 있으며 앞으로 모임 피드, 커뮤니티 등 여러 가치 있는 연결을 만들어
               <br className='hidden md:block' />
               가고자 해요.
             </Description>
@@ -67,12 +67,12 @@ export default function ProductSection({ className }: ProductProps) {
               <br />& OPERATION
             </Title>
             <Description type='app'>
-              공식앱을 통해서 SOPT 정규 세미나와 데모데이 등 <br className='md:hidden' />
+              공식 앱을 통해서 SOPT 정규 세미나와 데모데이 등 <br className='md:hidden' />
               공식 행사의 출석 인증 및 관리를 할 수 있어요.
               <br /> 솝탬프를 통해 SOPT를 A부터 Z까지 즐길 수 있는 미션을 달성하며 회원들과 함께 랭킹을 쌓을 수 있어요.
               <br />
               <br />
-              공식앱은 SOPT 활동이 더욱 편하고 즐거울 수 있도록 돕는 역할을 하며 여러 서비스들의 중심점의 역할을 하고자
+              공식 앱은 SOPT 활동이 더욱 편하고 즐거울 수 있도록 돕는 역할을 하며 여러 서비스들의 중심점 역할을 하고자
               해요.
             </Description>
           </nav>
