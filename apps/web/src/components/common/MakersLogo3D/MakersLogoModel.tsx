@@ -18,13 +18,15 @@ type GLTFResult = GLTF & {
 };
 
 export function MakersLogoModel(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/logo-transformed.glb') as GLTFResult;
+  const { nodes } = useGLTF('/logo-transformed.glb') as GLTFResult;
   return (
     <group {...props} dispose={null} scale={20}>
       <group rotation={[-Math.PI, -Math.PI, -Math.PI]}>
         <group position={[-0.07, -0.09, 0]}>
           <group position={[0.08, 0.08, 0]}>
-            <mesh geometry={nodes.Fill.geometry} material={materials.Mat} position={[-0.08, -0.08, 0]} />
+            <mesh geometry={nodes.Fill.geometry} position={[-0.08, -0.08, 0]}>
+              <meshPhongMaterial color='#fff' shininess={10} />
+            </mesh>
           </group>
         </group>
       </group>
