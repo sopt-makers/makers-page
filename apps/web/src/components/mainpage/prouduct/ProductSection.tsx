@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import Link from 'next/link';
 
 import Description from './Description';
 import Title from './Title';
@@ -28,11 +27,11 @@ export default function ProductSection({ className }: ProductProps) {
             </p>
           </section>
           <nav className='md:text-40-semibold text-24-semibold w-full border-solid border-white md:border-l'>
-            <Link href='https://www.sopt.org/'>
+            <a href='https://www.sopt.org/'>
               <Title type='official' className='sticky top-0'>
                 OFFICIAL
               </Title>
-            </Link>
+            </a>
             <Description type='official'>
               SOPT 공식 홈페이지에서는 그동안 잘 드러나지 않던 <br className='md:hidden' />
               SOPT의 다양한 활동들과 사람들을 소개하고, 멋진 결과물을 잘 보여주어
@@ -41,7 +40,7 @@ export default function ProductSection({ className }: ProductProps) {
               <br /> 그로 인해 대외적으로 후원 및 협력을 용이하게 하고, 더 많은 분들이 SOPT를 잘 이해하고 지원할 수
               있도록 도와요.
             </Description>
-            <Link href='https://playground.sopt.org/'>
+            <a href='https://playground.sopt.org/'>
               <Title
                 type='playground'
                 className='sticky top-[8.4rem] border-t border-solid border-white md:top-[11.1rem]'
@@ -49,7 +48,7 @@ export default function ProductSection({ className }: ProductProps) {
                 PLAYGROUND
                 <br />& CREW
               </Title>
-            </Link>
+            </a>
             <Description type='playground'>
               플레이그라운드에서는 <br className='md:hidden' />
               SOPT 전체 회원들의 소개를 볼 수 있고, 나보다 앞을 걸어가고 있는 OB들에게 멘토링을 신청할 수 있어요.
