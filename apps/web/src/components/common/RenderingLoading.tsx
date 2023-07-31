@@ -9,11 +9,8 @@ export function RenderingLoading() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const cancel = setTimeout(() => setLoaded(true), 100);
-
-    return () => {
-      clearTimeout(cancel);
-    };
+    setTimeout(() => setLoaded(true), 100);
+    setTimeout(() => setLoaded(true), 1000);
   }, []);
 
   return (
