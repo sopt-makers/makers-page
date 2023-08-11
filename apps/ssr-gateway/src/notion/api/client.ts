@@ -86,6 +86,10 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
       return [];
     });
 
+    if (queries.length === 0) {
+      return blockMap;
+    }
+
     const { signedUrls } = await notionRawAPI.getSignedFileUrls(queries.map(({ query }) => query));
 
     const imageSignedUrlMap = Object.fromEntries(queries.map(({ blockId }, idx) => [blockId, signedUrls[idx]]));
