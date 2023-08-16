@@ -8,7 +8,7 @@ export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
 
   useEffect(() => {
-    const deadline = dayjs('2023-08-05T13:00:00');
+    const deadline = dayjs('2023-08-07T14:59:00.000Z');
     const start = dayjs('2023-07-29T00:00:00');
 
     const calculateTimeLeft = () => {
@@ -48,7 +48,7 @@ export default function RecruitButton() {
       href='/recruit/'
       className='bg-dark1 mb-[3rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] px-[4rem] py-[1.6rem]'
     >
-      <p className='md:text-24-semibold text-18-semibold'>3기 합류하기 (~8/5)</p>
+      <p className='md:text-24-semibold text-18-semibold'>3기 합류하기 (~8/7)</p>
       <p className='text-16-regular mt-[1.2rem] text-center'>{timeLeft}</p>
     </Link>
   );
