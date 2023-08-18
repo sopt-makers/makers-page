@@ -56,12 +56,7 @@ const ArticleList: FC<ArticleListProps> = async ({ category: currentCategory }) 
               </div>
               {article.thumbnail && (
                 <div className='mt-[25px] flex h-[68px] w-[68px] justify-center overflow-hidden md:mt-0 md:h-[140px] md:w-[140px]'>
-                  <img
-                    src={article.thumbnail.url}
-                    alt='Thumbnail'
-                    height='140'
-                    className='h-full w-full object-cover'
-                  />
+                  <img src={article.thumbnail} alt='Thumbnail' height='140' className='h-full w-full object-cover' />
                 </div>
               )}
             </Link>

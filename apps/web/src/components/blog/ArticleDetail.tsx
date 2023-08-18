@@ -21,7 +21,7 @@ async function ArticlePage({ id }: ArticlePageProps) {
         </Link>
         {article.thumbnail && (
           <div className='border-real-white/10 overflow-clip rounded-lg border md:rounded-3xl'>
-            <img src={article.thumbnail.url} alt='Thumbnail Image' />
+            <img src={article.thumbnail} alt='Thumbnail Image' />
           </div>
         )}
         <div className='mt-[20px] flex md:mt-[32px]'>
