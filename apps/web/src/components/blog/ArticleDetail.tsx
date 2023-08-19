@@ -1,16 +1,31 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 import { gateway } from '@/gateway';
 
-import { BlockRenderer } from '../notion/official/BlockRenderer';
-import { blogBlockComponents } from './blogBlockComponents';
+import BlockRenderer from '../notion/unofficial/BlockRenderer';
+import { recruitBlockComponents, renderRecruitBlockContainer } from '../recruit/recruitBlockUnofficial';
 
 interface ArticlePageProps {
   id: string;
 }
 
 async function ArticlePage({ id }: ArticlePageProps) {
-  const article = await gateway.blog.article.query({ id });
+  const article = await gateway.blog.article.query(id);
+
+  if (!article) {
+    notFound();
+  }
+
+  const getBlock = (id: string) => {
+    const block = article.blockMap[id];
+    if (block) {
+      return block;
+    }
+    throw new Error('Invalid Block Id: ' + id);
+  };
+
+  const pageBlock = article.blockMap[id];
 
   return (
     <div className='flex flex-col items-center'>
@@ -19,34 +34,37 @@ async function ArticlePage({ id }: ArticlePageProps) {
           <BackIcon />
           <span className='text-gray80 text-[16px] font-light leading-[20px]'>블로그 홈 가기</span>
         </Link>
-        {article.thumbnail && (
+        {article.meta.thumbnail && (
           <div className='border-real-white/10 overflow-clip rounded-lg border md:rounded-3xl'>
-            <img src={article.thumbnail} alt='Thumbnail Image' />
+            <img src={article.meta.thumbnail} alt='Thumbnail Image' />
           </div>
         )}
         <div className='mt-[20px] flex md:mt-[32px]'>
-          {article.category && (
+          {article.meta.category && (
             <>
-              <Link href={`/blog/category/${article.category}`}>
+              <Link href={`/blog/category/${article.meta.category}`}>
                 <span className='bg-black80 text-white100 rounded-[13px] px-[12px] py-[6px] leading-[120%]'>
-                  {article.category}
+                  {article.meta.category}
                 </span>
               </Link>
             </>
           )}
         </div>
         <h1 className='text-white100 mt-[12px] break-keep text-[28px] font-bold leading-[130%] md:text-[40px]'>
-          {article.title}
+          {article.meta.title}
         </h1>
-        <div className='text-gray60 mt-[8px] text-[14px] font-light'>
-          {/* {article.publishedAt && format(article.publishedAt, 'yyyy.MM.dd')} */}
-          {article.publishedAt?.toString()}
-        </div>
+        <div className='text-gray60 mt-[8px] text-[14px] font-light'>2020/20/30</div>
         <div className='mt-[40px] md:mt-[80px]'>
           <BlockRenderer
-            blocks={article.blocks}
-            blockComponents={blogBlockComponents}
-            renderPageLink={() => <div>Subpage not allowed</div>}
+            blocks={pageBlock.content ?? []}
+            blockComponents={recruitBlockComponents}
+            getBlock={getBlock}
+            renderPageLink={({ id, name, className }) => (
+              <Link href={`/recruit/${id}`} className={className}>
+                {name}
+              </Link>
+            )}
+            renderContainer={renderRecruitBlockContainer}
           />
         </div>
       </div>

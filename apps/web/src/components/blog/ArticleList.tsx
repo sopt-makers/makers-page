@@ -36,27 +36,35 @@ const ArticleList: FC<ArticleListProps> = async ({ category: currentCategory }) 
               <div className='flex flex-grow flex-col'>
                 <div className='text-gray60 text-[14px] font-light md:text-[16px]'>
                   {/* {article.category} | {article.publishedAt && format(article.publishedAt, 'yyyy.MM.dd')} */}
-                  {article.publishedAt?.toString()}
+                  {/* {article.meta.publishedAt?.toString()} */}
+                  2020/12/12
                 </div>
                 <h1 className='text-white100 mt-[6px] line-clamp-2 break-keep text-[22px] font-bold leading-tight md:mt-[8px] md:text-[28px]'>
-                  {article.title}
+                  {article.meta.title}
                 </h1>
                 <div className='mt-[12px] text-[14px] font-light md:text-[16px]'>
-                  {article.editors.length === 1 && (
+                  {article.meta.editors.length === 1 && (
                     <>
-                      <span className='text-white100'>{article.editors[0].name}</span>
+                      <span className='text-white100'>{article.meta.editors[0].name}</span>
                       <span className='text-gray60 px-[4px]'>∙</span>
-                      <span className='text-gray60'>{article.editors[0].role}</span>
+                      <span className='text-gray60'>{article.meta.editors[0].role}</span>
                     </>
                   )}
-                  {article.editors.length >= 2 && (
-                    <span className='text-white100'>{article.editors.map((editor) => editor.name).join(', ')}</span>
+                  {article.meta.editors.length >= 2 && (
+                    <span className='text-white100'>
+                      {article.meta.editors.map((editor) => editor.name).join(', ')}
+                    </span>
                   )}
                 </div>
               </div>
-              {article.thumbnail && (
+              {article.meta.thumbnail && (
                 <div className='mt-[25px] flex h-[68px] w-[68px] justify-center overflow-hidden md:mt-0 md:h-[140px] md:w-[140px]'>
-                  <img src={article.thumbnail} alt='Thumbnail' height='140' className='h-full w-full object-cover' />
+                  <img
+                    src={article.meta.thumbnail}
+                    alt='Thumbnail'
+                    height='140'
+                    className='h-full w-full object-cover'
+                  />
                 </div>
               )}
             </Link>

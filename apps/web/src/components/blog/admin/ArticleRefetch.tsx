@@ -16,10 +16,10 @@ const ArticleRefetch: FC<ArticleRefetchProps> = ({}) => {
   const queryClient = useQueryClient();
   const { data, isLoading, isError } = useQuery({
     queryKey: ['articleListAdmin'],
-    queryFn: () => gateway.blog.articleList.query(),
+    queryFn: () => gateway.blog.list.query({ category: undefined }),
   });
   const { mutate: mutateRefetch, status: refetchStatus } = useMutation({
-    mutationFn: () => gateway.blog.refetchArticleList.mutate(),
+    mutationFn: () => gateway.blog.refetchList.mutate(),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['articleListAdmin'] });
     },
@@ -39,7 +39,7 @@ const ArticleRefetch: FC<ArticleRefetchProps> = ({}) => {
         리스트 다시 불러오기
       </Button>
       <Table.Root>
-        {data.map((entry) => (
+        {data.articles.map((entry) => (
           <ArticleManageRow key={entry.id} id={entry.id} />
         ))}
       </Table.Root>

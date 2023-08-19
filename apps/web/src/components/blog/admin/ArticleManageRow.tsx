@@ -13,7 +13,7 @@ interface ArticleManageRowProps {
 const ArticleManageRow: FC<ArticleManageRowProps> = ({ id }) => {
   const gateway = useGateway();
   const queryClient = useQueryClient();
-  const { data } = useQuery({ queryKey: ['adminArticle', id], queryFn: () => gateway.blog.articleNew.query(id) });
+  const { data } = useQuery({ queryKey: ['adminArticle', id], queryFn: () => gateway.blog.article.query(id) });
   const { status: mutateStatus, mutate } = useMutation({
     mutationFn: () => gateway.blog.refetchArticle.mutate(id),
     onSuccess() {
