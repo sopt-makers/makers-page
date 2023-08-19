@@ -74,6 +74,8 @@ export function createUnofficialNotionRawClient() {
   }
 
   async function getSignedFileUrls(urls: getSignedFileUrlsRequest[]) {
+    console.log(JSON.stringify(urls));
+
     const response = await fetchWithErrorHandling('https://www.notion.so/api/v3/getSignedFileUrls', {
       method: 'POST',
       headers: defaultHeaders,

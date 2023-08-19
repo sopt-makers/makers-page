@@ -1,16 +1,10 @@
 import { cloneDeep, uniq } from 'lodash-es';
-import { Block, PageChunk } from 'notion-types';
+import { Block, Decoration, PageChunk } from 'notion-types';
 import { parsePageId } from 'notion-utils';
 
 import { createUnofficialNotionRawClient } from './rawApi';
 
-export interface NotionImageHandler {
-  save: (key: string, url: string) => Promise<{ url: string }>;
-  getResponse: (key: string) => Promise<Response>;
-  delete: (keys: string[]) => Promise<void>;
-}
-
-export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) {
+export function createNotionUnofficialClient() {
   const notionRawAPI = createUnofficialNotionRawClient();
 
   async function getPage(id: string) {
@@ -27,7 +21,6 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
     if (!pageBlock || pageBlock.type !== 'page') {
       throw new Error('Invalid page');
     }
-    const title = pageBlock.properties?.title?.map((v) => v[0]).join('') ?? null;
 
     const fetchMissing = async (blocks: Block[], blockMap: Record<string, Block>): Promise<Record<string, Block>> => {
       const unknownBlockIds = uniq(
@@ -57,14 +50,42 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
 
     const mergedBlockMap = await fetchMissing(getBlocks(chunk), blockMap);
 
+    const title = pageBlock.properties?.title?.map((v) => v[0]).join('') ?? '';
+
+    const properties = (() => {
+      if (!chunk.recordMap.collection) {
+        return {};
+      }
+
+      if (pageBlock.parent_id in chunk.recordMap.collection && pageBlock.properties) {
+        const properties = pageBlock.properties as Record<string, Decoration[]>;
+        const collection = chunk.recordMap.collection[pageBlock.parent_id].value;
+        return Object.fromEntries(
+          Object.entries(collection.schema).map(([key, value]) => {
+            const deco = properties[key];
+            return [
+              value.name,
+              {
+                type: value.type,
+                value: deco,
+              },
+            ];
+          }),
+        );
+      }
+
+      return {};
+    })();
+
     return {
       title,
       pageBlock,
       blockMap: mergedBlockMap,
+      properties,
     };
   }
 
-  async function SignFileUrls(blockMap: Record<string, Block>) {
+  async function signFileUrls(blockMap: Record<string, Block>) {
     const queries = Object.values(blockMap).flatMap((block) => {
       if (block.type !== 'image') {
         return [];
@@ -105,9 +126,29 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
     return clonedBlockMap;
   }
 
+  async function resignSignedUrls(pageId: string, urls: string[]) {
+    const result = await notionRawAPI.getSignedFileUrls(
+      urls.map((url) => {
+        const newUrl = new URL(url);
+        newUrl.search = '';
+
+        return {
+          url: newUrl.href,
+          permissionRecord: {
+            table: 'block',
+            id: parsePageId(pageId),
+          },
+        };
+      }),
+    );
+
+    return result.signedUrls;
+  }
+
   return {
     getPage,
-    SignFileUrls,
+    signFileUrls,
+    resignSignedUrls,
   };
 }
 

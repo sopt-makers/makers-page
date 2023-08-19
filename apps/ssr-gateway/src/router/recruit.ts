@@ -41,7 +41,7 @@ export const recruitRouter = router({
     const { blockMap, ...pageData } = data;
 
     const blockMapSigned = await (async () => {
-      return await ctx.recruit.notionClient.SignFileUrls(blockMap);
+      return await ctx.recruit.notionClient.signFileUrls(blockMap);
     })();
 
     const newSignedPage = {

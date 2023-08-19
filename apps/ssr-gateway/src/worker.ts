@@ -119,7 +119,7 @@ export default {
             delete: imageHandler.delete,
           },
           recruit: {
-            notionClient: createNotionUnofficialClient(imageHandler),
+            notionClient: createNotionUnofficialClient(),
             rootPageId: env.RECRUIT_NOTION_PAGE_ID,
           },
           kv: env.MAKERS_PAGE_KV,

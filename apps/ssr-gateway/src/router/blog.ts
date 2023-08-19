@@ -56,12 +56,12 @@ export const blogRouter = router({
     const { blockMap, pageBlock } = await ctx.recruit.notionClient.getPage(input);
     const pageData = await ctx.blog.notion.getPage(input);
 
-    const properties = extractArticleProperties(pageData.properties);
+    const propertiesFromAPI = extractArticleProperties(pageData.properties);
 
     await articleStorage.put(input, {
       id: pageBlock.id,
       blockMap,
-      meta: properties,
+      meta: { ...propertiesFromAPI },
       lastFetched: new Date().toISOString(),
     });
   }),
@@ -69,7 +69,15 @@ export const blogRouter = router({
     const articleStorage = getArticleStorage(ctx.kv);
     const article = await articleStorage.get(input);
 
-    return article ?? null;
+    if (!article) {
+      return null;
+    }
+
+    const blockMapSigned = await (async () => {
+      return await ctx.recruit.notionClient.signFileUrls(article.blockMap);
+    })();
+
+    return { ...article, blockMap: blockMapSigned };
   }),
 });
 
