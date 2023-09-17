@@ -47,12 +47,12 @@ module.exports = {
       '32-regular': ['3.2rem', { lineHeight: '160%', letterSpacing: '-0.064rem', fontWeight: 400 }],
       '28-regular': ['2.8rem', { lineHeight: '160%', letterSpacing: '-0.064rem', fontWeight: 400 }],
       '24-semibold': ['2.4rem', { lineHeight: '150%', letterSpacing: '-0.048rem', fontWeight: 600 }],
-      '18-bold': ['1.8rem', { lineHeight: '140%', letterSpacing: '-0.036rem', fontWeight: 700 }],
       '18-semibold': ['1.8rem', { lineHeight: '150%', letterSpacing: '-0.036rem', fontWeight: 600 }],
       '18-regular': ['1.8rem', { lineHeight: '150%', letterSpacing: '-0.036rem', fontWeight: 400 }],
-      '16-bold': ['1.6rem', { lineHeight: '140%', letterSpacing: '-0.036rem', fontWeight: 700 }],
+      '16-semibold': ['1.6rem', { lineHeight: '140%', letterSpacing: '-0.036rem', fontWeight: 500 }],
       '16-regular': ['1.6rem', { lineHeight: '130%', letterSpacing: '-0.036rem', fontWeight: 400 }],
       '16-regular-desc': ['1.6rem', { lineHeight: '160%', letterSpacing: '-0.128rem', fontWeight: 400 }],
+      '14-semibold': ['1.4rem', { lineHeight: '140%', letterSpacing: '-0.128rem', fontWeight: 500 }],
     },
     backgroundImage: {
       'makers-logo':
