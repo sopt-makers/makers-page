@@ -3,7 +3,9 @@
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-import RecruitButton from '../../common/RecruitButton';
+import NoticeButton from '@/components/common/NoticeButton';
+
+// import RecruitButton from '../../common/RecruitButton';
 
 export default function RecruitSection() {
   const ref = useRef(null);
@@ -29,7 +31,8 @@ export default function RecruitSection() {
             <br />
             메이커스에 합류하세요
           </h1>
-          <RecruitButton />
+          {/* <RecruitButton /> */}
+          <NoticeButton />
         </div>
       </div>
     </m.article>
