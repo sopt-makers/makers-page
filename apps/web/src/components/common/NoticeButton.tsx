@@ -1,22 +1,22 @@
-'use Client';
+'use client';
 
 import Link from 'next/link';
 import React from 'react';
 
 export default function NoticeButton() {
   return (
-    <div className='mb-[9.3rem] mt-[4rem] flex flex-col gap-[1.2rem] md:flex-row'>
+    <div className='mb-[9.3rem] mt-[4rem] flex flex-col gap-[0.8rem] md:flex-row md:gap-[1.2rem]'>
       <Link
         href='https://docs.google.com/forms/d/e/1FAIpQLScQQoHcjvOBnPAsNU_PJ27pO5ymNjoYfFIXt2n46KxjuPCSbg/viewform'
-        className='w-[23rem]'
+        className='w-[19.2rem] md:w-[21.2rem]'
       >
-        <p className='md:text-18-bold text-black100 text-16-bold flex items-center justify-center gap-[0.6rem] rounded-[0.6rem] bg-white px-[2rem] py-[1.6rem]'>
+        <p className='text-14-semibold text-black100 md:text-16-semibold flex items-center justify-center gap-[0.6rem] rounded-[0.6rem] bg-white px-[2rem] py-[1.4rem] md:py-[1.6rem]'>
           <NoticeIcon />
           4기 모집 알림 신청
         </p>
       </Link>
-      <Link href='/recruit/' className='w-[23rem]'>
-        <p className='md:text-18-bold text-16-bold bg-gray2 flex items-center justify-center gap-[0.6rem] rounded-[0.6rem] px-[2rem] py-[1.6rem] text-white'>
+      <Link href='/recruit/' className='w-[19.2rem] md:w-[21.2rem]'>
+        <p className='text-14-semibold md:text-16-semibold bg-gray2 flex items-center justify-center gap-[0.6rem] rounded-[0.6rem] px-[2rem] py-[1.4rem] text-white md:py-[1.6rem]'>
           <ArrowIcon />
           3기 모집글 보기 (마감)
         </p>
