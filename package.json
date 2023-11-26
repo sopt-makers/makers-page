@@ -31,6 +31,8 @@
     "packages/*"
   ],
   "dependencies": {
+    "@react-three/drei": "^9.88.17",
+    "@react-three/fiber": "^8.15.11",
     "dayjs": "^1.11.9"
   }
 }
