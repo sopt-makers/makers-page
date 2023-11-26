@@ -1,6 +1,7 @@
 import './global.css';
 
 import clsx from 'clsx';
+import { Viewport } from 'next';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { ReactNode } from 'react';
@@ -43,14 +44,17 @@ export const metadata = {
   metadataBase: BASE_URL ? new URL(BASE_URL) : undefined,
   title: 'SOPT Makers',
   description: '',
-  colorScheme: 'dark',
-  themeColor: '#0F1010',
   openGraph: {
     title: 'SOPT Makers',
     description: '',
     url: BASE_URL ?? undefined,
     type: 'website',
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: 'dark',
+  themeColor: '#0F1010',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
