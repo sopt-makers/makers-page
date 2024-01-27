@@ -4,8 +4,7 @@ import clsx from 'clsx';
 import { m, useScroll, useTransform } from 'framer-motion';
 import { SVGProps, useRef } from 'react';
 
-import NoticeButton from '@/components/common/NoticeButton';
-// import RecruitButton from '@/components/common/RecruitButton';
+import RecruitButton from '@/components/common/RecruitButton';
 
 interface GreetingProps {
   className?: string;
@@ -32,8 +31,8 @@ export default function Intro({ className }: GreetingProps) {
           SOPT에 없던 새로운 가치를 <br />
           프로덕트를 통해 만들어 갑니다.
         </h1>
-        {/* <RecruitButton /> */}
-        <NoticeButton />
+        <RecruitButton />
+        {/* <NoticeButton /> */}
         <ArrowIcon />
       </m.div>
     </article>
