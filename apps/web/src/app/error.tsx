@@ -16,7 +16,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
           () => reset()
         }
       >
-        Try again
+        재시도
       </button>
     </div>
   );
