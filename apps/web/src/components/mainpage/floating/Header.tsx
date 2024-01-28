@@ -13,7 +13,7 @@ interface NavButton {
 
 export default function Header() {
   const navButtons: NavButton[] = [
-    { name: 'INTRODUTION', position: 3000 },
+    { name: 'INTRODUCTION', position: 3000 },
     { name: 'OUR MISSION', position: 6500 },
     { name: 'SERVICE', position: 8100 },
     { name: 'CORE VALUE', position: 10400 },
