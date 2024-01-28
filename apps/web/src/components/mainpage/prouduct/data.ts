@@ -15,7 +15,7 @@ export const descriptionMap: DescriptionMap = {
     altText: 'playground_image',
   },
   app: {
-    imageUrl: 'https://github.com/sopt-makers/makers-page/assets/97586683/73dd7fa5-21e2-4977-b0e6-6b6fa45729ef',
+    imageUrl: 'https://github.com/sopt-makers/makers-page/assets/97586683/c9df5461-c5bd-49b8-a84b-932fba081cea',
     altText: 'app_image',
   },
 };
