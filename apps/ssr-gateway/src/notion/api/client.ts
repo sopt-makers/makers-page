@@ -71,7 +71,11 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
       }
 
       const source = block.properties?.source[0][0];
-      if (source.includes('/secure.notion-static.com/')) {
+
+      if (
+        source.includes('/secure.notion-static.com/') ||
+        source.includes('/prod-files-secure.s3.us-west-2.amazonaws.com/')
+      ) {
         return {
           blockId: block.id,
           query: {
@@ -83,6 +87,7 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
           },
         };
       }
+
       return [];
     });
 
