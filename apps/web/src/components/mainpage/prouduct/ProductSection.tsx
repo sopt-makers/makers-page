@@ -50,17 +50,16 @@ export default function ProductSection({ className }: ProductProps) {
               </Title>
             </a>
             <Description type='playground'>
-              플레이그라운드에서는 <br className='md:hidden' />
-              SOPT 전체 회원들의 소개를 볼 수 있고, 나보다 앞을 걸어가고 있는 OB들에게 멘토링을 신청할 수 있어요.
-              <br /> 앱잼, 솝커톤, 솝텀 등 프로젝트를 등록할 수 있고 스터디, 세미나 등의 모임을 열고 또 참여할 수
+              플레이그라운드에서는
+              <br className='md:hidden' />
+              커뮤니티와 모임 피드를 통해 다양한 이야기를 나눌 수 있고, SOPT 전체 회원들의 소개를 볼 수 있어요.
+              <br /> 또한 앱잼, 솝커톤, 솝텀 등 프로젝트를 등록할 수 있고 스터디, 세미나 등의 모임을 열고 참여할 수
               있어요.
               <br />
-              SOPT 플레이그라운드는 SOPT 회원들이 소통하고 연결될 수 있는 공간이에요. 멘토링을 통한 가치 있는 연결,
-              끝말잇기와 같은
-              <br className='hidden md:block' /> 가벼운 연결도 만들어 가고 있어요. <br className='md:hidden' />
-              현재는 약 500명의 회원이 있으며 앞으로 모임 피드, 커뮤니티 등 여러 가치 있는 연결을 만들어
-              <br className='hidden md:block' />
-              가고자 해요.
+              SOPT 플레이그라운드는 SOPT 회원들이 소통하고 연결될 수 있는 공간이에요. 커뮤니티, 모임 피드를 통해 여러
+              회원들의 <br className='hidden md:block' /> 소통을 도모하며 끝말잇기와 같은 가벼운 연결도 만들어 가고
+              있어요.
+              <br /> 현재는 약 700명의 회원이 있으며 앞으로도 여러 가치 있는 연결을 만들어가고자 해요.
             </Description>
             <Title type='app' className='sticky top-[16.8rem] border-t border-solid border-white md:top-[22.4rem]'>
               APP
