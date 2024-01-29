@@ -41,12 +41,12 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const metadata = {
   metadataBase: BASE_URL ? new URL(BASE_URL) : undefined,
-  title: 'SOPT Makers',
+  title: 'SOPT makers',
   description: '',
   colorScheme: 'dark',
   themeColor: '#0F1010',
   openGraph: {
-    title: 'SOPT Makers',
+    title: 'SOPT makers',
     description: '',
     url: BASE_URL ?? undefined,
     type: 'website',
