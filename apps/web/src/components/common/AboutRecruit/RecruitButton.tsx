@@ -2,7 +2,7 @@
 
 import dayjs from 'dayjs';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
@@ -27,11 +27,13 @@ export default function RecruitButton() {
       const days = Math.floor(difference / (3600 * 24));
       const hours = Math.floor((difference / 3600) % 24);
       const minutes = Math.floor((difference / 60) % 60);
-      const seconds = difference % 60;
+      // const seconds = difference % 60;
 
-      return `4기 지원 마감까지 ${days}일 ${hours.toString().padStart(2, '0')}:${minutes
-        .toString()
-        .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      if (days > 0 || hours >= 24) {
+        return '현재 메이커스 4기 모집 중 (~2/7 토요일 자정)';
+      }
+
+      return `지원 마감까지 ${hours.toString()}시간 ${minutes.toString().padStart(2, '0')}분 남았어요.`;
     };
 
     setTimeLeft(calculateTimeLeft());
@@ -44,12 +46,24 @@ export default function RecruitButton() {
   }, []);
 
   return (
-    <Link
-      href='/recruit/'
-      className='bg-dark1 mb-[3rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] px-[4rem] py-[1.6rem]'
-    >
-      <p className='md:text-24-semibold text-18-semibold'>4기 합류하기 (~2/7)</p>
-      <p className='text-16-regular mt-[1.2rem] text-center'>{timeLeft}</p>
-    </Link>
+    <>
+      <Link
+        href='/recruit/'
+        className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] bg-white px-[2.6rem] py-[1.6rem]'
+      >
+        <p className='md:text-18-semibold text-18-semibold text-black100 flex items-center justify-center gap-[0.25rem]'>
+          4기 지원하기 <RightArrow />
+        </p>
+      </Link>
+      <p className='text-16-regular text-brand-orange mb-[4.2rem] mt-[1.2rem] text-center'>{timeLeft}</p>
+    </>
   );
+
+  function RightArrow(props: React.SVGProps<SVGSVGElement>) {
+    return (
+      <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+        <path d='M9 18L15 12L9 6' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' />
+      </svg>
+    );
+  }
 }
