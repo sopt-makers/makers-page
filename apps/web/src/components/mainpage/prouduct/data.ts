@@ -7,7 +7,7 @@ interface DescriptionMap {
 
 export const descriptionMap: DescriptionMap = {
   official: {
-    imageUrl: 'https://github.com/sopt-makers/makers-page/assets/97586683/a59a5edd-d39c-42c8-b362-4d5542e02ec8',
+    imageUrl: 'https://github.com/sopt-makers/makers-page/assets/97586683/86465d59-8c72-49e0-9360-02b3f55dcc2a',
     altText: 'official_image',
   },
   playground: {
