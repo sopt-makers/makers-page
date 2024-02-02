@@ -14,10 +14,10 @@ export default function RecruitSection() {
       <div className='absolute inset-0 flex transform-gpu items-center'>
         <div className='flex w-full justify-between'>
           <m.div initial={{ x: '-100%' }} animate={{ x: isInView ? '0%' : '-100%' }} transition={{ bounce: 0 }}>
-            <LeftFrame className='h-[57.2rem]' />
+            <LeftFrame className='hidden h-[57.2rem] md:block' />
           </m.div>
           <m.div initial={{ x: '100%' }} animate={{ x: isInView ? '0%' : '100%' }} transition={{ bounce: 0 }}>
-            <RightFrame className='h-[53.5rem] translate-x-[1.5rem] transform' />
+            <RightFrame className='hidden h-[53.5rem] translate-x-[1.5rem] transform md:block' />
           </m.div>
         </div>
       </div>
