@@ -8,7 +8,7 @@ export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
 
   useEffect(() => {
-    const deadline = dayjs('2024-02-11T15:59:00.000Z');
+    const deadline = dayjs('2024-02-11T14:59:00.000Z');
     const start = dayjs('2024-01-28T15:00:00.000Z');
 
     const calculateTimeLeft = () => {
