@@ -1,7 +1,6 @@
 'use client';
 
 import dayjs from 'dayjs';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function RecruitButton() {
