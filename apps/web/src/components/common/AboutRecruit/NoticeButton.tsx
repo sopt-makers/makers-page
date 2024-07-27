@@ -18,7 +18,7 @@ export default function NoticeButton() {
       <Link href='/recruit/' className='w-[19.2rem] md:w-[21.2rem]'>
         <p className='text-14-semibold md:text-16-semibold bg-gray2 flex items-center justify-center gap-[0.6rem] rounded-[0.6rem] px-[2rem] py-[1.4rem] text-white md:py-[1.6rem]'>
           <ArrowIcon />
-          3기 모집글 보기 (마감)
+          5기 모집글 보기
         </p>
       </Link>
     </div>

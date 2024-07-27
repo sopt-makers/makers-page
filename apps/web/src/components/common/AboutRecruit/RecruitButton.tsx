@@ -1,21 +1,20 @@
 'use client';
 
 import dayjs from 'dayjs';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
 
   useEffect(() => {
-    const deadline = dayjs('2024-02-11T14:59:00.000Z');
-    const start = dayjs('2024-01-28T15:00:00.000Z');
+    const deadline = dayjs('2024-08-07T14:59:00.000Z');
+    const start = dayjs('2024-07-31T02:00:00.000Z');
 
     const calculateTimeLeft = () => {
       const now = dayjs();
 
       if (now.isBefore(start)) {
-        return '1/29 부터 지원 가능';
+        return '7/31 부터 지원 가능';
       }
 
       if (now.isAfter(deadline)) {
@@ -30,7 +29,7 @@ export default function RecruitButton() {
       // const seconds = difference % 60;
 
       if (days > 0 || hours >= 24) {
-        return '현재 메이커스 4기 모집 중 (~2/11 일요일 23시 59분)';
+        return '현재 메이커스 5기 모집 중 (~8/7 수요일 23시 59분)';
       }
 
       return `지원 마감까지 ${hours.toString()}시간 ${minutes.toString().padStart(2, '0')}분 남았어요.`;
@@ -47,14 +46,19 @@ export default function RecruitButton() {
 
   return (
     <>
-      <Link
+      {/* <Link
         href='/recruit/'
         className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] bg-white px-[2.6rem] py-[1.6rem]'
-      >
+      > */}
+      <button
+        className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] bg-white px-[2.6rem] py-[1.6rem]'
+        onClick={() => alert('7/28 메이커스 데모데이 이후 공개됩니다.')}>
         <p className='md:text-18-semibold text-18-semibold text-black100 flex items-center justify-center gap-[0.25rem]'>
-          4기 지원하기 <RightArrow />
+        5기 지원하기 <RightArrow />
         </p>
-      </Link>
+      </button>
+
+      {/* </Link> */}
       <p className='text-16-regular text-brand-orange mb-[4.2rem] mt-[1.2rem] text-center'>{timeLeft}</p>
     </>
   );
