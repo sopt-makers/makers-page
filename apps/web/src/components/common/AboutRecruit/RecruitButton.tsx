@@ -47,14 +47,19 @@ export default function RecruitButton() {
 
   return (
     <>
-      <Link
+      {/* <Link
         href='/recruit/'
         className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] bg-white px-[2.6rem] py-[1.6rem]'
-      >
+      > */}
+      <button
+        className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] bg-white px-[2.6rem] py-[1.6rem]'
+        onClick={() => alert('7/28 메이커스 데모데이 이후 공개됩니다.')}>
         <p className='md:text-18-semibold text-18-semibold text-black100 flex items-center justify-center gap-[0.25rem]'>
         5기 지원하기 <RightArrow />
         </p>
-      </Link>
+      </button>
+
+      {/* </Link> */}
       <p className='text-16-regular text-brand-orange mb-[4.2rem] mt-[1.2rem] text-center'>{timeLeft}</p>
     </>
   );
