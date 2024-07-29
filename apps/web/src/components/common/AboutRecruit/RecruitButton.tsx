@@ -52,7 +52,7 @@ export default function RecruitButton() {
         className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] bg-white px-[2.6rem] py-[1.6rem]'
       >
         <p className='md:text-18-semibold text-18-semibold text-black100 flex items-center justify-center gap-[0.25rem]'>
-        5기 지원하기 <RightArrow />
+        35기 지원하기 <RightArrow />
         </p>
       </Link>
       <p className='text-16-regular text-brand-orange mb-[4.2rem] mt-[1.2rem] text-center'>{timeLeft}</p>
