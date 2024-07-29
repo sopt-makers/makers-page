@@ -1,5 +1,7 @@
 'use client';
 
+import { IconChevronRight } from '@sopt-makers/icons';
+import { Button } from '@sopt-makers/ui';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -49,21 +51,11 @@ export default function RecruitButton() {
     <>
       <Link
         href='/recruit/'
-        className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] border border-solid border-[#808388] bg-white px-[2.6rem] py-[1.6rem]'
+        className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'
       >
-        <p className='md:text-18-semibold text-18-semibold text-black100 flex items-center justify-center gap-[0.25rem]'>
-        35기 지원하기 <RightArrow />
-        </p>
+        <Button theme='white' size='lg' RightIcon={IconChevronRight}>35기 지원하기</Button>
       </Link>
       <p className='text-16-regular text-brand-orange mb-[4.2rem] mt-[1.2rem] text-center'>{timeLeft}</p>
     </>
   );
-
-  function RightArrow(props: React.SVGProps<SVGSVGElement>) {
-    return (
-      <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
-        <path d='M9 18L15 12L9 6' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' />
-      </svg>
-    );
-  }
 }

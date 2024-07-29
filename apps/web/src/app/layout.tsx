@@ -1,4 +1,5 @@
 import './global.css';
+import '@sopt-makers/ui/dist/index.css';
 
 import clsx from 'clsx';
 import localFont from 'next/font/local';
