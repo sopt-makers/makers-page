@@ -32,7 +32,7 @@ export default function RecruitButton() {
       // const seconds = difference % 60;
 
       if (days > 0 || hours >= 24) {
-        return '현재 메이커스 5기 모집 중 (~8/7 수요일 23시 59분)';
+        return '현재 35기 메이커스 팀 모집 중 (~8/7 수요일 23시 59분)';
       }
 
       return `지원 마감까지 ${hours.toString()}시간 ${minutes.toString().padStart(2, '0')}분 남았어요.`;
