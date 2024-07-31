@@ -17,7 +17,7 @@ export default function RecruitButton() {
       const now = dayjs();
 
       if (now.isBefore(start)) {
-        return '7/31 부터 지원 가능';
+        return '7/31 11:00 부터 지원 가능';
       }
 
       if (now.isAfter(deadline)) {
