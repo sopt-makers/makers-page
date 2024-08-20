@@ -54,7 +54,8 @@ export default function RecruitButton() {
         href='/recruit/'
         className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'
       >
-        <Button theme='white' size='lg' RightIcon={IconChevronRight}>35기 지원하기</Button>
+        {/* <Button theme='white' size='lg' RightIcon={IconChevronRight}>35기 지원하기</Button> */}
+        <Button theme='white' size='lg' RightIcon={IconChevronRight}>35기 모집글 보기</Button>
       </Link>
       <p className='text-16-regular text-brand-orange mb-[4.2rem] mt-[1.2rem] text-center'>{timeLeft}</p>
     </>
