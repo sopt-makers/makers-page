@@ -8,7 +8,7 @@ interface GreetingProps {
   className?: string;
 }
 
-export default function MakersIntodution({ className }: GreetingProps) {
+export default function MakersIntroduction({ className }: GreetingProps) {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
