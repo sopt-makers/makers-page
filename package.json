@@ -32,7 +32,7 @@
   ],
   "dependencies": {
     "@sopt-makers/icons": "^1.0.4",
-    "@sopt-makers/ui": "^2.0.1",
+    "@sopt-makers/ui": "2.3.1",
     "dayjs": "^1.11.9"
   }
 }
