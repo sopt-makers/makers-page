@@ -10,7 +10,7 @@ export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
 
   useEffect(() => {
-    const deadline = dayjs('2025-02-05T14:59:00.000Z');
+    const deadline = dayjs('2025-02-07T14:59:00.000Z');
     const start = dayjs('2025-01-29T02:00:00.000Z');
 
     const calculateTimeLeft = () => {
@@ -32,7 +32,7 @@ export default function RecruitButton() {
       // const seconds = difference % 60;
 
       if (days > 0 || hours >= 24) {
-        return '현재 36기 메이커스 팀 모집 중 (~2/5 수요일 23시 59분)';
+        return '일부 포지션 추가 모집 중 (~2/5 수요일 23시 59분)';
         // return '일부 포지션 모집 연장 (~2/6 목요일 14시 59분)';
       }
 
