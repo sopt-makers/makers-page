@@ -5,8 +5,8 @@
   "types": "src/exports.ts",
   "main": "src/exports.ts",
   "scripts": {
-    "deploy": "wrangler publish",
-    "dev": "wrangler dev --port 5011 -e preview",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev --port 5011 -e=preview",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
@@ -26,6 +26,6 @@
     "eslint-config-custom": "*",
     "notion-types": "^6.16.0",
     "typescript": "^5.1.6",
-    "wrangler": "^3.3.0"
+    "wrangler": "4.25.0"
   }
 }

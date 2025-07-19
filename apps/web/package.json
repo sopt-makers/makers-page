@@ -49,6 +49,6 @@
     "tsconfig": "*",
     "typescript": "^5.1.6",
     "vercel": "^30.0.0",
-    "wrangler": "^3.3.0"
+    "wrangler": "4.25.0"
   }
 }
