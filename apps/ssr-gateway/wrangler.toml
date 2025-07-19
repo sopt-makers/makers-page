@@ -1,17 +1,20 @@
 name = "makers-page-ssr-gateway"
 main = "src/worker.ts"
-compatibility_date = "2023-07-05"
-account_id = "3b0da57608b817b625bbd70a9927b4a4"
+compatibility_date = "2025-07-19"
+account_id = "fcb2001206ae0afed10010755eb5b2e1"
 
 kv_namespaces = [
-  { binding = "MAKERS_PAGE_KV", id = "4d8354cca877431f9e08086354ccb22e" }
+  { binding = "MAKERS_PAGE_KV", id = "79ecb3f23a404fc5ba9ffcbba37c0772" }
 ]
 
+r2_buckets = [
+  { binding = "MAKERS_PAGE_R2", bucket_name = "makers-page-bucket", preview_bucket_name = "makers-page-bucket" }
+]
 
 [env.preview]
 name = "makers-page-ssr-gateway-preview"
 kv_namespaces = [
-  { binding = "MAKERS_PAGE_KV", id = "6ef1beb3d9324722869cc2c58027d46f", preview_id = "6ef1beb3d9324722869cc2c58027d46f" }
+  { binding = "MAKERS_PAGE_KV", id = "79ecb3f23a404fc5ba9ffcbba37c0772", preview_id = "79ecb3f23a404fc5ba9ffcbba37c0772" }
 ]
 r2_buckets = [
   { binding = "MAKERS_PAGE_R2", bucket_name = "makers-page-bucket", preview_bucket_name = "makers-page-bucket" }
