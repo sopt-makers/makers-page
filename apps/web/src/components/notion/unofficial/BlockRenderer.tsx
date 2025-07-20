@@ -62,7 +62,7 @@ const BlockRenderer: FC<BlockRendererProps> = ({
         }
         return (
           <BlockResolver
-            key={entryOrArray.block.id}
+            key={entryOrArray.block?.id}
             block={entryOrArray.block}
             streak={entryOrArray.streak}
             blockComponents={blockComponents}
@@ -86,8 +86,8 @@ function mergeBlocks(blocks: Block[]) {
   let buffer: Entry[] = [];
 
   for (const block of blocks) {
-    if (block.type === 'bulleted_list' || block.type === 'numbered_list') {
-      if (buffer.length > 0 && buffer[buffer.length - 1].block.type === block.type) {
+    if (block?.type === 'bulleted_list' || block?.type === 'numbered_list') {
+      if (buffer.length > 0 && buffer[buffer.length - 1].block?.type === block?.type) {
         buffer.push({ streak: buffer[buffer.length - 1].streak + 1, block });
         continue;
       }
