@@ -26,6 +26,6 @@
     "eslint-config-custom": "*",
     "notion-types": "^6.16.0",
     "typescript": "^5.1.6",
-    "wrangler": "^3.3.0"
+    "wrangler": "4.26.0"
   }
 }
