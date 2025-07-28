@@ -6,18 +6,18 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+const deadline = dayjs('2025-08-13T23:59:00.000Z');
+const start = dayjs('2025-07-30T11:00:00.000Z');
+
 export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
 
   useEffect(() => {
-    const deadline = dayjs('2025-02-07T14:59:00.000Z');
-    const start = dayjs('2025-01-29T02:00:00.000Z');
-
     const calculateTimeLeft = () => {
       const now = dayjs();
 
       if (now.isBefore(start)) {
-        return '1/29 11:00 부터 지원 가능';
+        return '7/30 11:00 부터 지원 가능';
       }
 
       if (now.isAfter(deadline)) {
@@ -52,13 +52,13 @@ export default function RecruitButton() {
     <>
       {/* <Link href='/recruit/' className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'> */}
       <Link
-        href='https://sopt-makers.notion.site/36-2ff73e675e064d8fa762d409134eeb32'
+        href='https://sopt-makers.notion.site/37-22a76042aac2806f9af3ecd2b84cb62b'
         className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'
         target='_blank'
         rel='noopener noreferrer'
       >
         <Button theme='white' size='lg' RightIcon={IconChevronRight}>
-          36기 지원하기
+          37기 지원하기
         </Button>
         {/* <Button theme='white' size='lg' RightIcon={IconChevronRight}>35기 모집글 보기</Button> */}
       </Link>
