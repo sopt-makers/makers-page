@@ -6,18 +6,18 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const deadline = dayjs('2025-08-13T23:59:00.000Z');
-const start = dayjs('2025-07-30T11:00:00.000Z');
-
 export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
 
   useEffect(() => {
+    const deadline = dayjs('2025-02-07T14:59:00.000Z');
+    const start = dayjs('2025-01-29T02:00:00.000Z');
+
     const calculateTimeLeft = () => {
       const now = dayjs();
 
       if (now.isBefore(start)) {
-        return '7/30 11:00 부터 지원 가능';
+        return '1/29 11:00 부터 지원 가능';
       }
 
       if (now.isAfter(deadline)) {
