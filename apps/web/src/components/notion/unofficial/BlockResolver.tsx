@@ -14,7 +14,7 @@ type BlockResolverProps = BlockComponentProps<string> & {
 };
 
 export function BlockResolver({ blockComponents, block, streak, ctx }: BlockResolverProps) {
-  const Comp = blockComponents[block?.type as keyof typeof blockComponents] as (
+  const Comp = blockComponents[block.type as keyof typeof blockComponents] as (
     props: BlockComponentProps,
   ) => ReactElement;
 
@@ -22,7 +22,7 @@ export function BlockResolver({ blockComponents, block, streak, ctx }: BlockReso
     return <Comp block={block} streak={streak} ctx={ctx} />;
   }
 
-  return <div>Unresolved Block type: {block?.type}</div>;
+  return <div>Unresolved Block type: {block.type}</div>;
 }
 
 export type BlockComponentsBase = {

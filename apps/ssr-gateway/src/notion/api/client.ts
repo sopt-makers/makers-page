@@ -21,14 +21,10 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
       return Object.keys(chunk.recordMap.block).map((key) => chunk.recordMap.block[key].value);
     };
 
-    const blockMap = Object.fromEntries(
-      Object.values(chunk.recordMap.block)
-        .filter(({ value }) => value != null)
-        .map(({ value }) => [value.id, value]),
-    );
+    const blockMap = Object.fromEntries(Object.values(chunk.recordMap.block).map(({ value }) => [value.id, value]));
     const pageBlock = blockMap[pageId];
 
-    if (!pageBlock || pageBlock?.type !== 'page') {
+    if (!pageBlock || pageBlock.type !== 'page') {
       throw new Error('Invalid page');
     }
     const title = pageBlock.properties?.title?.map((v) => v[0]).join('') ?? null;
@@ -36,16 +32,16 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
     const fetchMissing = async (blocks: Block[], blockMap: Record<string, Block>): Promise<Record<string, Block>> => {
       const unknownBlockIds = uniq(
         blocks
-          .filter((block) => block?.type !== 'page')
+          .filter((block) => block.type !== 'page')
           .flatMap((block) => {
-            if (block?.content && block?.content?.length > 0) {
-              return block?.content?.filter((id) => !blockMap[id]);
+            if (block.content && block.content.length > 0) {
+              return block.content.filter((id) => !blockMap[id]);
             }
             return [];
           }),
       );
 
-      if (unknownBlockIds?.length === 0) {
+      if (unknownBlockIds.length === 0) {
         return blockMap;
       }
 
@@ -74,16 +70,25 @@ export function createNotionUnofficialClient(_imageHandler: NotionImageHandler) 
         return [];
       }
 
-      return {
-        blockId: block.id,
-        query: {
-          permissionRecord: {
-            table: 'block' as const,
-            id: block.id,
+      const source = block.properties?.source[0][0];
+
+      if (
+        source.includes('/secure.notion-static.com/') ||
+        source.includes('/prod-files-secure.s3.us-west-2.amazonaws.com/')
+      ) {
+        return {
+          blockId: block.id,
+          query: {
+            permissionRecord: {
+              table: 'block' as const,
+              id: block.id,
+            },
+            url: source,
           },
-          url: block.properties.source[0][0],
-        },
-      };
+        };
+      }
+
+      return [];
     });
 
     if (queries.length === 0) {
