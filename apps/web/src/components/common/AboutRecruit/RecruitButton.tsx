@@ -52,7 +52,7 @@ export default function RecruitButton() {
     <>
       {/* <Link href='/recruit/' className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'> */}
       <Link
-        href='https://sopt-makers.notion.site/37-22a76042aac2806f9af3ecd2b84cb62b'
+        href='https://sopt-makers.notion.site/37-22976042aac28009811df7026480fa54'
         className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'
         target='_blank'
         rel='noopener noreferrer'
