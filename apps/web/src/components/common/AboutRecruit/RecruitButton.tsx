@@ -50,7 +50,13 @@ export default function RecruitButton() {
 
   return (
     <>
-      <Link href='/recruit/' className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'>
+      {/* <Link href='/recruit/' className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'> */}
+      <Link
+        href='https://sopt-makers.notion.site/37-22976042aac28009811df7026480fa54'
+        className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
         <Button theme='white' size='lg' RightIcon={IconChevronRight}>
           37기 지원하기
         </Button>

@@ -1463,9 +1463,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/next-on-pages@npm:1.13.10":
-  version: 1.13.10
-  resolution: "@cloudflare/next-on-pages@npm:1.13.10"
+"@cloudflare/next-on-pages@npm:^1.13.13":
+  version: 1.13.13
+  resolution: "@cloudflare/next-on-pages@npm:1.13.13"
   dependencies:
     acorn: ^8.8.0
     ast-types: ^0.14.2
@@ -1488,20 +1488,20 @@ __metadata:
       optional: true
   bin:
     next-on-pages: bin/index.js
-  checksum: d8dfeeadfb48b642e41c28417f5cc2d37a4387fa98c836d17575f8c0a687a0e138100d0b95c17082e56451cabbdeb34246f1922f24e19ceff8c53f50152092d6
+  checksum: a4622a68d192f17a610aaa6a71701bbec150cd77679d7e6d26ae834c4634ba064a2ac51bd7b9e2afd5096c0c6eb08b7bc727d2fbc8e229a92ee0f1e922b503f3
   languageName: node
   linkType: hard
 
-"@cloudflare/unenv-preset@npm:2.3.3":
-  version: 2.3.3
-  resolution: "@cloudflare/unenv-preset@npm:2.3.3"
+"@cloudflare/unenv-preset@npm:2.4.1":
+  version: 2.4.1
+  resolution: "@cloudflare/unenv-preset@npm:2.4.1"
   peerDependencies:
     unenv: 2.0.0-rc.17
-    workerd: ^1.20250508.0
+    workerd: ^1.20250521.0
   peerDependenciesMeta:
     workerd:
       optional: true
-  checksum: 1c6c03776cad8e75fea03519298c1a5f942ba42b062338d5eeff668109c288794d675ef3fc4281d7d9a6a871fd0053d5ae3020b0212053b2b79a2dd7e218f200
+  checksum: 762789ecf331f3429dd52d9a2e823c5008f234c390b27c159a31d32e24644cc279987cd61296e83cc243bace7bc1fba7aa4bb29bbdc7651aca3aa56e74bcff8d
   languageName: node
   linkType: hard
 
@@ -11393,9 +11393,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:4.20250712.0":
-  version: 4.20250712.0
-  resolution: "miniflare@npm:4.20250712.0"
+"miniflare@npm:4.20250712.2":
+  version: 4.20250712.2
+  resolution: "miniflare@npm:4.20250712.2"
   dependencies:
     "@cspotcode/source-map-support": 0.8.1
     acorn: 8.14.0
@@ -11411,7 +11411,7 @@ __metadata:
     zod: 3.22.3
   bin:
     miniflare: bootstrap.js
-  checksum: 544f7b8a5561f32a2d49e361fd181e3fda4aa7036b2d91f5597dcab2ce2aba28697be7405d45a4cc3a369b0510c0b8ffb3ef1ebe470975fe436c524989093742
+  checksum: 42d7d00d2be479cbf5aea75806e7af351a3af7e6b378e2cb9797f0af94fe0ca94a01a02fef5dfecda4230860856620f80712921dc6bdc0ed6ffaa7a3d2fa2356
   languageName: node
   linkType: hard
 
@@ -14338,7 +14338,7 @@ __metadata:
     notion-utils: ^6.16.0
     superjson: ^1.13.1
     typescript: ^5.1.6
-    wrangler: 4.25.0
+    wrangler: 4.26.0
     zod: ^3.21.4
   languageName: unknown
   linkType: soft
@@ -15936,7 +15936,7 @@ turbo@latest:
   version: 0.0.0-use.local
   resolution: "web@workspace:apps/web"
   dependencies:
-    "@cloudflare/next-on-pages": 1.13.10
+    "@cloudflare/next-on-pages": ^1.13.13
     "@cloudflare/workers-types": ^4.20230628.0
     "@radix-ui/react-collapsible": ^1.0.3
     "@react-three/drei": ^9.79.3
@@ -15971,7 +15971,7 @@ turbo@latest:
     tsconfig: "*"
     typescript: ^5.1.6
     vercel: ^30.0.0
-    wrangler: 4.25.0
+    wrangler: 4.26.0
     zod: ^3.21.4
   languageName: unknown
   linkType: soft
@@ -16138,16 +16138,16 @@ turbo@latest:
   languageName: node
   linkType: hard
 
-"wrangler@npm:4.25.0":
-  version: 4.25.0
-  resolution: "wrangler@npm:4.25.0"
+"wrangler@npm:4.26.0":
+  version: 4.26.0
+  resolution: "wrangler@npm:4.26.0"
   dependencies:
     "@cloudflare/kv-asset-handler": 0.4.0
-    "@cloudflare/unenv-preset": 2.3.3
+    "@cloudflare/unenv-preset": 2.4.1
     blake3-wasm: 2.1.5
     esbuild: 0.25.4
     fsevents: ~2.3.2
-    miniflare: 4.20250712.0
+    miniflare: 4.20250712.2
     path-to-regexp: 6.3.0
     unenv: 2.0.0-rc.17
     workerd: 1.20250712.0
@@ -16162,7 +16162,7 @@ turbo@latest:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 07f8a9c233e664fc4bf956191401309b8063e41e3b99b1c0b24cb0cd0d084bf524b9e23bb113fce76c2da445fd17e108c74a012d306805239faaa35d564e0cbc
+  checksum: 7d01699a0c292b3413e52964afacb2ff16f5654b69e7b1b124d32cfa069fc35d8d8310bde2fc4d20f424b33e4232b1da7546b8954d0067fb96d38d65fc9acabb
   languageName: node
   linkType: hard
 

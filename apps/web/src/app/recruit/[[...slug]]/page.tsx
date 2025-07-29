@@ -28,8 +28,10 @@ const RecruitPage: FC<RecruitPageProps> = async ({ params: { slug = [] } }) => {
 
   function getBlock(id: string) {
     const block = blockMap[id];
-
-    return block;
+    if (block) {
+      return block;
+    }
+    throw new Error('Invalid Block Id: ' + id);
   }
 
   return (
