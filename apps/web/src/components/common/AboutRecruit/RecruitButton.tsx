@@ -31,8 +31,8 @@ export default function RecruitButton() {
       const minutes = Math.floor((difference / 60) % 60);
       // const seconds = difference % 60;
 
-      if (days > 0 || hours >= 24) {
-        return '일부 포지션 추가 모집 중 (~2/5 수요일 23시 59분)';
+      if (days > 0) {
+        return `지원 마감까지 ${days}일 남았어요.`;
         // return '일부 포지션 모집 연장 (~2/6 목요일 14시 59분)';
       }
 
