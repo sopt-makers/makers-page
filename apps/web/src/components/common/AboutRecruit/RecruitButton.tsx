@@ -6,8 +6,10 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const deadline = dayjs('2025-08-13T23:59:00.000Z');
-const start = dayjs('2025-07-30T11:00:00.000Z');
+import { GENERATION, RECRUIT_DEADLINE, RECRUIT_START } from '@/config';
+
+const deadline = dayjs(RECRUIT_DEADLINE);
+const start = dayjs(RECRUIT_START);
 
 export default function RecruitButton() {
   const [timeLeft, setTimeLeft] = useState<string>('');
@@ -29,11 +31,9 @@ export default function RecruitButton() {
       const days = Math.floor(difference / (3600 * 24));
       const hours = Math.floor((difference / 3600) % 24);
       const minutes = Math.floor((difference / 60) % 60);
-      // const seconds = difference % 60;
 
-      if (days > 0) {
-        return `지원 마감까지 ${days}일 남았어요.`;
-        // return '일부 포지션 모집 연장 (~2/6 목요일 14시 59분)';
+      if (days > 0 || hours >= 24) {
+        return `${GENERATION}기 리쿠르팅 진행 중 (~${deadline.format('MM.DD')})`;
       }
 
       return `지원 마감까지 ${hours.toString()}시간 ${minutes.toString().padStart(2, '0')}분 남았어요.`;
