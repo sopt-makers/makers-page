@@ -52,13 +52,13 @@ export default function RecruitButton() {
     <>
       {/* <Link href='/recruit/' className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'> */}
       <Link
-        href='https://sopt-makers.notion.site/37-22976042aac28009811df7026480fa54'
+        href='https://sopt-makers.notion.site/38-2fd76042aac280f39548e46b98e2a06a?pvs=73'
         className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'
         target='_blank'
         rel='noopener noreferrer'
       >
         <Button theme='white' size='lg' RightIcon={IconChevronRight}>
-          37기 지원하기
+          38기 지원하기
         </Button>
         {/* <Button theme='white' size='lg' RightIcon={IconChevronRight}>35기 모집글 보기</Button> */}
       </Link>

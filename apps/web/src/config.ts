@@ -1,5 +1,5 @@
-export const GENERATION = 37;
+export const GENERATION = 38;
 
-export const RECRUIT_DEADLINE = '2025-08-13T23:59:00';
+export const RECRUIT_DEADLINE = '2026-02-13T23:59:59';
 
-export const RECRUIT_START = '2025-07-30T11:00:00';
+export const RECRUIT_START = '2026-02-06T11:00:00';
