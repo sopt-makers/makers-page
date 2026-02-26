@@ -58,7 +58,7 @@ export default function RecruitButton() {
         rel='noopener noreferrer'
       >
         <Button theme='white' size='lg' RightIcon={IconChevronRight}>
-          38기 지원하기
+          38기 모집글 보기
         </Button>
         {/* <Button theme='white' size='lg' RightIcon={IconChevronRight}>35기 모집글 보기</Button> */}
       </Link>
