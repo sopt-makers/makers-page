@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import MakersLogo3D from '@/components/common/MakersLogo3D';
 
 import Intro from './Intro';
-import MakersIntodution from './MakersIntodution';
+import MakersIntroduction from './MakersIntroduction';
 import Missions from './Missions';
 
 export default function Greeting() {
@@ -31,7 +31,7 @@ export default function Greeting() {
       </div>
       <m.div className='absolute inset-0'>
         <Intro className='pt-[10rem] md:pt-[20rem]' />
-        <MakersIntodution />
+        <MakersIntroduction />
         <Missions />
       </m.div>
     </div>
