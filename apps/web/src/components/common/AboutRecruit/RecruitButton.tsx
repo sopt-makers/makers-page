@@ -19,7 +19,7 @@ export default function RecruitButton() {
       const now = dayjs();
 
       if (now.isBefore(start)) {
-        return '7/30 11:00 부터 지원 가능';
+        return `${start.format('M/D')} ${start.format('HH:mm')} 부터 지원 가능`;
       }
 
       if (now.isAfter(deadline)) {
@@ -52,13 +52,13 @@ export default function RecruitButton() {
     <>
       {/* <Link href='/recruit/' className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'> */}
       <Link
-        href='https://sopt-makers.notion.site/38-2fd76042aac280f39548e46b98e2a06a?pvs=73'
+        href='https://sopt-makers.notion.site/39-2fb76042aac2800baf8ac068ce9e2b06'
         className='mb-[0.5rem] mt-[4rem] rounded-[1.2rem] bg-white'
         target='_blank'
         rel='noopener noreferrer'
       >
         <Button theme='white' size='lg' RightIcon={IconChevronRight}>
-          38기 모집글 보기
+          {GENERATION}기 모집글 보기
         </Button>
         {/* <Button theme='white' size='lg' RightIcon={IconChevronRight}>35기 모집글 보기</Button> */}
       </Link>
